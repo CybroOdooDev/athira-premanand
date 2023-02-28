@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="recurring_activity_form">
+            <field name="name">Recurring Activity</field>
+            <field name="model">recurring.activity</field>
+            <field name="arch" type="xml">
+                <form string="Activity">
+                    <sheet>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="deadline" string="Deadline in x days"/>
+                            </group>
+                            <group>
+                                <field name="activity" string="Activity"/>
+                                <field name="assigned" string="Assigned To"/>
+                                <field name="summary" string="Summary"/>
+                                <field name="note" string="Note"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Recurrency">
+                                <group>
+                                <group>
+                                    <field name="repeate_days" string="Repeat Every" attrs="{'invisible':[('interval_type', '=', 'week')]}"/>
+                                    <field name="next_activity" string="Next Activity"/>
+                                    <field name="last_activity" string="Last Activity"/>
+                                </group>
+                                    <group>
+                                        <field name="interval_type" string="Interval Type"/>
+                                            <field name="week_days" string="Week" attrs="{'invisible':[('interval_type', '!=', 'week')]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="recurring_activity_tree">
+            <field name="name">Activity</field>
+            <field name="model">recurring.activity</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string='Activity'>
+                    <field name="name" string="Name"/>
+                    <field name="deadline" string="Deadline in x days"/>
+                    <field name="activity" string="Activity"/>
+                    <field name="assigned" string="Assigned To"/>
+                    <field name="summary" string="Summary"/>
+                    <field name="note" string="Note"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="recurring_activity_action" model="ir.actions.act_window">
+            <field name="name">Recurring Activity</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">recurring.activity</field>
+            <field name="view_mode">tree,form,activity</field>
+        </record>
+        <menuitem id="activity"
+                  name="Recurring Activity"
+                  action="recurring_activity_action"
+                  sequence="1"/>
+    </data>
+</odoo>

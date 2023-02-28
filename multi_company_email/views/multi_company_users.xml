@@ -1,0 +1,17 @@
+<odoo>
+    <record id="multi_company_email" model="ir.ui.view">
+        <field name="name">multi company email</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="before">
+                <group>
+                    <group>
+                        <field name="login_mail"/>
+                        <field name="signature" widget="signature" style="width: 30%" colspan="2"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

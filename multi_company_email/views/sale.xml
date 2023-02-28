@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="multi_company_sign" model="ir.ui.view">
+        <field name="name">multi company sign</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='customer_signature']" position="replace">
+                <page string="Signature" name="customer_signature"
+                      attrs="{'invisible': [('require_signature', '=', False), ('signed_by', '=', False), ('signature', '=', False), ('signed_on', '=', False)]}">
+                    <group>
+                        <field name="signed_by"/>
+                        <field name="signed_on"/>
+                        <field name="signature" widget="signature"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

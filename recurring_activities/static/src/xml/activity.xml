@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="mail.ActivityMenuView" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-foreach='activityMenuView.activityGroupViews']" position="after">
+            <div t-if="activityMenuView">
+            </div>
+            <button t-on-click="onActivityClick" class="btn btn-sm btn-primary m-1 float-end action_activity_button">Manage Recurring Activities</button>
+        </xpath>
+    </t>
+</templates>

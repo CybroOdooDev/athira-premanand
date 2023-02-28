@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="activity_access">
+            <field name="name">Recurring Activities</field>
+            <field name="description">access right for Recurring Activity module</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="activity_user" model="res.groups">
+            <field name="name">Only Own Recurrent Activities</field>
+            <field name="category_id" ref="recurring_activities.activity_access"/>
+        </record>
+
+        <record id="activity_manager" model="res.groups">
+            <field name="name">All Recurrent Activities</field>
+            <field name="category_id" ref="recurring_activities.activity_access"/>
+            <field name="implied_ids"
+                   eval="[(4, ref('activity_user'))]"/>
+        </record>
+
+        <record id="recurring_activity_rule_manager" model="ir.rule">
+            <field name="name">Activity Manager: full access</field>
+            <field name="model_id" ref="model_recurring_activity"/>
+            <field name="domain_force">[(1,'=',1)]</field>
+            <field name="groups" eval="[(4,ref('recurring_activities.activity_manager'))]"/>
+        </record>
+
+        <record id="recurring_activity_rule_user" model="ir.rule">
+            <field name="name">user: read own attendance only</field>
+            <field name="model_id" ref="model_recurring_activity"/>
+            <field name="domain_force">[('assigned.id','=',user.id)]</field>
+            <field name="groups" eval="[(4,ref('recurring_activities.activity_user'))]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="eco_food_featured_products" name="Eco Food Featured Products">
+        <section class="featured_product">
+            <div class="f_wrapper">
+                <div class="container-fluid">
+                    <div class="row justify-content-lg-end">
+                        <div class="col-lg-6 col-12">
+                            <div class="featured_wrapper">
+                                <div class="main_heading">
+                                    <h1>
+                                        featured product
+                                    </h1>
+                                    <p>
+                                        Add featured products to weekly line up
+                                    </p>
+                                </div>
+                                <div class="featured_slider">
+                                    <div class="wrapper">
+                                        <div class=" owl-carousel favorite-carousel owl-loaded owl-drag" id="demo_carousel">
+                                            <div>
+                                                <div class="row">
+                                                    <t t-foreach="slide1" t-as="fp"
+                                                       t-if="slide1">
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                            <div class="b_product">
+                                                                <a t-attf-href="/shop/product/#{slug(fp)}">
+                                                                    <div class="wrapper">
+                                                                        <div class="img_wrapper">
+                                                                            <img t-attf-src="/web/image?model=product.template&amp;field=image_1920&amp;id=#{fp.id}"/>
+                                                                            <div class="inner">
+                                                                                <a t-attf-href="/shop/product/#{slug(fp)}"
+                                                                                   itemprop="url" type="button"
+                                                                                   class="quick_view scale-in-center">
+                                                                                    <i
+                                                                                            class="fa fa-search"/>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="product_info">
+                                                                            <div class="p_caregory">
+                                                                                <span t-if="slide1"
+                                                                                      t-esc="fp.categ_id.name"/>
+                                                                            </div>
+                                                                            <div class="p_name">
+                                                                                <span t-if="slide1"
+                                                                                      t-esc="fp.name"/>
+                                                                            </div>
+                                                                            <div class="p_rating ">
+                                                                                <t t-set="rating_avg"
+                                                                                   t-value="fp.rating_avg"/>
+                                                                                <t t-set="val_decimal"
+                                                                                   t-value="round(rating_avg % 1, 1)"/>
+                                                                                <t t-set="val_integer"
+                                                                                   t-value="int(rating_avg)"/>
+                                                                                <t t-set="empty_star"
+                                                                                   t-value="5 - (val_integer+1) if val_decimal else 5 - val_integer"/>
+                                                                                <div class="o_website_rating_static"
+                                                                                     t-att-style="inline_mode and 'display:inline'"
+                                                                                     t-att-title="rating_avg">
+                                                                                    <t t-if="rating_style_compressed">
+                                                                                        <t t-if="rating_avg &lt;= 2">
+                                                                                            <i class="fa fa-star-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-elif="rating_avg &gt;= 2.1 and rating_avg &lt;= 3.5">
+                                                                                            <i class="fa fa-star-half-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-else="">
+                                                                                            <i class="fa fa-star"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <small class="text-muted ms-1">
+                                                                                            <t t-esc="rating_avg"/>
+                                                                                        </small>
+                                                                                    </t>
+                                                                                    <t t-else="">
+                                                                                        <t t-foreach="range(0, val_integer)"
+                                                                                           t-as="num">
+                                                                                            <i class="fa fa-star"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-if="val_decimal">
+                                                                                            <i class="fa fa-star-half-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-foreach="range(0, empty_star)"
+                                                                                           t-as="num">
+                                                                                            <i class="fa fa-star-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                    </t>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="p_price ">
+                                                                                <span t-if="slide1"
+                                                                                      t-esc="fp.list_price"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </t>
+                                                </div>
+                                                <div class="row">
+                                                    <t t-foreach="slide2" t-as="fp"
+                                                           t-if="slide2">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                            <div class="b_product">
+                                                                <a t-attf-href="/shop/product/#{slug(fp)}">
+                                                                    <div class="wrapper">
+                                                                        <div class="img_wrapper">
+                                                                            <img t-attf-src="/web/image?model=product.template&amp;field=image_1920&amp;id=#{fp.id}"/>
+                                                                            <div class="inner">
+                                                                                <a t-attf-href="/shop/product/#{slug(fp)}"
+                                                                                   itemprop="url" type="button"
+                                                                                   class="quick_view scale-in-center">
+                                                                                    <i
+                                                                                            class="fa fa-search"/>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="product_info">
+                                                                            <div class="p_caregory">
+                                                                                <span t-if="slide2"
+                                                                                      t-esc="fp.categ_id.name"/>
+                                                                            </div>
+                                                                            <div class="p_name">
+                                                                                <span t-if="slide2"
+                                                                                      t-esc="fp.name"/>
+                                                                            </div>
+                                                                            <div class="p_rating ">
+                                                                                <t t-set="rating_avg"
+                                                                                   t-value="fp.rating_avg"/>
+                                                                                <t t-set="val_decimal"
+                                                                                   t-value="round(rating_avg % 1, 1)"/>
+                                                                                <t t-set="val_integer"
+                                                                                   t-value="int(rating_avg)"/>
+                                                                                <t t-set="empty_star"
+                                                                                   t-value="5 - (val_integer+1) if val_decimal else 5 - val_integer"/>
+                                                                                <div class="o_website_rating_static"
+                                                                                     t-att-style="inline_mode and 'display:inline'"
+                                                                                     t-att-title="rating_avg">
+                                                                                    <t t-if="rating_style_compressed">
+                                                                                        <t t-if="rating_avg &lt;= 2">
+                                                                                            <i class="fa fa-star-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-elif="rating_avg &gt;= 2.1 and rating_avg &lt;= 3.5">
+                                                                                            <i class="fa fa-star-half-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-else="">
+                                                                                            <i class="fa fa-star"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <small class="text-muted ms-1">
+                                                                                            <t t-esc="rating_avg"/>
+                                                                                        </small>
+                                                                                    </t>
+                                                                                    <t t-else="">
+                                                                                        <t t-foreach="range(0, val_integer)"
+                                                                                           t-as="num">
+                                                                                            <i class="fa fa-star"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-if="val_decimal">
+                                                                                            <i class="fa fa-star-half-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-foreach="range(0, empty_star)"
+                                                                                           t-as="num">
+                                                                                            <i class="fa fa-star-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                    </t>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="p_price ">
+                                                                                <span t-if="slide2"
+                                                                                      t-esc="fp.list_price"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                    </div>
+                                                    </t>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="featured_slider">
+                                    <div class="wrapper">
+                                        <div class=" owl-carousel favorite-carousel" id="demo_carousel">
+                                            <div>
+                                                <div class="row">
+                                                    <t t-foreach="slide3" t-as="fp"
+                                                       t-if="slide3">
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                            <div class="b_product">
+                                                                <a t-attf-href="/shop/product/#{slug(fp)}">
+                                                                    <div class="wrapper">
+                                                                        <div class="img_wrapper">
+                                                                            <img t-attf-src="/web/image?model=product.template&amp;field=image_1920&amp;id=#{fp.id}"/>
+                                                                            <div class="inner">
+                                                                                <a t-attf-href="/shop/product/#{slug(fp)}"
+                                                                                   itemprop="url" type="button"
+                                                                                   class="quick_view scale-in-center">
+                                                                                    <i
+                                                                                            class="fa fa-search"/>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="product_info">
+                                                                            <div class="p_caregory">
+                                                                                <span t-if="slide3"
+                                                                                      t-esc="fp.categ_id.name"/>
+                                                                            </div>
+                                                                            <div class="p_name">
+                                                                                <span t-if="slide3"
+                                                                                      t-esc="fp.name"/>
+                                                                            </div>
+                                                                            <div class="p_rating ">
+                                                                                <t t-set="rating_avg"
+                                                                                   t-value="fp.rating_avg"/>
+                                                                                <t t-set="val_decimal"
+                                                                                   t-value="round(rating_avg % 1, 1)"/>
+                                                                                <t t-set="val_integer"
+                                                                                   t-value="int(rating_avg)"/>
+                                                                                <t t-set="empty_star"
+                                                                                   t-value="5 - (val_integer+1) if val_decimal else 5 - val_integer"/>
+                                                                                <div class="o_website_rating_static"
+                                                                                     t-att-style="inline_mode and 'display:inline'"
+                                                                                     t-att-title="rating_avg">
+                                                                                    <t t-if="rating_style_compressed">
+                                                                                        <t t-if="rating_avg &lt;= 2">
+                                                                                            <i class="fa fa-star-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-elif="rating_avg &gt;= 2.1 and rating_avg &lt;= 3.5">
+                                                                                            <i class="fa fa-star-half-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-else="">
+                                                                                            <i class="fa fa-star"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <small class="text-muted ms-1">
+                                                                                            <t t-esc="rating_avg"/>
+                                                                                        </small>
+                                                                                    </t>
+                                                                                    <t t-else="">
+                                                                                        <t t-foreach="range(0, val_integer)"
+                                                                                           t-as="num">
+                                                                                            <i class="fa fa-star"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-if="val_decimal">
+                                                                                            <i class="fa fa-star-half-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-foreach="range(0, empty_star)"
+                                                                                           t-as="num">
+                                                                                            <i class="fa fa-star-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                    </t>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="p_price ">
+                                                                                <span t-if="slide3"
+                                                                                      t-esc="fp.list_price"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </t>
+                                                </div>
+                                                <div class="row">
+                                                    <t t-foreach="slide4" t-as="fp"
+                                                       t-if="slide4">
+                                                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                            <div class="b_product">
+                                                                <a t-attf-href="/shop/product/#{slug(fp)}">
+                                                                    <div class="wrapper">
+                                                                        <div class="img_wrapper">
+                                                                            <img t-attf-src="/web/image?model=product.template&amp;field=image_1920&amp;id=#{fp.id}"/>
+                                                                            <div class="inner">
+                                                                                <a t-attf-href="/shop/product/#{slug(fp)}"
+                                                                                   itemprop="url" type="button"
+                                                                                   class="quick_view scale-in-center">
+                                                                                    <i
+                                                                                            class="fa fa-search"/>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="product_info">
+                                                                            <div class="p_caregory">
+                                                                                <span t-if="slide4"
+                                                                                      t-esc="fp.categ_id.name"/>
+                                                                            </div>
+                                                                            <div class="p_name">
+                                                                                <span t-if="slide4"
+                                                                                      t-esc="fp.name"/>
+                                                                            </div>
+                                                                            <div class="p_rating ">
+                                                                                <t t-set="rating_avg"
+                                                                                   t-value="fp.rating_avg"/>
+                                                                                <t t-set="val_decimal"
+                                                                                   t-value="round(rating_avg % 1, 1)"/>
+                                                                                <t t-set="val_integer"
+                                                                                   t-value="int(rating_avg)"/>
+                                                                                <t t-set="empty_star"
+                                                                                   t-value="5 - (val_integer+1) if val_decimal else 5 - val_integer"/>
+                                                                                <div class="o_website_rating_static"
+                                                                                     t-att-style="inline_mode and 'display:inline'"
+                                                                                     t-att-title="rating_avg">
+                                                                                    <t t-if="rating_style_compressed">
+                                                                                        <t t-if="rating_avg &lt;= 2">
+                                                                                            <i class="fa fa-star-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-elif="rating_avg &gt;= 2.1 and rating_avg &lt;= 3.5">
+                                                                                            <i class="fa fa-star-half-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-else="">
+                                                                                            <i class="fa fa-star"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <small class="text-muted ms-1">
+                                                                                            <t t-esc="rating_avg"/>
+                                                                                        </small>
+                                                                                    </t>
+                                                                                    <t t-else="">
+                                                                                        <t t-foreach="range(0, val_integer)"
+                                                                                           t-as="num">
+                                                                                            <i class="fa fa-star"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-if="val_decimal">
+                                                                                            <i class="fa fa-star-half-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                        <t t-foreach="range(0, empty_star)"
+                                                                                           t-as="num">
+                                                                                            <i class="fa fa-star-o"
+                                                                                               role="img"></i>
+                                                                                        </t>
+                                                                                    </t>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="p_price ">
+                                                                                <span t-if="slide4"
+                                                                                      t-esc="fp.list_price"/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </t>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>
+<!--.input-group.d-flex.ms-3-->
