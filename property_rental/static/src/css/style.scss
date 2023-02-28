@@ -1,0 +1,30 @@
+.card{
+    height: 100%;
+    margin-top:25px;
+    margin-left:40px;
+    -webkit-box-shadow: 1px 3px 5px 0px rgba(222, 222, 222, 1);
+    -moz-box-shadow: 1px 3px 5px 0px rgba(222, 222, 222, 1);
+    box-shadow: 1px 3px 5px 0px rgba(222, 222, 222, 1);
+    color: #243c64;
+    size: 10rem;
+    padding:15px;
+    background-color:white;
+    border:black outset 2px;
+    width: 40%;
+}
+.render_name{
+    margin-left:15px;
+    padding-top:-15px;
+    font-size:110%;
+}
+
+.renter_image{
+    margin-top:-100px;
+}
+
+.main_container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+

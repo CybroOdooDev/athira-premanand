@@ -1,0 +1,13 @@
+<odoo>
+    <data noupdate="1">
+        <record id="auction_sequence" model="ir.sequence">
+            <field name="name">Auction sequence</field>
+            <field name="code">property.auction</field>
+            <field name="active">TRUE</field>
+            <field name="prefix">AUC</field>
+            <field name="number_increment">1</field>
+            <field name="number_next">1</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>

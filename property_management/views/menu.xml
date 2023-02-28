@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    Root Menu    -->
+    <menuitem id="property_management_root" name="Property Management"/>
+
+<!--    Main Menu    -->
+    <menuitem id="property_root" name="Property" parent="property_management_root"
+              sequence="10"/>
+
+    <menuitem id="configuration_root"
+              name="Configuration"
+              parent="property_management_root"
+              sequence="20"/>
+
+</odoo>

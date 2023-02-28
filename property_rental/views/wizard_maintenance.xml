@@ -1,0 +1,72 @@
+<odoo>
+
+    <record id="action_property_maintenance" model="ir.actions.act_window">
+        <field name="name">Property Maintenance</field>
+        <field name="res_model">wizard.maintenance</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Rental record!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="maintenance_menu" name="Maintenance" parent="property_management.property_management_root"
+              action="action_property_maintenance" sequence="12"/>
+
+    <menuitem id="maintenance_sub_menu" name="Maintenance" parent="maintenance_menu"
+              action="action_property_maintenance" sequence="1"/>
+
+    <record id="wizard_maintenance" model="ir.ui.view">
+        <field name="model">wizard.maintenance</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="stages" widget="statusbar"/>
+                    <button name="btn_cfm" string="Confirm" type="object"
+                            attrs="{'invisible': [('stages','!=', 'draft'), ]}" class="oe_highlight"/>
+                    <button name="btn_invoice" string="Create Bill" type="object"
+                            attrs="{'invisible': [('stages','!=', 'confirmed')]}" class="oe_highlight"/>
+                    <button name="btn_cancel" string="Cancel" type="object"
+                            attrs="{'invisible': [('stages','!=', 'confirmed')]}"/>
+                     <button name="btn_draft" string="Reset To Draft" type="object"
+                            attrs="{'invisible': [('stages','!=', 'paid')]}"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="get_bill" type="object" class="oe_stat_button" string="Bill"
+                                icon="fa-pencil-square-o"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="property_id"/>
+                        </group>
+
+                        <group>
+                            <field name="responsible_user_id"/>
+                            <field name="cost"/>
+                        </group>
+                        <group>
+
+                            <field name="description" placeholder="Type your Description"/>
+                        </group>
+
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="property__view_tree" model="ir.ui.view">
+        <field name="name">property.maintenance.tree</field>
+        <field name="model">wizard.maintenance</field>
+        <field name="arch" type="xml">
+            <tree create="0">
+                <field name="name"/>
+                <field name="responsible_user_id"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

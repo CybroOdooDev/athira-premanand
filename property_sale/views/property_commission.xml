@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_property_commission" model="ir.actions.act_window">
+        <field name="name">Property Commission</field>
+        <field name="res_model">property.commission</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Sale Order
+            </p>
+        </field>
+    </record>
+
+    <record id="view_property_commission_tree" model="ir.ui.view">
+        <field name="name">property.commission.view.tree</field>
+        <field name="model">property.commission</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+                <field name="commission_type"/>
+                <field name="commission"/>
+            </tree>
+        </field>
+    </record>
+
+        <menuitem id="property_commission"
+              name="Commission"
+              parent="property_customer"
+              action="action_property_commission"
+              sequence="20"/>
+</odoo>

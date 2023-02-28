@@ -1,0 +1,23 @@
+<templates>
+    <t t-name="SaleCust">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="card" style="width: 410px;">
+
+                    <div class="stat-widget-one" style="display: flex;">
+                        <div class="stat-icon" style="green;">
+                            <i class="fa fa-line-chart" style="font-size:48px;color:#FFFFFF"/>
+                        </div>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-head">
+                            <h2>Sale</h2>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary import_sale" type="object" string="Sale">Import Sale Order</button>
+                </div>
+            </div>
+        </div>
+
+    </t>
+</templates>

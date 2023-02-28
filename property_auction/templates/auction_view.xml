@@ -1,0 +1,183 @@
+<odoo>
+    <template id="property_auction_1" name="Property Auction" inherit_id="property_management.property_view">
+        <xpath expr="//ul[@id='property_options']" position="inside">
+            <li class="list-group-item property_action_buttons" id="auction_button" data-action="1">Auction</li>
+        </xpath>
+        <xpath expr="//div[@id='property_option_view']" position="inside">
+            <div class="property_auction_view" id="property_auction_view" style="display: none;">
+                <div class="auction_cards"/>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="auction_view" name="Action View">
+        <hr/>
+        Ongoing
+        <hr/>
+        <t t-foreach="started" t-as="property">
+            <div class="card mb-3" style="margin-bottom:4px;" t-att-data-property_id="property['id']">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <t t-if="property['image']">
+                            <img t-att-src="image_data_uri(property['image'])" class="card-img-top"
+                                 alt="..."/>
+                        </t>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <t t-esc="property['code']"/>
+                            </h5>
+                            <h6>
+                                <t t-esc="property['name']"/>
+                            </h6>
+                            <p class="card-text">
+                                <t t-esc="description"/>
+                            </p>
+                            <table class="table">
+                                <tr>
+                                    <td>Start Amount</td>
+                                    <td>Last Bid</td>
+                                    <td>Action</td>
+                                </tr>
+                                <tr>
+                                    <td t-attf-id="bid-start-{{property['id']}}">
+                                        <t t-esc="property['start_price']"/>
+                                    </td>
+                                    <td t-attf-id="last-bid-{{property['id']}}">
+                                        <t t-esc="property['last']"/>
+                                    </td>
+                                    <td>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <input type="number" class="form-control"
+                                                   placeholder="Your Amount" t-attf-id="property-{{property['id']}}"
+                                                   style="height:36px; padding-bottom: 3px;"
+                                            />
+                                            <button class="btn btn-success auction_submit"
+                                                    t-att-data-id="property['id']" style="width:70px;">BID
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+
+        <hr/>
+        Upcoming
+        <hr/>
+        <t t-foreach="confirmed" t-as="property">
+            <div class="card mb-3 " t-att-data-property_id="property['id']" style="margin-bottom:4px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <t t-if="property['image']">
+                            <img t-att-src="image_data_uri(property['image'])" class="card-img-top"
+                                 alt="..."/>
+                        </t>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <t t-esc="property['code']"/>
+                            </h5>
+                            <h6>
+                                <t t-esc="property['name']"/>
+                            </h6>
+                            <p class="card-text">
+                                <t t-esc="description"/>
+                            </p>
+                            <table class="table">
+                                <tr>
+                                    <td>Start Amount</td>
+                                    <td>Start Date</td>
+                                    <td>End Date</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <t t-esc="property['start_price']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="property['start']"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="property['end']"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+
+        <hr/>
+        Completed
+        <hr/>
+        <t t-foreach="ended" t-as="property">
+            <div class="card mb-3" style="margin-bottom:4px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <t t-if="property['image']">
+                            <img t-att-src="image_data_uri(property['image'])" class="card-img-top"
+                                 alt="..."/>
+                        </t>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body" style="padding-top:36px;">
+                            <h5 class="card-title">
+                                <t t-esc="property['code']"/>
+                            </h5>
+                            <h6>
+                                <t t-esc="property['name']"/>
+                            </h6>
+                            <p class="card-text">
+                                <t t-esc="description"/>
+                            </p>
+                            <table class="table">
+                                <tr>
+                                    <th>Start Amount</th>
+                                    <td>
+                                        <t t-esc="property['start_price']"/>
+                                    </td>
+                                    <th>Participants</th>
+                                    <td>
+                                        <t t-esc="property['total_participant']"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Last Bid</th>
+                                    <td>
+                                        <t t-esc="property['last']"/>
+                                    </td>
+                                    <th>Winner</th>
+                                    <td>
+                                        <t t-esc="property['winner']"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Start Time</th>
+                                    <td>
+                                        <t t-esc="property['start']"/>
+                                    </td>
+                                    <th>End Time</th>
+                                    <td>
+                                        <t t-esc="property['end']"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+        <div class="toast position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+            <div class="toast-header">
+                Bid Amount Must be Greater than Last Bid, Start Amount
+                <button type="button" class="btn-close" data-bs-dismiss="toast"/>
+            </div>
+        </div>
+    </template>
+</odoo>

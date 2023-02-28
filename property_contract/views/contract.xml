@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_property_contract" model="ir.ui.view">
+            <field name="model">property.contract</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Name"/>
+                    <field name="contract_number" string="Contract Number"/>
+                    <field name="start_date" string="start Date"/>
+                    <field name="property" string="Property"/>
+                    <field name="contract_type" string="Contract Type"/>
+                    <field name="rent_price" string="Rent Price"/>
+                    <field name="renter" string="Renter"/>
+                    <field name="owner" string="Owner"/>
+                    <field name="stages" string="State" widget="badge"
+                           decoration-info="stages=='approval'"
+                           decoration-muted="stages=='new'"
+                           decoration-success="stages=='running'"
+                           decoration-warning="stages=='cancelled'"
+                           decoration-danger="stages=='expired'"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_property_contract_form" model="ir.ui.view">
+            <field name="model">property.contract</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                         <field name="stages" widget="statusbar" options="{'clickable': '1'}"/>
+                         <button name="btn_cancel" string="Cancel" type="object"
+                                attrs="{'invisible':[('stages', '=', 'cancelled')]}"
+                                class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="contract_number" class="oe_inline"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" string="Name"/>
+                                <field name="property" string="Property"/>
+                                <field name="contract_type" string="Contract Type"/>
+                                <field name="renter" string="Renter"/>
+                                <field name="owner" string="Owner"/>
+                            </group>
+                            <group>
+                                <field name="start_date" string="start Date"/>
+                                <field name="contract_expiry" string="Expiry Date" attrs="{'invisible':[('contract_type', '!=', 'temporary')]}"/>
+                                <field name="rent_price" string="Rent Price"/>
+                                <field name="deposit_amount" string="Advance Amount"/>
+                            </group>
+                        </group>
+                        <br/>
+                        <field name="terms_and_conditions" placeholder="Terms and Conditions..."/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="contract_kanban_view" model="ir.ui.view">
+            <field name="name">kanban</field>
+            <field name="model">property.contract</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <!--                               <div class="oe_kanban_content">-->
+                                <div class="oe_kanban_card">
+<!--                                    <div>-->
+<!--                                        <img t-att-src="kanban_image('property.contract', 'image_128', record.contract_img.raw_value)" t-att-alt="record.contract_img.value"-->
+<!--                                             class="o_kanban_image o_image_64_cover" alt="Avatar"/>-->
+<!--                                    </div>-->
+                                    <div>
+                                        <b><span>Name: </span><field name="name"/></b>
+                                    </div>
+                                    <div>
+                                        <b><span>Property: </span><field name="property"/></b>
+                                    </div>
+                                    <div>
+                                        <b><span>Renter: </span><field name="renter"/></b>
+                                    </div>
+                                    <div>
+                                        <b><span>Owner: </span><field name="owner"/></b>
+                                    </div>
+                                </div>
+                                <!--                               </div>-->
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        <record id="property_contract_filter" model="ir.ui.view">
+            <field name="name">property.contract.filter</field>
+            <field name="model">property.contract</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter string="running" name="running"
+                            domain="[('stages', '=', 'running')]"
+                            help="Show only running"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="property_contract_action" model="ir.actions.act_window">
+            <field name="name">Contract</field>
+            <field name="res_model">property.contract</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="type">ir.actions.act_window</field>
+        </record>
+
+        <menuitem id="contract_menu" name="Contracts" parent="property_management.property_management_root" sequence="15"
+                  action="property_contract_action"/>
+    </data>
+</odoo>

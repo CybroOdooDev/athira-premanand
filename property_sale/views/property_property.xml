@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_property_inherit" model="ir.ui.view">
+        <field name="name">property.form.inherit</field>
+        <field name="model">property.property</field>
+        <field name="inherit_id" ref="property_management.property_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='image']" position="before">
+                <field name="sold" invisible="1"/>
+                <div class="oe_button_box" name="button_box" attrs="{'invisible': [('state','!=','sold')]}">
+                    <button name="action_property_sale_view" type="object"
+                            class="oe_stat_button"
+                            icon="fa-dollar"
+                            string="Sale"/>
+                </div>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button type="object" name="for_sale_btn" string="For sale" states="available"/>
+                <button type="object" name="to_available" string="To Available" states="for sale"/>
+            </xpath>
+            <xpath expr="//group[@name='price_details']" position="inside">
+                <field name="unit_price" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

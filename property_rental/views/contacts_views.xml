@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="property_sale.action_cust_partner_form" model="ir.actions.act_window">
+            <field name="domain">[('rent_blacklist','=',False)]</field>
+        </record>
+
+        <record id="property_rental_blacklist_inherit_form_view" model="ir.ui.view">
+            <field name="name">res.partner.inherit.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="property_sale.res_cust_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button name="add_to_blacklist" class="btn btn-secondary"
+                                string="Add To Blacklist" type="object" attrs="{'invisible': [('rent_blacklist','=',True)]}"/>
+                    </header>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="rent_blacklist" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="partner_og_inherit_form_view" model="ir.ui.view">
+            <field name="name">res.partner.inherit.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button name="remove_blacklist" class="btn btn-secondary"
+                                string="Remove From Blacklist" type="object" attrs="{'invisible': [('rent_blacklist','=',False)]}"/>
+                    </header>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="rent_blacklist" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_blacklist_partner_form" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('rent_blacklist','=',True)]</field>
+        </record>
+
+        <menuitem id="contact_blacklist" name="Blacklisted Contact" parent="property_management.configuration_root"
+              action="action_blacklist_partner_form" sequence="4"/>
+
+
+    </data>
+</odoo>

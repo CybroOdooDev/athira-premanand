@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_property,model_property,model_property_property,base.group_user,1,1,1,1
+access_property_type,model_property_type,model_property_type,base.group_user,1,1,1,1
+access_residence_measure,model_residence_measurement,model_residence_measurement,base.group_user,1,1,1,1
+access_property_url,model_property_url,model_property_url,base.group_user,1,1,1,1
+
+access_property_facilities,model_property_facilities,model_property_facilities,base.group_user,1,1,1,1
+
+access_property_tags,model_property_tags,model_property_tags,base.group_user,1,1,1,1
+access_property_nearby_connectivity,model_property_nearby_connectivity,model_property_nearby_connectivity,base.group_user,1,1,1,1
+access_neighbours_data,model_neighbours_data,model_neighbours_data,base.group_user,1,1,1,1
+access_property_image,access.property.image,model_property_image,base.group_user,1,1,1,1

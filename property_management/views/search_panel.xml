@@ -1,0 +1,15 @@
+<odoo>
+    <record id="custom_module_search_panel" model="ir.ui.view">
+        <field name="name">property.property.search.panel</field>
+        <field name="model">property.property</field>
+        <field name="inherit_id" ref="property_management.property_search_view"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <searchpanel>
+                    <field name="state" string="States" enable_counters="1"/>
+                    <field name="type_id" string="Types" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+</odoo>

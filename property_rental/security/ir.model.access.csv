@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_property_rental,access.property.rental,model_property_rental,base.group_user,1,1,1,1
+access_rental_bills,access.rental.bills,model_rental_bills,base.group_user,1,1,1,1
+access_wizard_maintenance,access.wizard.maintenance,model_wizard_maintenance,base.group_user,1,1,1,1
+access_property_contract,access.property.contract,model_property_contract,base.group_user,1,1,1,1

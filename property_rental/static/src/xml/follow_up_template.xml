@@ -1,0 +1,37 @@
+<templates>
+    <t t-name="SaleCust">
+        <div class="main_container">
+             <div class="left_container" style="width:60%;background:yellow;">
+            <div class="row rentKanban">
+            </div>
+        </div>
+        <div class="right_container" style="width:40%;background:red;">
+            <div>asdfghjkl</div>
+        </div>
+
+        </div>
+<!--        <div class="left_container" style="width:60vw;background:;">-->
+<!--            <div class="row rentKanban">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="right_container" style="width:39vw;background:red;">-->
+<!--            <div>asdfghjkl</div>-->
+<!--        </div>-->
+
+<!--            <div class="col-md-4 col-sm-6 rentKanban">-->
+<!--                <div class="card col-md-4 col-sm-6 ">-->
+
+<!--                    <div class="stat-widget-one" style="display: flex;">-->
+<!--                        <div class="stat-icon" style="green;">-->
+<!--                        <img id="renter_image" width="30px"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="stat-content">-->
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+    </t>
+</templates>

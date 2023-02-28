@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    <data noupdate="1">
+       <record id="ir_cron_scheduler_recurring_contract" model="ir.cron">
+           <field name="name">Recurring Contract</field>
+           <field name="model_id" ref="model_property_contract"/>
+           <field name="state">code</field>
+           <field name="code">model.expiring_contract()</field>
+           <field name="user_id" ref="base.user_root"/>
+           <field name="interval_number">1</field>
+           <field name="interval_type">days</field>
+           <field name="numbercall">-1</field>
+       </record>
+
+       <record id="contract_email_template" model="mail.template">
+           <field name="name">CONTRACT EMAIL</field>
+           <field name="model_id" ref="model_property_contract"/>
+           <field name="subject">Reminder for Expiration</field>
+       </record>
+
+    <record id="ref_contract" model="ir.sequence">
+        <field name="name">contract_number</field>
+        <field name="code">property.contract</field>
+        <field name="prefix">CT</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</data>
+

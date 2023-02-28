@@ -1,0 +1,25 @@
+<odoo>
+
+    <template id="rental_property_brochure" name="Property Brochure" inherit_id="property_management.property_brochure">
+        <xpath expr="//span[@id='about_property']" position="after">
+            <span t-if="data['is_rental']"><strong style="font-size:20px;">Rent Price Details</strong>
+                <table class="table table-borderless">
+                    <tr>
+                        <td><strong>Recurring Period</strong></td>
+                        <td><t t-esc="data['recurring_period']"/></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Recurring Period Interval</strong></td>
+                        <td><t t-esc="data['recurring_period_interval']"/></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rent Price</strong></td>
+                        <td><t t-esc="data['rent_price']"/></td>
+                    </tr>
+                </table>
+                <br/><br/>
+            </span>
+        </xpath>
+    </template>
+
+</odoo>

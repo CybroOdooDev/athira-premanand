@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="action_property_contracts" model="ir.actions.act_window">
+        <field name="name">Contracts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">property.contract</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new record!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="rental_contract_menu" name="Contracts" parent="property_management.property_management_root"
+              action="action_property_contracts" sequence="15"/>
+
+    <record id="property_contracts_tree_view" model="ir.ui.view">
+        <field name="name">property.contract.tree</field>
+        <field name="model">property.contract</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="property_id"/>
+                <field name="partner_id"/>
+                <field name="next_invoice"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'Ongoing'"
+                       decoration-warning="state =='Expire Soon'"
+                       decoration-info="state =='New'"
+                       decoration-danger="state in('Cancelled','Expired')"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="property_contracts_form_view" model="ir.ui.view">
+        <field name="name">property.contract.form</field>
+        <field name="model">property.contract</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="button_to_confirm" class="oe_highlight" states="New" string="Confirm"
+                            type="object" help="Confirm your Subscription Contracts"/>
+                    <button name="button_to_generate_invoice" class="oe_highlight" states="Ongoing,Expire Soon,Expired,"
+                            string="Generate Invoice" type="object" help="Generate Invoices for your Contracts"/>
+                    <button name="button_to_lock" class="oe_highlight" string="Lock" type="object"
+                            help="Lock your Subscription Contracts" attrs="{'invisible':['|',('lock', '=', True),('state','!=','Ongoing')]}"/>
+                    <button name="button_to_unlock" class="oe_highlight" string="Unlock" type="object" help="Unlock your Subscription Contracts"
+                            attrs="{'invisible':['|',('lock', '=', False),('state','!=','Ongoing')]}"/>
+                    <button name="button_to_cancel" class="oe_highlight" string="Cancel" type="object"
+                            help="Cancel; your Subscription Contracts" states="Ongoing,Expire Soon,Expired"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" type="object" name="get_invoice" icon="fa-pencil-square-o" states="Ongoing">
+                            <field string="Invoices" name="invoice_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Contracts" attrs="{'readonly': [('lock', '=', True)]}"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="property_id" attrs="{'readonly': [('lock', '=', True)]}"/>
+                            <field name="owner_id" attrs="{'readonly': [('lock', '=', True)]}" string="Owner"/>
+                            <field name="partner_id" widget="selection" attrs="{'readonly': [('lock', '=', True)]}"/>
+                            <field name="recurring_period" attrs="{'readonly': [('lock', '=', True)]}"/>
+                            <field name="recurring_period_interval" attrs="{'readonly': [('lock', '=', True)]}"/>
+                            <field name="recurring_invoice" attrs="{'readonly': [('lock', '=', True)]}"/>
+                            <field name="next_invoice" attrs="{'readonly': [('lock', '=', True)]}"/>
+<!--                            <field name="current_id" invisible="1"/>-->
+                        </group>
+                        <group>
+                            <field name="rent_price" attrs="{'readonly': [('lock', '=', True)]}"/>
+                            <field name="contract_reminder" attrs="{'readonly': [('lock', '=', True)]}"/>
+                            <field name="company_id" attrs="{'readonly': [('lock', '=', True)]}"/>
+                            <field name="currency_id" attrs="{'readonly': [('lock', '=', True)]}"/>
+                            <field name="lock" invisible="1"/>
+                            <field name="date_start" attrs="{'readonly': [('lock', '=', True)]}"/>
+                            <field name="date_end" attrs="{'readonly': [('lock', '=', True)]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+<!--                        <page string="Contract Lines">-->
+<!--                            <field name="contract_line_ids" attrs="{'readonly': [('lock', '=', True)]}"/>-->
+<!--                            <h2 class="oe_subtotal_footer oe_right">-->
+<!--                                <group>-->
+<!--                                    <field name="amount_total"/>-->
+<!--                                </group>-->
+<!--                            </h2>-->
+<!--                        </page>-->
+<!--                        <page string="Sale Order Lines">-->
+<!--                            <field name="sale_order_line_ids" attrs="{'readonly': [('lock', '=', True)]}"/>-->
+<!--                        </page>-->
+                        <page string="Terms and Conditions">
+                            <field name="note" placeholder="Terms and Conditions" attrs="{'readonly': [('lock', '=', True)]}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+<!--    Account Move Inherit   -->
+    <record id="view_account_move_form_inherit" model="ir.ui.view">
+            <field name="name">account.move.inherit.view.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']"
+                       position="after">
+                    <field name="contract_id" invisible="1"/>
+
+                </xpath>
+            </field>
+        </record>
+
+</odoo>

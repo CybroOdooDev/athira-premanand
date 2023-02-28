@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_neighbours_data" model="ir.ui.view">
+        <field name="model">neighbours.data</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Name"/>
+                <field name="phone_number" string="Phone Number"/>
+                <field name="address" string="Address"/>
+                <field name="direction" string="Direction"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="model">neighbours.data</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Name"/>
+                            <field name="phone_number" string="Phone Number"/>
+                            <field name="address" string="Address"/>
+                            <field name="direction" string="Direction"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

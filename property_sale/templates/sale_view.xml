@@ -1,0 +1,74 @@
+<odoo>
+    <template id="property_sales_1" name="Property Sales" inherit_id="property_management.property_view">
+        <xpath expr="//ul[@id='property_options']" position="inside">
+            <li class="list-group-item property_action_buttons" id="sale_button" data-action="2">Sales</li>
+        </xpath>
+        <xpath expr="//div[@id='property_option_view']" position="inside">
+            <div class="property_sales_view" id="property_sales_view" style="display: none;">
+
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <t t-foreach="property_ids" t-as="property">
+                        <t t-if="property.state == 'for sale'">
+                            <div class="col o_property_item" t-att-data-property_id="property.id">
+                                <div class="card">
+                                    <span t-field="property.image"
+                                          t-options="{'widget': 'image', 'alt-field': 'name', 'zoom': 'image'}"/>
+                                    <div class="card-body">
+                                        <h5 class="card-title"><t t-esc="property.name"/>-
+                                            <t t-esc="property.code"/>
+                                        </h5>
+                                        <p class="card-text" style="text-transform: capitalize;"><t
+                                                t-esc="property.type_id_base"/>-
+                                            <t t-esc="property.type_id.name"/>
+                                            <br/>
+                                            <span id="p_type" class="badge">
+                                                <t t-esc="property.state"/>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <template id="property_sales_inherit_view" name="Property Sales Modal" inherit_id="property_management.property_view_item">
+        <xpath expr="//div[@id='property-item']" position="inside">
+
+            <div class="row">
+                <p>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Create Sale Request </h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&amp;times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="col-form-label">Ask Price:</label>
+                                            <input type="text" class="form-control" id="ask_price"/>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                    </button>
+                                    <button type="button" class="btn btn-primary sale_submit" data-bs-dismiss="modal"  t-att-data-property_id="property_id.id">Create
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p>
+            </div>
+
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="action_property_payment_terms" model="ir.actions.act_window">
+        <field name="name">Property Payment Terms</field>
+        <field name="res_model">account.payment.term</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Rental record!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="action_property_payment" name="Payment Terms" parent="property_management.configuration_root"
+              action="action_property_payment_terms"
+              sequence="1"/>
+</odoo>

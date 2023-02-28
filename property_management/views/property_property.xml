@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.actions.act_window" id="property_action">
+        <field name="name">Property</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">property.property</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Your First Property!
+            </p>
+        </field>
+    </record>
+
+    <record id="property_tree_view" model="ir.ui.view">
+        <field name="name">property.property.tree</field>
+        <field name="model">property.property</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="type_id"/>
+                <field name="street"/>
+                <field name="state_id"/>
+                <field name="country_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="property_form_view" model="ir.ui.view">
+        <field name="name">property.property.form</field>
+        <field name="model">property.property</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar"/>
+                    <button type="object" name="get_map" string="Locate"
+                            attrs="{'invisible':['|',('latitude','=',False),('longitude','=',False)]}"/>
+                </header>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <h3>
+                            <field name="code"/>
+                        </h3>
+                        <br/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="tags" widget="many2many_tags"/>
+                            <field name="type_id"/>
+                            <field name="type_id_base" invisible="1"/>
+                            <field name="owner_id"/>
+                        </group>
+                        <group>
+                            <field name="construct_year"/>
+                            <field name="license_no"/>
+                            <field name="property_manager_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Address Details">
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state_id" class="o_address_state" placeholder="State"
+                                       options='{"no_open": True}'/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country_id" placeholder="Country" class="o_address_country"
+                                       options='{"no_open": True, "no_create": True}'/>
+                            </div>
+                            <field name="latitude"/>
+                            <field name="longitude"/>
+                        </group>
+                        <group string="Price Details" name="price_details">
+                            <field name="book_price"/>
+                        </group>
+                    </group>
+                    <group string="Land Details" attrs="{'invisible': [('type_id_base','!=','land')]}"/>
+                    <group string="Residential Details" attrs="{'invisible': [('type_id_base','!=','residential')]}"/>
+                    <group string="Commercial Details" attrs="{'invisible': [('type_id_base','!=','commercial')]}"/>
+                    <group string="Industrial Details" attrs="{'invisible': [('type_id_base','!=','industry')]}"/>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                        <page string="Images">
+                            <field name="property_image_ids">
+                                <kanban>
+                                    <field name="id"/>
+                                    <field name="name"/>
+                                    <field name="image"/>
+                                    <field name="description"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div t-attf-class="oe_kanban_global_click">
+                                                <div class="o_kanban_image">
+                                                    <field name="image" widget="image" class="oe_avatar"/>
+                                                </div>
+                                                <div class="oe_kanban_details">
+                                                    <t class="o_kanban_record_title">
+                                                        <strong><field name="name"/></strong><br/>
+                                                        <field name="description"/>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="name"/>
+                                                <field name="description"/>
+                                            </group>
+                                            <group>
+                                                <field name="image" widget="image" class="oe_avatar"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Measurement" name="measurement">
+                            <group>
+                                <group>
+                                    <field name="measure"/>
+                                    <field name="measure_value"/>
+                                </group>
+                                <group>
+                                    <field name="usable_sqft"
+                                           attrs="{'invisible': [('type_id_base','!=','residential')]}"/>
+                                </group>
+                            </group>
+                            <group string="Residence Measurement"
+                                   attrs="{'invisible': [('type_id_base','!=','residential')]}"/>
+                            <field name="residence_measure_ids"
+                                   attrs="{'invisible': [('type_id_base','!=','residential')]}">
+                                <tree editable="bottom">
+                                    <field name="section" width="300px"/>
+                                    <field name="length"/>
+                                    <field name="width"/>
+                                    <field name="height"/>
+                                    <field name="carpet_area"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Documents">
+                            <field name="url_ids">
+                                <tree editable="bottom">
+                                    <field name="name" string="Name"/>
+                                    <field name="type" string="Type"/>
+                                    <field name="data" widget="binary" attrs="{'readonly':[('type', '=', 'url')]}"/>
+                                    <field name="url"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Facilities">
+                            <field name="facility_ids">
+                                <tree>
+                                    <field name="facility"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Nearby Connectivity">
+                             <field name="property_line_ids" mod="kanban">
+                                <kanban>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_global_click">
+                                                <div class="oe_kanban_content">
+                                                    <div class="oe_kanban_card">
+                                                        <div>
+                                                            <img t-att-src="kanban_image('res.users', 'avatar_128', record.id.raw_value)"
+                                                                 class="o_kanban_image o_image_64_cover" alt="Avatar"/>
+                                                        </div>
+
+                                                        <div>
+                                                            <b>
+                                                                <field name="name"/>
+                                                            </b>
+                                                        </div>
+                                                        <div>
+                                                            <div>
+                                                                <field name="kilometer" string="Kilometer"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                             </field>
+                        </page>
+                        <page string="Neighbours Data">
+                            <field name="neighbours_line_ids" mod="kanban">
+                                <kanban>
+                                    <field name="name"/>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_global_click">
+                                                <div class="oe_kanban_content">
+                                                    <div class="oe_kanban_card">
+                                                        <div>
+                                                            <img t-att-src="kanban_image('res.users', 'avatar_128', record.id.raw_value)"
+                                                                 class="o_kanban_image o_image_64_cover" alt="Avatar"/>
+                                                        </div>
+
+                                                        <div>
+                                                            <b>
+                                                                <field name="name"/>
+                                                            </b>
+                                                        </div>
+                                                        <div>
+                                                            <div>
+                                                                <field name="address" string="Address"/>
+                                                            </div>
+                                                            <div>
+                                                                <field name="phone_number" string="Phone Number"/>
+                                                            </div>
+
+                                                            <div>
+                                                                <field name="direction" string="Direction"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="activity_ids"/>
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="property_kanban_view" model="ir.ui.view">
+           <field name="name">property.property.kanban</field>
+           <field name="model">property.property</field>
+           <field name="arch" type="xml">
+               <kanban class="o_hr_employee_kanban" js_class="hr_employee_kanban" sample="1">
+                   <field name="id"/>
+                   <field name="name"/>
+                   <field name="code"/>
+                   <field name="image"/>
+                   <field name="type_id"/>
+                   <field name="street"/>
+                   <field name="city"/>
+                   <field name="state_id"/>
+                   <field name="country_id" />
+                   <templates>
+                       <t t-name="kanban-box">
+                       <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+                            <field name="image" class="o_kanban_image_fill_left d-block" preview_image="image"
+                                widget="background_image" options="{'zoom': true, 'zoom_delay': 1000}"/>
+
+                            <div class="oe_kanban_details">
+                               <div class="o_kanban_record_top">
+                                   <div class="o_kanban_record_headings">
+                                       <strong class="o_kanban_record_title">
+                                            <h3><field name="name"/></h3>
+                                       </strong>
+                                       <span t-if="record.type_id.raw_value" class="o_kanban_record_subtitle"><field name="type_id"/></span>
+                                   </div>
+                               </div>
+                                <div t-if="record.street.raw_value"><t t-esc="record.street.value"/></div>
+                                <div t-if="record.state_id.raw_value"><t t-esc="record.state_id.value"/></div>
+                                <div t-if="record.country_id.raw_value"><t t-esc="record.country_id.value"/></div>
+                           </div>
+                           <div class="oe_kanban_content o_hr_employee_kanban_bottom position-absolute bottom-0 start-0 end-0 me-2 pe-none">
+                               <div class="o_kanban_record_bottom">
+                                   <div class="oe_kanban_bottom_left"/>
+                                   <div class="oe_kanban_bottom_right float-end pe-auto">
+                                        <div class="hr_activity_container mb-1 me-n1">
+                                            <field name="activity_ids" widget="kanban_activity"/>
+                                        </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       </t>
+                   </templates>
+               </kanban>
+            </field>
+        </record>
+
+    <record id="property_search_view" model="ir.ui.view">
+        <field name="name">property.property.search</field>
+        <field name="model">property.property</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Name"/>
+                <field name="street" string="Street"/>
+                <field name="state_id" string="State"/>
+                <group expand="1" string="Group By">
+                    <filter string="state" context="{'group_by':'state'}" name="state"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <menuitem id="property_property_root" name="Properties" parent="property_root"
+              action="property_action" sequence="11"/>
+
+</odoo>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="property_rental_inherit_form_view" model="ir.ui.view">
+            <field name="name">property.property.inherit.form</field>
+            <field name="model">property.property</field>
+            <field name="inherit_id" ref="property_management.property_form_view"/>
+            <field name="priority">12</field>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button type="object" name="for_rent_btn" string="For Rent" states="available"/>
+                    <button type="object" name="btn_available" string="To Available" states="for_rent"/>
+                </xpath>
+                <xpath expr="//field[@name='tags']" position="before">
+                    <field name="is_rental" invisible="1"/>
+                </xpath>
+                <xpath expr="//group[@name='price_details']" position="inside">
+                    <field name="recurring_period" attrs="{'invisible':[('is_rental', '=', False)]}"/>
+                    <field name="recurring_period_interval" attrs="{'invisible':[('is_rental', '=', False)]}"/>
+                    <field name="rent_price" attrs="{'invisible':[('is_rental', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//page[@name='measurement']" position="before">
+                    <page string="Rental History" attrs="{'invisible':[('is_rental', '=', False)]}">
+                        <field name="rental_history">
+                            <tree create="0">
+                                <field name="renter_id"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.actions.act_window" id="property_facilities_action">
+        <field name="name">Property Facilities</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">property.facilities</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Your First Property Type!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="property_facilities_root"
+              name="Facilities"
+              parent="configuration_root"
+              action="property_facilities_action"
+              sequence="2"/>
+</odoo>

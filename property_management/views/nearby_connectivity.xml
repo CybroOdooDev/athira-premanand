@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_nearby_connectivity" model="ir.ui.view">
+        <field name="model">property.nearby.connectivity</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Name"/>
+                <field name="kilometer" string="Kilometer"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="model">property.nearby.connectivity</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Name"/>
+                            <field name="kilometer" string="Kilometer"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

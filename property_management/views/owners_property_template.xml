@@ -1,0 +1,31 @@
+<odoo>
+    <template id="owners_property">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Owners Property</t>
+            </t>
+            <t t-set="title">Property</t>
+            <div class="oe_structure">
+                <div class="row row-cols-1 row-cols-md-6 g-8">
+                    <t t-foreach="property_ids" t-as="property">
+                        <div class="col o_property_item" t-att-data-property_id="property.id">
+                            <div class="card">
+                                <span t-field="property.image"
+                                      t-options="{'widget': 'image', 'alt-field': 'name', 'zoom': 'image'}"/>
+                                <div class="card-body">
+                                    <h5 class="card-title"><t t-esc="property.name"/>-
+                                        <t t-esc="property.code"/>
+                                    </h5>
+                                    <h5 class="card-title">
+                                        <t t-esc="property.state"/>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
