@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="mars_banner" name="Mars Banner">
+        <section class="banner_1">
+            <div class="mars_wrapper">
+                <div class="owl-carousel owl-theme">
+                    <div class="item">
+                        <div class="banner_bg bg1">
+                            <video autoplay_muted_loop_id="myVideo">
+                                <source src="images/banner/video/video (1).mp4" type="video/mp4"/>
+                            </video>
+                            <div class="container">
+                                <div class="banner_content">
+                                    <h1 data-animation-in="flipInY" data-animation-out="animate-out fadeOutUp">WELCOME
+                                        TO
+                                        THE WORLD OF MARS
+                                    </h1>
+                                    <p data-animation-in="flipInX" data-animation-out="animate-out fadeOutLeft">
+                                        Say hello to the smartest and most flexible bootstrap template. MARS is an
+                                        powerful
+                                        template that can build any type of websites, and quite possibly the only one
+                                        you
+                                        will ever need.
+                                    </p>
+                                    <p>
+                                        <a class="btn btn-primary" data-animation-in="bounceInLeft"
+                                           data-animation-out="animate-out bounceOutRight">Explore More
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="banner_bg bg2">
+                            <video autoplay_muted_loop_id="myVideo">
+                                <source src="images/banner/video/banner_bg.mp4" type="video/mp4"/>
+                            </video>
+                            <div class="container">
+                                <div class="banner_content">
+                                    <h1 data-animation-in="flipInY" data-animation-out="animate-out fadeOutUp">220+
+                                        Layout Demos
+                                    </h1>
+                                    <p data-animation-in="flipInX" data-animation-out="animate-out fadeOutLeft">
+                                        MARS is packed with 220+ pre-made layouts that allow you to quickly jumpstart
+                                        your
+                                        project. Completely<br/>customizable for creating your own designs.
+                                    </p>
+                                    <a class="btn btn-primary" href="#">Explore More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </template>
+
+</odoo>

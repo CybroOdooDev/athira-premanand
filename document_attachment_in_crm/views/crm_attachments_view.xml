@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="attachments_in_crm" model="ir.ui.view">
+            <field name="name">Attachments in CRM</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <div class="oe_button_box" name="button_box">
+                    <button name="attach_crm" type="object"
+                            class="oe_stat_button" icon="fa-pencil-square-o" >
+                    <field name="obj_attachment" widget="statinfo" string="Attachments"/>
+                    </button>
+                </div>
+            </field>
+        </record>
+
+        <record id="attachments_reconfig" model="ir.ui.view">
+            <field name="name">Attachments in CRM</field>
+            <field name="model">ir.attachment</field>
+            <field name="inherit_id" ref="base.view_attachment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='res_model']" position="attributes">
+                 <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='res_field']" position="attributes">
+                 <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='res_id']" position="attributes">
+                 <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='res_name']" position="attributes">
+                 <attribute name="string">Opportunity</attribute>
+                </xpath>
+                <xpath expr="//field[@name='mimetype']" position="attributes">
+                 <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="attachments_reconfig_tree" model="ir.ui.view">
+            <field name="name">Attachments in CRM</field>
+            <field name="model">ir.attachment</field>
+            <field name="inherit_id" ref="base.view_attachment_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='res_model']" position="attributes">
+                 <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='res_field']" position="attributes">
+                 <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='res_id']" position="attributes">
+                 <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

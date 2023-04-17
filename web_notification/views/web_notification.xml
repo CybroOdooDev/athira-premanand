@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_notification" model="ir.ui.view">
+            <field name="model">web.notification</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="Name"/>
+                    <field name="create_date" string="Creation Date"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_notification_form" model="ir.ui.view">
+            <field name="model">web.notification</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" class="oe_inline"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="create_date" string="Creation Date"/>
+                                <field name="user_id" string="Users" widget="many2many_tags"/>
+                                <field name="simple_text" string="Want Simple Text?"/>
+                                <field name="animation" string="Animation"
+                                       attrs="{'invisible':[('simple_text', '!=', True)]}"/>
+                                <field name="direction" string="Direction" widget="radio"
+                                       attrs="{'invisible':[('animation', '!=', True)]}"/>
+                            </group>
+                            <group>
+                                <br></br>
+                                <group attrs="{'invisible': [('simple_text', '!=', True)]}">
+                                    <span>Design</span>
+                                    <br></br>
+                                    <field name="font_color" string="Font Color" widget="color"/>
+                                    <field name="background_color" string="Background Color" widget="color"/>
+                                    <field name="font_family" string="Font Family"/>
+                                    <field name="font_size" string="Font Size"/>
+                                    <field name="padding" string="Padding"/>
+                                </group>
+                            </group>
+                        </group>
+
+                        <div name="web_notification" colspan="2" class="o_horizontal_separator mt-5">
+                            DESCRIPTION
+                        </div>
+                        <br></br>
+                        <div>
+                            <label for="description">Description</label>
+                            <field name="description" string="Description" widget="text"/>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="notification_action" model="ir.actions.act_window">
+            <field name="name">Notification</field>
+            <field name="res_model">web.notification</field>
+            <field name="view_mode">tree,form</field>
+            <field name="type">ir.actions.act_window</field>
+        </record>
+        <menuitem id="web_notification_menu" name="Notification" parent="base.menu_administration"
+                  groups="notification_user"
+                  action="notification_action"/>
+    </data>
+</odoo>

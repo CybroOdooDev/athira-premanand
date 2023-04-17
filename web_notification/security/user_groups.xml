@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="notification_access">
+            <field name="name">Notification</field>
+            <field name="description">access right for Notification</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="notification_user" model="res.groups">
+            <field name="name">Web Notification Configuration</field>
+            <field name="category_id" ref="web_notification.notification_access"/>
+        </record>
+    </data>
+</odoo>

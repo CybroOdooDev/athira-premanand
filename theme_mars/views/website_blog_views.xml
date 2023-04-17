@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="featured_blog" model="ir.ui.view">
+        <field name="name">website.form.inherit</field>
+        <field name="model">website</field>
+        <field name="inherit_id" ref="website.view_website_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Blogs">
+                    <label for="featured_blog_ids"/>
+                    <field name="featured_blog_ids" string="Featured Blogs" widget="many2many_tags"/>
+                    <br/>
+                    <label for="popular_ids"/>
+                    <field name="popular_ids" string="Popular Blogs" widget="many2many_tags"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

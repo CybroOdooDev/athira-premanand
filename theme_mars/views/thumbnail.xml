@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="mars_thumbnail" name="Mars Thumbnail">
+        <section class="thumbnails">
+            <div class="container">
+                <div class="wrapper">
+                    <div class="main_heading text-center">
+                        <h1>WELCOME TO THE WORLD OF mars</h1>
+                        <p>Create amam ipsum dolor sit amet, Beautiful nature, and rare feathers!.</p>
+                    </div>
+                    <div class="img_wrapper">
+                        <img src="/theme_mars/static/src/Images/thumbnail/thumb.jpg" alt=""/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <template id="mars_snippets_index" inherit_id="web_editor.snippets">
+        <xpath expr="//div[@id='o_scroll']/t[@id='default_snippets']" position="after">
+            <div id="snippet_animate" class="o_panel">
+                <div class="o_panel_header">Index</div>
+                <div class="o_panel_body">
+                    <t t-snippet="theme_mars.mars_thumbnail"/>
+                    <t t-snippet="theme_mars.mars_about"/>
+                    <t t-snippet="theme_mars.mars_services"/>
+                    <t t-snippet="theme_mars.mars_client"/>
+                    <t t-snippet="theme_mars.mars_team"/>
+                    <t t-snippet="theme_mars.mars_banner"/>
+<!--                    <t t-snippet="theme_mars.mars_client_carousel"/>-->
+                    <t t-snippet="theme_mars.mars_counter"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

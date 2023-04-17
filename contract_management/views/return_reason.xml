@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_return_reason" model="ir.ui.view">
+        <field name="model">return.reason</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_return_reason_form" model="ir.ui.view">
+        <field name="model">return.reason</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Name"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="return_action" model="ir.actions.act_window">
+        <field name="name">Return Reason</field>
+        <field name="res_model">return.reason</field>
+        <field name="view_mode">tree,form</field>
+        <field name="type">ir.actions.act_window</field>
+    </record>
+</odoo>

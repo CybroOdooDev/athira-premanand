@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="contract_management"
+              name="Contract Management"/>
+    <menuitem id="contracts"
+              name="Contracts"
+              parent="contract_management"
+              action="contract_action"
+              sequence="1"/>
+    <menuitem id="conf"
+              name="Configuration"
+              parent="contract_management"
+              sequence="2"/>
+    <menuitem id="approval"
+              name="Contract Approval Teams"
+              parent="conf"
+              action="approval_action"/>
+    <menuitem id="team_leader"
+              name="Team Leader"
+              parent="conf"
+              action="team_leader_action"/>
+    <menuitem id="position"
+              name="Position"
+              parent="conf"
+              action="position_action"/>
+    <menuitem id="partner"
+              name="Partner"
+              parent="conf"
+              action="partner_action"/>
+    <menuitem id="reason"
+              name="Return Reason"
+              parent="conf"
+              action="return_action"/>
+</odoo>

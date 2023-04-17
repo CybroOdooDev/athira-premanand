@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="mars_blogs" name="Mars Blog">
+<!--          <section class="blog_mars oe_structure">-->
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-12">
+
+                         <div class="sub_heading">
+                        <h1>Our blog
+                        </h1>
+                        <p>
+                            The most happiest time of the day!. Morbi sagittis, sem quis lacinia faucibus, orci ipsum
+                            gravida
+                            tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum
+                            volutpat quis. A true story, that never been told!. Fusce id mi diam, non ornare orci.
+                            Pellentesque ipsum erat, facilisis ut venenatis eu, sodales vel dolor.
+                        </p>
+                    </div>
+
+                    </div>
+
+<!--                    <div class="col-lg-4">-->
+                         <div class="wrapper">
+
+                    <div class="blog_content dynamic_content">
+                        <div class="card-deck blog_cards">
+                            <div class="card">
+<!--                                <span>Hello World</span>-->
+                                <t t-foreach="posts_recent" t-as="recent">
+<!--                                    <t t-foreach="data.tag_ids" t-as="one_tag">-->
+<!--                                        <i class="bi bi-tag-fill" t-field="one_tag.name"/>-->
+<!--                                    </t>-->
+<!--                                     <a href="#" class="top_link">lifestyle</a>-->
+<!--                                     <t t-esc="recent.name"/>-->
+                                    <div class="card-img-top">
+                                        <div class="o_record_cover_container d-flex flex-column h-100 o_colored_level o_cc img_wrap">
+                                            <div t-attf-style="background-image: {{getBackground(recent.cover_properties)}}"
+                                                 class="o_record_cover_component o_record_cover_image "/>
+                                        </div>
+
+                                        <div class="card-body">
+                                             <div class="blog_date">
+                                            <t t-esc="changeDateFormat(recent.published_date)"/>
+                                         </div>
+                                            <a t-attf-href="/blog/#{recent.blog_id[0]}/#{recent.id}">
+                                        <h5 class="card-title">
+                                            <t t-esc="recent.name"/>
+                                        </h5>
+<!--                                        <p class="card-header">-->
+<!--                                             <span t-field="recent.subtitle"/>-->
+<!--                                        </p>-->
+                                                <p class="card-content">
+                                          <t t-esc="recent.teaser"/>
+                                         </p>
+                                        <div class="card-footer bg-transparent ">
+                                            <a t-attf-href="/blog/#{recent.blog_id[0]}/#{recent.id}" class="read_more"> Read more <span class="chevron right"/> </a>
+                                         </div>
+
+                                    </a>
+
+                                </div>
+                                    </div>
+
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!--            </div>-->
+                    </div>
+
+
+
+
+                </div>
+
+<!--        </section>-->
+    </t>
+</templates>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.module.category" id="approval_team_access">
+            <field name="name">Contract Management</field>
+            <field name="description">access right for Contract Management module</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="team_leader_group" model="res.groups">
+            <field name="name">Team Leader</field>
+            <field name="category_id" ref="contract_management.approval_team_access"/>
+        </record>
+    </data>
+</odoo>
+

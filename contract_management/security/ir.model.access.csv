@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_team_leader,team.leader,model_team_leader,base.group_user,1,1,1,1
+access_approvers,approvers,model_approvers,base.group_user,1,1,1,1
+access_position,position,model_position,base.group_user,1,1,1,1
+access_contract,contract,model_contract,base.group_user,1,1,1,1
+access_partner,partner,model_partner,base.group_user,1,1,1,1
+access_contract_approval,contract.approval,model_contract_approval,base.group_user,1,1,1,1
+access_contract_line,contract.line,model_contract_line,base.group_user,1,1,1,1
+access_wizard_msg,wizard.msg,model_wizard_msg,base.group_user,1,1,1,1
+access_return_reason,return.reason,model_return_reason,base.group_user,1,1,1,1
+
+access_approval_teams_leader,Access Approval Teams Leader,model_approval_teams,contract_management.team_leader_group,1,1,1,1

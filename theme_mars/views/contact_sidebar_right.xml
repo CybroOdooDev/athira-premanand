@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <!--    Contact Sidebar Right  -->
+
+    <template id="snippet_options_sidebar_right" inherit_id="website_sale.snippet_options" name="Sidebar Mars">
+        <xpath expr="//we-row[@id='o_wsale_grid_left_panel']" position="after">
+            <we-row string="Sidebar" class="o_we_full_row">
+                    <we-button string="Right" class="sidebar"
+                           data-customize-website-views="theme_mars.theme_mars_sidebar_right"
+                           data-no-preview="true"
+                           data-reload="/"/>
+            </we-row>
+        </xpath>
+    </template>
+
+     <template id="theme_mars_sidebar_right" inherit_id="theme_mars.contact_sidebar_right" active="False"
+              name="Attributes &amp; Variants filters">
+        <xpath expr="//div[hasclass('col-lg-4')]" position="after">
+              <div class="container">
+                  <div class="wrapper">
+                      <div class="row">
+
+                          <div class="col-lg-3 col-12">
+                              <div class="sidebar_map">
+                                  <div class="wrapper_map">
+
+                                      <div class="sidebar_tab">
+                                          <h4>Recent posts</h4>
+                                          <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                              <li class="nav-item" role="presentation">
+                                                  <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                                          data-bs-target="#home" type="button" role="tab"
+                                                          aria-controls="home"
+                                                          aria-selected="true">Populor
+                                                  </button>
+                                              </li>
+                                              <li class="nav-item" role="presentation">
+                                                  <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                                          data-bs-target="#profile" type="button" role="tab"
+                                                          aria-controls="profile" aria-selected="false">Featured
+                                                  </button>
+                                              </li>
+                                              <li class="nav-item" role="presentation">
+                                                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                                                          data-bs-target="#contact" type="button" role="tab"
+                                                          aria-controls="contact" aria-selected="false">Recent
+                                                  </button>
+                                              </li>
+                                          </ul>
+                                          <div class="tab-content" id="myTabContent">
+                                              <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                                   aria-labelledby="home-tab">
+                                                  <div class="wrapper_s">
+                                                      <div class="img_wrapper">
+                                                          <img src="Images/sidebar/s_b (3).jpg" alt=""/>
+                                                      </div>
+                                                      <div class="blog_link">
+                                                          <h6>A true story, that never benn told!</h6>
+                                                          <ul class="right">
+                                                              <li>
+                                                                  <i class="bi bi-clock"/>
+                                                                  6m ago
+                                                              </li>
+                                                              <li>
+                                                                  <i class="bi bi-tag-fill"/>
+                                                                  Technology
+                                                              </li>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                                  <div class="wrapper_s">
+                                                      <div class="img_wrapper">
+                                                          <img src="Images/sidebar/s_b (2).jpg" alt=""/>
+                                                      </div>
+                                                      <div class="blog_link">
+                                                          <h6>A true story, that never benn told!</h6>
+                                                          <ul class="right">
+                                                              <li>
+                                                                  <i class="bi bi-clock"/>
+                                                                  6m ago
+                                                              </li>
+                                                              <li>
+                                                                  <i class="bi bi-tag-fill"/>
+                                                                  Technology
+                                                              </li>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                                  <div class="wrapper_s">
+                                                      <div class="img_wrapper">
+                                                          <img src="Images/sidebar/s_b (1).jpg" alt=""/>
+                                                      </div>
+                                                      <div class="blog_link">
+                                                          <h6>A true story, that never benn told!</h6>
+                                                          <ul class="right">
+                                                              <li>
+                                                                  <i class="bi bi-clock"/>
+                                                                  6m ago
+                                                              </li>
+                                                              <li>
+                                                                  <i class="bi bi-tag-fill"/>
+                                                                  Technology
+                                                              </li>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="tab-pane fade" id="profile" role="tabpanel"
+                                                   aria-labelledby="profile-tab">
+                                                  <div class="wrapper_s">
+                                                      <div class="img_wrapper">
+                                                          <img src="Images/sidebar/s_b (2).jpg" alt=""/>
+                                                      </div>
+                                                      <div class="blog_link">
+                                                          <h6>A true story, that never benn told!</h6>
+                                                          <ul class="right">
+                                                              <li>
+                                                                  <i class="bi bi-clock"/>
+                                                                  6m ago
+                                                              </li>
+                                                              <li>
+                                                                  <i class="bi bi-tag-fill"/>
+                                                                  Technology
+                                                              </li>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                                  <div class="wrapper_s">
+                                                      <div class="img_wrapper">
+                                                          <img src="Images/sidebar/s_b (3).jpg" alt=""/>
+                                                      </div>
+                                                      <div class="blog_link">
+                                                          <h6>A true story, that never benn told!</h6>
+                                                          <ul class="right">
+                                                              <li>
+                                                                  <i class="bi bi-clock"/>
+                                                                  6m ago
+                                                              </li>
+                                                              <li>
+                                                                  <i class="bi bi-tag-fill"/>
+                                                                  Technology
+                                                              </li>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                                  <div class="wrapper_s">
+                                                      <div class="img_wrapper">
+                                                          <img src="Images/sidebar/s_b (1).jpg" alt=""/>
+                                                      </div>
+                                                      <div class="blog_link">
+                                                          <h6>A true story, that never benn told!</h6>
+                                                          <ul class="right">
+                                                              <li>
+                                                                  <i class="bi bi-clock"/>
+                                                                  6m ago
+                                                              </li>
+                                                              <li>
+                                                                  <i class="bi bi-tag-fill"/>
+                                                                  Technology
+                                                              </li>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="tab-pane fade" id="contact" role="tabpanel"
+                                                   aria-labelledby="contact-tab">
+                                                  <div class="wrapper_s">
+                                                      <div class="img_wrapper">
+                                                          <img src="Images/sidebar/s_b (1).jpg" alt=""/>
+                                                      </div>
+                                                      <div class="blog_link">
+                                                          <h6>A true story, that never benn told!</h6>
+                                                          <ul class="right">
+                                                              <li>
+                                                                  <i class="bi bi-clock"/>
+                                                                  6m ago
+                                                              </li>
+                                                              <li>
+                                                                  <i class="bi bi-tag-fill"/>
+                                                                  Technology
+                                                              </li>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                                  <div class="wrapper_s">
+                                                      <div class="img_wrapper">
+                                                          <img src="Images/sidebar/s_b (2).jpg" alt=""/>
+                                                      </div>
+                                                      <div class="blog_link">
+                                                          <h6>A true story, that never benn told!</h6>
+                                                          <ul class="right">
+                                                              <li>
+                                                                  <i class="bi bi-clock"/>
+                                                                  6m ago
+                                                              </li>
+                                                              <li>
+                                                                  <i class="bi bi-tag-fill"/>
+                                                                  Technology
+                                                              </li>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                                  <div class="wrapper_s">
+                                                      <div class="img_wrapper">
+                                                          <img src="Images/sidebar/s_b (3).jpg" alt=""/>
+                                                      </div>
+                                                      <div class="blog_link">
+                                                          <h6>A true story, that never benn told!</h6>
+                                                          <ul class="right">
+                                                              <li>
+                                                                  <i class="bi bi-clock"/>
+                                                                  6m ago
+                                                              </li>
+                                                              <li>
+                                                                  <i class="bi bi-tag-fill"/>
+                                                                  Technology
+                                                              </li>
+                                                          </ul>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="sidebar_tab">
+                                          <h4>Recent tweet</h4>
+                                          <div class="tweet">
+                                              <div class="wrapper_t">
+                                                  <i class="bi bi-twitter"/>
+                                                  <p>
+                                                      RT @aronvisuals: IMAGINARIUM
+                                                      ''We live in a fantasy world, a world of illusion.
+                                                      The great task in life is to find reality.'' Created usin…
+                                                  </p>
+                                              </div>
+                                              <span>Sep/7/2021</span>
+                                          </div>
+                                          <div class="tweet">
+                                              <div class="wrapper_t">
+                                                  <i class="bi bi-twitter"/>
+                                                  <p>
+                                                      RT @aronvisuals: IMAGINARIUM
+                                                      ''We live in a fantasy world, a world of illusion.
+                                                      The great task in life is to find reality.'' Created usin…
+                                                  </p>
+                                              </div>
+                                              <span>Sep/7/2021</span>
+                                          </div>
+                                      </div>
+                                      <div class="sidebar_tab">
+                                          <h4>TAGS</h4>
+
+                                          <ul class="s_tags d-flex">
+                                              <li>
+                                                  <a href="#">Design</a>
+                                              </li>
+                                              <li>
+                                                  <a href="#">Portfolio</a>
+                                              </li>
+                                              <li>
+                                                  <a href="#">Digital</a>
+                                              </li>
+                                              <li>
+                                                  <a href="#">Branding</a>
+                                              </li>
+                                              <li>
+                                                  <a href="#">HTML</a>
+                                              </li>
+                                              <li>
+                                                  <a href="#">Clean</a>
+                                              </li>
+                                              <li>
+                                                  <a href="#">Peace</a>
+                                              </li>
+                                              <li>
+                                                  <a href="#">Love</a>
+                                              </li>
+                                              <li>
+                                                  <a href="#">CSS3</a>
+                                              </li>
+                                              <li>
+                                                  <a href="#">jQuery</a>
+                                              </li>
+                                          </ul>
+                                      </div>
+                                      <div class="sidebar_searchbox">
+
+                                          <h4>NEWSLETTER</h4>
+                                          <p>Stay informed on our latest news!
+                                          </p>
+                                          <div class="input-group">
+                                              <input type="text" class="form-control" placeholder="Enter your email"/>
+                                              <div class="input-group-append">
+                                                  <button class="btn btn-secondary" type="button">
+                                                      <i class="bi bi-telegram"/>
+                                                  </button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+        </xpath>
+     </template>
+
+    <template id="contact_sidebar_right" name="Contact Sidebar Right">
+        <!-- Banner section starts here -->
+
+        <section class="banner_about_c_classic">
+            <div class="wrapper">
+                <div class="content">
+                    <h2>
+                        Contact us
+                    </h2>
+                    <p>
+                        Work is easy when you have all tools around you!
+                    </p>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb ">
+                            <li class="breadcrumb-item">
+                                <a href="#">Home
+                                    <i class="arrow right"/>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="#">Page title
+                                    <i class="arrow right"/>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Background image</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <!-- Contact section starts here -->
+        <section class="contact_classic">
+            <div class="container">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="contact_info">
+                            <div class="col-lg-5 col-12">
+                                <div class="contact_form">
+                                    <h4>ADDRESS AND MAP</h4>
+                                    <p>The most happiest time of the day!. Suspendisse condimentum porttitor cursus.
+                                        Duis nec nulla turpis. Nulla lacinia laoreet odio, non lacinia nisl malesuada
+                                        vel.
+                                        Aenean malesuada fermentum bibendum.
+                                    </p>
+                                    <section class="s_website_form" data-vcss="001"
+                                             data-snippet="s_website_form">
+                                        <form id="contactus_form" action="/website/form/" method="post"
+                                              enctype="multipart/form-data" class="o_mark_required" data-mark="*"
+                                              data-model_name="mail.mail" data-success-mode="redirect"
+                                              data-success-page="/contactus-thank-you" data-pre-fill="true">
+                                            <div class="row">
+                                                <div class="contact_info">
+                                                    <div class="s_website_form_rows row s_col_no_bgcolor">
+                                                        <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required"
+                                                             data-type="char" data-name="Field">
+                                                            <!--                                                <div class="row s_col_no_resize s_col_no_bgcolor">-->
+                                                            <div class="col-lg-6 col-md-6 col-12">
+                                                                <div class="form-group">
+                                                                    <label class="col-form-label col-sm-auto s_website_form_label"
+                                                                           style="width: 200px" for="contact1">
+                                                                        <span class="s_website_form_label_content">Name
+                                                                        </span>
+                                                                        <!--                                                            <span class="s_website_form_mark">*</span>-->
+                                                                    </label>
+                                                                </div>
+
+                                                                <div class="col-sm">
+                                                                    <input id="contact1" type="text"
+                                                                           class="form-control s_website_form_input"
+                                                                           name="name"
+                                                                           required="" placeholder="Enter your name"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_required"
+                                                         data-type="email" data-name="Field">
+                                                        <div class="col-lg-6 col-md-6 col-12">
+                                                            <div class="form-group">
+                                                                <!--                                                <div class="row s_col_no_resize s_col_no_bgcolor">-->
+                                                                <label class="col-form-label col-sm-auto s_website_form_label"
+                                                                       style="width: 200px" for="contact3">
+                                                                    <span class="s_website_form_label_content">Email
+                                                                        address
+                                                                    </span>
+                                                                    <span class="s_website_form_mark">*</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-sm">
+                                                                <input id="contact3" type="email"
+                                                                       class="form-control s_website_form_input"
+                                                                       name="email_from" required=""
+                                                                       placeholder="Enter your email"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_required"
+                                                     data-type="char" data-name="Field">
+                                                    <!--                                                <div class="row s_col_no_resize s_col_no_bgcolor">-->
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                                   style="width: 200px" for="contact5">
+                                                                <span class="s_website_form_label_content">Your Subject
+                                                                </span>
+                                                                <!--                                                            <span class="s_website_form_mark">*</span>-->
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <input id="contact5" type="text"
+                                                                   class="form-control s_website_form_input"
+                                                                   name="subject" required=""
+                                                                   placeholder="Enter your Subject"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_custom s_website_form_required"
+                                                     data-type="text" data-name="Field">
+                                                    <!--                                                <div class="row s_col_no_resize s_col_no_bgcolor">-->
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="col-form-label col-sm-auto s_website_form_label"
+                                                                   style="width: 200px" for="contact6">
+                                                                <span class="s_website_form_label_content">Message
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-sm">
+                                                            <textarea id="contact6"
+                                                                      class="form-control s_website_form_input"
+                                                                      name="description" required=""
+                                                                      placeholder="Enter your message"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-0 py-2 col-12 s_website_form_field s_website_form_dnone">
+                                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                                        <label class="col-form-label col-sm-auto s_website_form_label"
+                                                               style="width: 200px" for="contact7">
+                                                            <span class="s_website_form_label_content">Email To</span>
+                                                        </label>
+                                                        <div class="col-sm">
+                                                            <input id="contact7" type="hidden"
+                                                                   class="form-control s_website_form_input"
+                                                                   name="email_to"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-0 py-2 col-12 s_website_form_submit"
+                                                     data-name="Submit Button">
+                                                    <div style="width: 200px;" class="s_website_form_label"/>
+                                                    <a href="#" role="button"
+                                                       class="btn btn-primary btn-primary-icon btn-lg s_website_form_send">
+                                                        <i class="bi bi-telegram"/>Send Message
+                                                    </a>
+                                                    <span id="s_website_form_result"/>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <div class="address">
+                                    <h4>ADDRESS AND MAP</h4>
+                                    <div class="address_details">
+                                        <div class="right">
+                                            <address>
+                                                <!--                                            <h6>POLO, INC.</h6>-->
+                                                <!--                                            <p>795 Folsom Ave, Suite 600</p>-->
+                                                <!--                                            <p>San Francisco, CA 94107</p>-->
+                                                <div class="company_address">
+                                                    <div t-field="res_company.partner_id"/>
+                                                    <div t-field="res_company.street"/>
+                                                    <div t-field="res_company.email"/>
+                                                    <div t-field="res_company.phone"/>
+                                                    <div t-field="res_company.website"/>
+                                                </div>
+                                            </address>
+                                        </div>
+                                        <div class="left">
+                                            <address>
+                                                <div class="company_address">
+                                                    <div t-field="res_company.partner_id"/>
+                                                    <div class="cities" t-field="res_company.street"/>
+                                                    <div t-field="res_company.email"/>
+                                                    <div t-field="res_company.phone"/>
+                                                    <div t-field="res_company.website"/>
+                                                </div>
+                                            </address>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="map_area">
+                                    <div id="map_div" style="height: 400px;"/>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--                        <div class="col-lg-3 col-12">-->
+<!--                            <div class="sidebar_map">-->
+<!--                                <div class="wrapper_map">-->
+
+<!--                                    <div class="sidebar_tab">-->
+<!--                                        <h4>Recent posts</h4>-->
+<!--                                        <ul class="nav nav-tabs" id="myTab" role="tablist">-->
+<!--                                            <li class="nav-item" role="presentation">-->
+<!--                                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab"-->
+<!--                                                        data-bs-target="#home" type="button" role="tab"-->
+<!--                                                        aria-controls="home"-->
+<!--                                                        aria-selected="true">Populor-->
+<!--                                                </button>-->
+<!--                                            </li>-->
+<!--                                            <li class="nav-item" role="presentation">-->
+<!--                                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab"-->
+<!--                                                        data-bs-target="#profile" type="button" role="tab"-->
+<!--                                                        aria-controls="profile" aria-selected="false">Featured-->
+<!--                                                </button>-->
+<!--                                            </li>-->
+<!--                                            <li class="nav-item" role="presentation">-->
+<!--                                                <button class="nav-link" id="contact-tab" data-bs-toggle="tab"-->
+<!--                                                        data-bs-target="#contact" type="button" role="tab"-->
+<!--                                                        aria-controls="contact" aria-selected="false">Recent-->
+<!--                                                </button>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                        <div class="tab-content" id="myTabContent">-->
+<!--                                            <div class="tab-pane fade show active" id="home" role="tabpanel"-->
+<!--                                                 aria-labelledby="home-tab">-->
+<!--                                                <div class="wrapper_s">-->
+<!--                                                    <div class="img_wrapper">-->
+<!--                                                        <img src="Images/sidebar/s_b (3).jpg" alt=""/>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="blog_link">-->
+<!--                                                        <h6>A true story, that never benn told!</h6>-->
+<!--                                                        <ul class="right">-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-clock"/>-->
+<!--                                                                6m ago-->
+<!--                                                            </li>-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-tag-fill"/>-->
+<!--                                                                Technology-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="wrapper_s">-->
+<!--                                                    <div class="img_wrapper">-->
+<!--                                                        <img src="Images/sidebar/s_b (2).jpg" alt=""/>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="blog_link">-->
+<!--                                                        <h6>A true story, that never benn told!</h6>-->
+<!--                                                        <ul class="right">-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-clock"/>-->
+<!--                                                                6m ago-->
+<!--                                                            </li>-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-tag-fill"/>-->
+<!--                                                                Technology-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="wrapper_s">-->
+<!--                                                    <div class="img_wrapper">-->
+<!--                                                        <img src="Images/sidebar/s_b (1).jpg" alt=""/>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="blog_link">-->
+<!--                                                        <h6>A true story, that never benn told!</h6>-->
+<!--                                                        <ul class="right">-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-clock"/>-->
+<!--                                                                6m ago-->
+<!--                                                            </li>-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-tag-fill"/>-->
+<!--                                                                Technology-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="tab-pane fade" id="profile" role="tabpanel"-->
+<!--                                                 aria-labelledby="profile-tab">-->
+<!--                                                <div class="wrapper_s">-->
+<!--                                                    <div class="img_wrapper">-->
+<!--                                                        <img src="Images/sidebar/s_b (2).jpg" alt=""/>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="blog_link">-->
+<!--                                                        <h6>A true story, that never benn told!</h6>-->
+<!--                                                        <ul class="right">-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-clock"/>-->
+<!--                                                                6m ago-->
+<!--                                                            </li>-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-tag-fill"/>-->
+<!--                                                                Technology-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="wrapper_s">-->
+<!--                                                    <div class="img_wrapper">-->
+<!--                                                        <img src="Images/sidebar/s_b (3).jpg" alt=""/>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="blog_link">-->
+<!--                                                        <h6>A true story, that never benn told!</h6>-->
+<!--                                                        <ul class="right">-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-clock"/>-->
+<!--                                                                6m ago-->
+<!--                                                            </li>-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-tag-fill"/>-->
+<!--                                                                Technology-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="wrapper_s">-->
+<!--                                                    <div class="img_wrapper">-->
+<!--                                                        <img src="Images/sidebar/s_b (1).jpg" alt=""/>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="blog_link">-->
+<!--                                                        <h6>A true story, that never benn told!</h6>-->
+<!--                                                        <ul class="right">-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-clock"/>-->
+<!--                                                                6m ago-->
+<!--                                                            </li>-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-tag-fill"/>-->
+<!--                                                                Technology-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="tab-pane fade" id="contact" role="tabpanel"-->
+<!--                                                 aria-labelledby="contact-tab">-->
+<!--                                                <div class="wrapper_s">-->
+<!--                                                    <div class="img_wrapper">-->
+<!--                                                        <img src="Images/sidebar/s_b (1).jpg" alt=""/>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="blog_link">-->
+<!--                                                        <h6>A true story, that never benn told!</h6>-->
+<!--                                                        <ul class="right">-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-clock"/>-->
+<!--                                                                6m ago-->
+<!--                                                            </li>-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-tag-fill"/>-->
+<!--                                                                Technology-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="wrapper_s">-->
+<!--                                                    <div class="img_wrapper">-->
+<!--                                                        <img src="Images/sidebar/s_b (2).jpg" alt=""/>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="blog_link">-->
+<!--                                                        <h6>A true story, that never benn told!</h6>-->
+<!--                                                        <ul class="right">-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-clock"/>-->
+<!--                                                                6m ago-->
+<!--                                                            </li>-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-tag-fill"/>-->
+<!--                                                                Technology-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="wrapper_s">-->
+<!--                                                    <div class="img_wrapper">-->
+<!--                                                        <img src="Images/sidebar/s_b (3).jpg" alt=""/>-->
+<!--                                                    </div>-->
+<!--                                                    <div class="blog_link">-->
+<!--                                                        <h6>A true story, that never benn told!</h6>-->
+<!--                                                        <ul class="right">-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-clock"/>-->
+<!--                                                                6m ago-->
+<!--                                                            </li>-->
+<!--                                                            <li>-->
+<!--                                                                <i class="bi bi-tag-fill"/>-->
+<!--                                                                Technology-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="sidebar_tab">-->
+<!--                                        <h4>Recent tweet</h4>-->
+<!--                                        <div class="tweet">-->
+<!--                                            <div class="wrapper_t">-->
+<!--                                                <i class="bi bi-twitter"/>-->
+<!--                                                <p>-->
+<!--                                                    RT @aronvisuals: IMAGINARIUM-->
+<!--                                                    ''We live in a fantasy world, a world of illusion.-->
+<!--                                                    The great task in life is to find reality.'' Created usin…-->
+<!--                                                </p>-->
+<!--                                            </div>-->
+<!--                                            <span>Sep/7/2021</span>-->
+<!--                                        </div>-->
+<!--                                        <div class="tweet">-->
+<!--                                            <div class="wrapper_t">-->
+<!--                                                <i class="bi bi-twitter"/>-->
+<!--                                                <p>-->
+<!--                                                    RT @aronvisuals: IMAGINARIUM-->
+<!--                                                    ''We live in a fantasy world, a world of illusion.-->
+<!--                                                    The great task in life is to find reality.'' Created usin…-->
+<!--                                                </p>-->
+<!--                                            </div>-->
+<!--                                            <span>Sep/7/2021</span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="sidebar_tab">-->
+<!--                                        <h4>TAGS</h4>-->
+
+<!--                                        <ul class="s_tags d-flex">-->
+<!--                                            <li>-->
+<!--                                                <a href="#">Design</a>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <a href="#">Portfolio</a>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <a href="#">Digital</a>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <a href="#">Branding</a>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <a href="#">HTML</a>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <a href="#">Clean</a>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <a href="#">Peace</a>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <a href="#">Love</a>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <a href="#">CSS3</a>-->
+<!--                                            </li>-->
+<!--                                            <li>-->
+<!--                                                <a href="#">jQuery</a>-->
+<!--                                            </li>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                    <div class="sidebar_searchbox">-->
+
+<!--                                        <h4>NEWSLETTER</h4>-->
+<!--                                        <p>Stay informed on our latest news!-->
+<!--                                        </p>-->
+<!--                                        <div class="input-group">-->
+<!--                                            <input type="text" class="form-control" placeholder="Enter your email"/>-->
+<!--                                            <div class="input-group-append">-->
+<!--                                                <button class="btn btn-secondary" type="button">-->
+<!--                                                    <i class="bi bi-telegram"/>-->
+<!--                                                </button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </template>
+</odoo>

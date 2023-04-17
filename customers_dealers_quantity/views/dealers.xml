@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="dealers_quantity_view_field" model="ir.ui.view">
+        <field name="name">dealers.quantity.view.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='additional_product_tag_ids']" position="after">
+                <div class="o_horizontal_separator mt-4 mb-3 text-uppercase fw-bolder small">Dealers</div>
+                <br></br>
+                <field name="price" string="Dealers Price"/>
+                <field name="minimum_quantity" string="Dealers Min Quantity"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

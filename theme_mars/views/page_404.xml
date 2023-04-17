@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="page_404" inherit_id="http_routing.404" name="Page Notfound">
+        <xpath expr="//div[@id='wrap']" position="replace">
+            <section class="page_error">
+                <div class="error_wrapper">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="four">
+                                    404
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="unavilable">
+                                    <div class="wrapper">
+                                        <h3>
+                                            Ooops, This Page
+                                            <br/>
+                                            Could Not Be Found!
+                                        </h3>
+                                        <p>
+                                            The page you are looking for might have been removed, had its name changed,
+                                            or is temporarily unavailable.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+</odoo>

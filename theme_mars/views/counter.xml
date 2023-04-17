@@ -1,0 +1,77 @@
+<odoo>
+    <!--    <template id="mars_counter_banner" inherit_id="website.snippets" name="Mars counter">-->
+    <!--        <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]" position="inside">-->
+    <!--            <t t-snippet="theme_mars.mars_counter"-->
+    <!--               t-thumbnail=""/>-->
+    <!--        </xpath>-->
+    <!--    </template>-->
+    <template id="mars_counter" name="Banner Counter">
+        <section class="counter_main">
+            <div class="overlay">
+                <div class="container">
+                    <div id="counter-section-container">
+                        <div id="counter-box-container">
+                            <div id="counter-box">
+                                <div class="c_icon">
+                                    <i class="fa bi bi-code-slash"/>
+                                </div>
+                                <!--                                <span class="counter" data-number="150000">150000</span>-->
+                                <!--                                <div class="counter">-->
+                                <!--                                    <div class="charts" data-percent="95" data-bar-color="#ff4241">-->
+                                <!--                                        <span class="percent" data-number="150000">150000</span>-->
+                                <!--                                    </div>-->
+                                <!--                                </div>-->
+                                <div class="s_progress_bar" data-display="inline">
+                                    <h4 class="mb-0">We are almost done!</h4>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped" role="progressbar"
+                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                                             style="width: 80%; min-width: 3%">
+                                            <span class="s_progress_bar_text">80% Development</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                            </div>-->
+
+                                <p>Lines Of Code</p>
+                            </div>
+                            <div id="counter-box">
+                                <div class="c_icon">
+                                    <i class="fa bi bi-cup-fill"/>
+                                </div>
+                                <!--                                <div class="counter">-->
+                                <span class="percent" data-number="2000">2000</span>
+                                <!--                                </div>-->
+                                <p>Cups of Coffee</p>
+                            </div>
+                            <div id="counter-box">
+                                <div class="c_icon">
+                                    <i class="fa bi bi-hand-thumbs-up-fill"/>
+                                </div>
+                                <div class="counter_num">
+                                    <span class="counter" data-number="1485">1485</span>
+                                    <p>FINISHED PROJECTS</p>
+                                </div>
+                            </div>
+                            <div id="counter-box">
+                                <div class="c_icon">
+                                    <i class="fa bi bi-people-fill"/>
+                                </div>
+                                <span class="counter" data-number="100">100</span>
+                                <p>SATISFIED CLIENTS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <template id="mars_counter_options" inherit_id="website.snippet_options">
+        <xpath expr="." position="inside">
+            <div data-js="CounterSnippet" data-selector=".counter">
+                <we-input string="Counter" data-step="1" value="150000" data-select-data-attribute=""
+                          data-attribute-name="defaultCounter"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>

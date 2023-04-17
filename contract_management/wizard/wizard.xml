@@ -1,0 +1,33 @@
+<odoo>
+    <record id="contract_wizard_message_form_view" model="ir.ui.view">
+        <field name="name">Return Message</field>
+        <field name="model">wizard.msg</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                     <h3>
+                         Comments
+                     </h3>
+                    <field name="return_reason_id" string="Comments"/>
+                    <footer>
+                        <button
+                                name="btn_return_for_correction"
+                                string="Return For Correction"
+                                type="object"
+                                class="btn-primary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="contract_wizard_action"
+            model="ir.actions.act_window">
+        <field name="name">Return Message</field>
+        <field name="res_model">wizard.msg</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="contract_wizard_message_form_view"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

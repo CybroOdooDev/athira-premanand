@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="mars_blog" inherit_id="website.snippets"
+                  name="blog">
+            <xpath expr="//div[@id='snippet_feature']/div[hasclass('o_panel_body')]"
+                   position="inside">
+                <t t-snippet="theme_mars.mars_blogs" t-thumbnail=""/>
+            </xpath>
+        </template>
+        <template id="mars_blogs" name="Mars Blog">
+            <!-- Blog section -->
+            <section class="blog_mars">
+            </section>
+        </template>
+    </data>
+</odoo>

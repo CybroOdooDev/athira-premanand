@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_contract" model="ir.ui.view">
+        <field name="model">contract</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Name"/>
+                <field name="reference" string="Reference"/>
+                <field name="partner" string="Partner"/>
+                <field name="company_id" string="Company"/>
+                <field name="current_user" string="Responsible User"/>
+                <field name="type" string="Type"/>
+                <field name="state" string="State"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_position_form" model="ir.ui.view">
+        <field name="model">contract</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" widget="statusbar" options="{'clickable': '1'}"
+                           statusbar_visible="draft,approval,running,expired,closed,to_renew,cancelled"/>
+                    <button name="btn_confirm" string="Confirm" type="object"
+                            attrs="{'invisible':[('state', '!=', 'draft')]}"
+                            class="oe_highlight"/>
+                    <button name="btn_approve" string="Approve" type="object"
+                            attrs="{'invisible':[('state', '!=', 'approval')]}"
+                            class="oe_highlight"/>
+                    <button name="btn_return" string="Return For Correction" type="object"
+                            attrs="{'invisible':[('state', '!=', 'approval')]}"/>
+                    <button name="btn_cancel" string="Cancel" type="object"
+                            attrs="{'invisible':[('state', '!=', 'approval')]}"/>
+                </header>
+                <sheet>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <widget name="web_ribbon" text="Under Approval" bg_color="bg-warning"
+                            attrs="{'invisible': [('state', '!=', 'approval')]}"/>
+                    <group>
+                        <group>
+                            <field name="use_lines" string="Use Lines"/>
+                            <field name="reference" string="Reference"/>
+                            <field name="type" string="Type"/>
+                            <field name="partner" string="Partner"/>
+                        </group>
+
+                        <group>
+                            <field name="current_user" string="Responsible User"/>
+                            <field name="company_id" string="Company"/>
+                            <field name="approval_team_id" string="Approval Team"/>
+                        </group>
+
+                        <group>
+                            <field name="start_date" string="Start Date"/>
+                            <field name="end_date" string="End Date"/>
+                        </group>
+
+                        <group>
+                            <field name="last_payment_date" string="Last Payment Date"/>
+                            <field name="expiring_state" string="Expiring State"/>
+                        </group>
+                        <group>
+                            <field name="cost" string="Cost"/>
+                            <field name="currency_id" string="Currency"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lines" attrs="{'invisible': [('use_lines', '!=', True)]}">
+                            <field name="contract_line_ids"
+                                   mod="tree">
+                                <tree string="order lines"
+                                      editable="bottom">
+                                    <field name="product" string="Product"/>
+                                    <field name="product_label" string="Label"/>
+                                    <field name="prod_quantity" string="Quantity"/>
+                                    <field name="prod_uom" string="UoM"/>
+                                    <field name="prod_price" string="Price"/>
+                                    <field name="prod_discount" string="Discount"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Approval">
+                            <field name="contract_approval_ids"
+                                   mod="tree">
+                                <tree string="order lines"
+                                      editable="bottom">
+                                    <field name="approver_id" string="Approver"/>
+                                    <field name="position_id" string="Role/Position"/>
+                                    <field name="status" string="Status"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="contract_view_kanban" model="ir.ui.view">
+        <field name="name">contract.kanban</field>
+        <field name="model">contract</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="oe_kanban_card">
+                                    <div>
+                                        <b>
+                                            <field name="name"/>
+                                        </b>
+                                    </div>
+                                    <div>
+                                        <field name="reference" string="Reference"/>
+                                    </div>
+                                    <div class="text-muted">
+                                        <div>
+                                            <field name="type" string="Type"/>
+                                        </div>
+                                        <div>
+                                            <field name="partner" string="Partner"/>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                            <field name="current_user" widget="many2one_avatar_user"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="contract_action" model="ir.actions.act_window">
+        <field name="name">Contract</field>
+        <field name="res_model">contract</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="type">ir.actions.act_window</field>
+    </record>
+</odoo>

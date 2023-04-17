@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="web.NavBar" t-inherit-mode="extension" owl="1">
+        <xpath expr="//header" position="after">
+            <t t-foreach="this.notification" t-as="notification" t-key="notification_index">
+                <div class="col alert alert-warning o_simple_text mb-0" id="o_simple_text" role="alert"
+                     t-attf-style="color: {{ notification.font_color }}; background: {{ notification.background_color }};
+                      font-size: {{ notification.font_size }}px; padding: {{ notification.padding }}px;
+                      font-family: {{ notification.font_family }}px;display: flex;">
+                    <div style="width:100%;float:left;">
+                         <t t-if="notification.animation">
+                            <marquee t-att-direction="notification.direction">Notification: <t
+                                    t-esc="notification.description"/></marquee>
+                    </t>
+                        <t t-else="">
+                        Notification: <t t-if="notification.description"><t t-esc="notification.description"/></t>
+                    </t>
+                    </div>
+                    <div class="notify" style="width:3%;">
+                        <i class="fa fa-times" t-on-click="RemoveNotification"/>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>

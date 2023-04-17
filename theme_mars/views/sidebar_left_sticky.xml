@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="sidebar_left_sticky" inherit_id="theme_mars.dynamic_blog" name="Blog Left Sticky">
+        <xpath expr="//div[hasclass('blog_content_col')]" position="before">
+            <div class="row row_left" style="margin-left: -131px;">
+                <div class="sidebarsticky" style="position: static; overflow: unset;">
+                    <t t-call="theme_mars.blog_left_sidebars"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

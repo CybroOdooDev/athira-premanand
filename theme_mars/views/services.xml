@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="mars_services" name="Mars Services">
+        <section class="service">
+            <div class="container custom_service">
+                <div class="wrapper">
+                    <div class="main_heading text-center">
+                        <h1>SERVICES</h1>
+                        <p>Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum porttitor
+                            cursumus.
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="service_contents">
+                                <div class="service_icon">
+                                    <div class="s_icon">
+                                        <i class="bi bi-plug-fill"/>
+                                    </div>
+                                </div>
+                                <div class="service_info">
+                                    <h4>
+                                        Powerfull template
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum
+                                        porttitor cursumus.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="service_contents">
+                                <div class="service_icon">
+                                    <div class="s_icon">
+                                        <i class="bi bi-plug-fill"/>
+                                    </div>
+                                </div>
+                                <div class="service_info">
+                                    <h4>
+                                        Powerfull template
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum
+                                        porttitor cursumus.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="service_contents">
+                                <div class="service_icon">
+                                    <div class="s_icon">
+                                        <i class="bi bi-plug-fill"/>
+                                    </div>
+                                </div>
+                                <div class="service_info">
+                                    <h4>
+                                        Powerfull template
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum
+                                        porttitor cursumus.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="service_contents">
+                                <div class="service_icon">
+                                    <div class="s_icon">
+                                        <i class="bi bi-plug-fill"/>
+                                    </div>
+                                </div>
+                                <div class="service_info">
+                                    <h4>
+                                        Powerfull template
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum
+                                        porttitor cursumus.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="service_contents">
+                                <div class="service_icon">
+                                    <div class="s_icon">
+                                        <i class="bi bi-plug-fill"/>
+                                    </div>
+                                </div>
+                                <div class="service_info">
+                                    <h4>
+                                        Powerfull template
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum
+                                        porttitor cursumus.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="service_contents">
+                                <div class="service_icon">
+                                    <div class="s_icon">
+                                        <i class="bi bi-plug-fill"/>
+                                    </div>
+                                </div>
+                                <div class="service_info">
+                                    <h4>
+                                        Powerfull template
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum
+                                        porttitor cursumus.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="service_contents">
+                                <div class="service_icon">
+                                    <div class="s_icon">
+                                        <i class="bi bi-plug-fill"/>
+                                    </div>
+                                </div>
+                                <div class="service_info">
+                                    <h4>
+                                        Powerfull template
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum
+                                        porttitor cursumus.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="service_contents">
+                                <div class="service_icon">
+                                    <div class="s_icon">
+                                        <i class="bi bi-plug-fill"/>
+                                    </div>
+                                </div>
+                                <div class="service_info">
+                                    <h4>
+                                        Powerfull template
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum
+                                        porttitor cursumus.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="service_contents">
+                                <div class="service_icon">
+                                    <div class="s_icon">
+                                        <i class="bi bi-plug-fill"/>
+                                    </div>
+                                </div>
+                                <div class="service_info">
+                                    <h4>
+                                        Powerfull template
+                                    </h4>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consecte adipiscing elit. Suspendisse condimentum
+                                        porttitor cursumus.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

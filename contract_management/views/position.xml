@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_position" model="ir.ui.view">
+        <field name="model">position</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_position_form" model="ir.ui.view">
+        <field name="model">position</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Name"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="position_action" model="ir.actions.act_window">
+        <field name="name">Position</field>
+        <field name="res_model">position</field>
+        <field name="view_mode">tree,form</field>
+        <field name="type">ir.actions.act_window</field>
+    </record>
+</odoo>
