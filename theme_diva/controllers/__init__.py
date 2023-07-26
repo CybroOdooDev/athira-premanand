@@ -19,8 +19,5 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-
 from . import blog
-from . import main
-
-
+from . import products

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    View of Right Sidebar-->
+    <template id="blog_sidebar_right" name="Sidebar Right" inherit_id="theme_mars.dynamic_blog">
+        <xpath expr="//div[hasclass('responsive_sidebar')]" position="attributes">
+            <attribute name="class" >col-lg-3 col-md-3 col-12 responsive_sidebar sidebar_right_class</attribute>
+        </xpath>
+    </template>
+</odoo>

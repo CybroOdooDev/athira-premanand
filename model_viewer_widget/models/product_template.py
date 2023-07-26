@@ -20,11 +20,11 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-
-from odoo import models, fields
+from odoo import fields, models
 
 
 class ProductTemplate(models.Model):
+    """ This class inherit the product template. """
     _inherit = 'product.template'
 
     model_3d = fields.Binary(string="Product", help="Used to upload images")

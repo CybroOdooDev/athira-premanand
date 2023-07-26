@@ -19,5 +19,6 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-
-from . import dealers_quantity
+from . import product_template
+from . import res_partner
+from . import sale_order_line

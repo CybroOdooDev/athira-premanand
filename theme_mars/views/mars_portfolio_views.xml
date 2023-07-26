@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--    Mars portfolio view-->
+    <record id="mars_portfolio_view_form" model="ir.ui.view">
+        <field name="name">mars.portfolio.view.form</field>
+        <field name="model">mars.portfolio</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" string="Name"/>
+                            <field name="portfolio_ids" string="Portfolio"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="mars_portfolio_view_tree" model="ir.ui.view">
+        <field name="name">mars.portfolio.view.tree</field>
+        <field name="model">mars.portfolio</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Name"/>
+                <field name="portfolio_ids" string="Portfolio"/>
+            </tree>
+        </field>
+    </record>
+    <record id="mars_portfolio_action" model="ir.actions.act_window">
+        <field name="name">Mars Portfolio</field>
+        <field name="res_model">mars.portfolio</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_mars_portfolio" name="Portfolio"
+              parent="website.menu_website_global_configuration"
+              action="mars_portfolio_action"
+              sequence="15"/>
+</odoo>

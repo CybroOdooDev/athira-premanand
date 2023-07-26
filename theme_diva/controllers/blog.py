@@ -19,7 +19,6 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-
 from odoo import fields, http
 from odoo.http import request
 
@@ -34,7 +33,6 @@ class WebsiteBlog(http.Controller):
             [('website_published', '=', True),
              ('post_date', '<=', fields.Datetime.now())],
             order='published_date desc', limit=3)
-
         values = {
             'posts_recent': posts.read(['name', 'published_date', 'blog_id', 'cover_properties']),
         }
@@ -48,7 +46,6 @@ class WebsiteBlog(http.Controller):
             [('website_published', '=', True),
              ('post_date', '<=', fields.Datetime.now())],
             order='published_date desc', limit=4)
-
         values = {
             'posts_recent': posts.read(
                 ['name', 'published_date', 'blog_id', 'cover_properties']),

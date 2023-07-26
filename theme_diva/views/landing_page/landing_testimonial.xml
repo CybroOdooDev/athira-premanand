@@ -8,7 +8,7 @@
         </xpath>
     </template>
     <template id="diva_reviews" name="Landing Testimonial">
-        <!--        <section class="main_body">-->
+<!--        Landing testimonial section-->
         <section class="land_testimonial subline">
             <div class="container-fluid">
                 <div class="wrapper">

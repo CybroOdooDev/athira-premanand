@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Portfolio outline heading layout-->
+    <template id="mars_portfolio_outlines" name="Outline">
+        <section class="portfolio_grid">
+            <div class="wrapper">
+                <div class="container">
+                    <div class="portfolio_grid_wrapper">
+                        <div class="tab_portfolio">
+                            <div class="container">
+                                <div class="row text-center">
+                                    <div class="col-md-12">
+                                        <div class="col">
+                                            <div class=" vossen-portfolio-filters"
+                                                 data-toggle="buttons">
+                                                <section
+                                                        class="portfolio_filter"
+                                                        id="portfolio_filter">
+                                                    <div class="wrapper">
+                                                        <div class="container">
+                                                            <div class="filters_transparent filter-portfolio">
+                                                                <div class="filter_outline">
+                                                                    <div class="cart_heading text-center mb-1">
+                                                                        <h1>
+                                                                            Outline
+                                                                        </h1>
+                                                                    </div>
+                                                                    <ul class="">
+                                                                        <div id="myBtnContainer">
+                                                                            <t t-if="len(heading) >= 2">
+                                                                                <li type=""
+                                                                                    class=" active">
+                                                                                    <button class="btn btn-default filter-button"
+                                                                                            id="all-heading">
+                                                                                        All
+                                                                                    </button>
+                                                                                </li>
+                                                                            </t>
+                                                                            <t t-foreach="heading"
+                                                                               t-as="heading">
+                                                                                <li type=""
+                                                                                    class="">
+                                                                                    <button t-attf-data-value="{{heading.name}}"
+                                                                                            t-attf-class="h_active btn btn-default filter-button #{heading.name}"
+                                                                                            t-att-data-filter="heading.name">
+                                                                                        <t t-out="heading.name"/>
+                                                                                    </button>
+                                                                                </li>
+                                                                            </t>
+                                                                        </div>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <t t-if="my_heading">
+            <section class="portfolio_display">
+                <div class="load_modal position_class" id="load_modal">
+                    <t t-foreach="my_heading" t-as="line">
+                        <t t-set="count" t-value="0"/>
+                        <t t-set="check" t-value="line.name"/>
+                        <div t-att-id="line.name" class="main-portfolio row">
+                            <t t-foreach="line.portfolio_ids" t-as="image">
+                                <t t-set="flag" t-value="true"/>
+                                <t t-foreach="image.image_group_ids"
+                                   t-as="img">
+                                    <t t-if="flag == true">
+                                        <!--  Modal layout-->
+                                        <t t-if="image.group_type == 'modal'">
+                                            <div class="col-lg-6 p-0 col-md-6"
+                                                 style="overflow: hidden;">
+                                                <div class=" margin_class float-left w-100">
+                                                    <a t-attf-href="data:image/png;base64,{{img['portfolio_image']}}"
+                                                       data-fancybox="gallery">
+                                                        <img style="width:250px; object-fit:cover; height:250px;"
+                                                             t-attf-src="data:image/png;base64,{{img['portfolio_image']}}"
+                                                             class="img-responsive data_img modal-img"
+                                                             t-att-value="img['portfolio_image']"
+                                                             id="data_img"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </t>
+                                        <!-- Carousel layout-->
+                                        <t t-if="image.group_type == 'carousel'">
+                                            <div class="col-lg-6 p-0 col-md-6">
+                                                <div t-attf-id="o-carousel-product-{{count}}"
+                                                     class="carousel slide position-sticky position_join  overflow-hidden "
+                                                     data-bs-ride="carousel"
+                                                     data-bs-interval="0"
+                                                     t-att-data-name="product_carousel_block_name">
+                                                    <div class="o_carousel_product_outer carousel-outer position-relative flex-grow-1">
+                                                        <div class="carousel-inner h-100">
+                                                            <t t-set="image_classes"
+                                                               t-value="'d-flex align-items-center justify-content-center h-100'"/>
+                                                            <t t-set="flag"
+                                                               t-value="True"/>
+                                                            <t t-foreach="image.image_group_ids"
+                                                               t-as="img">
+                                                                <t t-if="flag == True">
+                                                                    <div t-attf-class="carousel-item h-100#{' active'}">
+                                                                        <img style="width:250px; object-fit:cover; height:250px;"
+                                                                             t-attf-src="data:image/png;base64,{{img['portfolio_image']}}"
+                                                                             class="img-responsive carousel-img "/>
+                                                                    </div>
+                                                                </t>
+                                                                <t t-set="flag"
+                                                                   t-value="False"/>
+                                                                <div t-attf-class="carousel-item h-100">
+                                                                    <img style="width:250px; object-fit:cover; height:250px;"
+                                                                         t-attf-src="data:image/png;base64,{{img['portfolio_image']}}"
+                                                                         class="img-responsive carousel-img"/>
+                                                                </div>
+                                                            </t>
+                                                            <a class="carousel-control-prev"
+                                                               t-attf-href="#o-carousel-product-{{count}}"
+                                                               role="button"
+                                                               data-bs-slide="prev">
+                                                                <span class="fa fa-chevron-left fa-2x oe_unmovable"
+                                                                      role="img"
+                                                                      aria-label="Previous"
+                                                                      title="Previous"/>
+                                                            </a>
+                                                            <a class="carousel-control-next"
+                                                               t-attf-href="#o-carousel-product-{{count}}"
+                                                               role="button"
+                                                               data-bs-slide="next">
+                                                                <span class="fa fa-chevron-right fa-2x oe_unmovable"
+                                                                      role="img"
+                                                                      aria-label="Next"
+                                                                      title="Next"/>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </t>
+                                        <t t-set="flag" t-value="false"/>
+                                    </t>
+                                </t>
+                                <t t-set="count" t-value="count+1"/>
+                            </t>
+                        </div>
+                    </t>
+                </div>
+                <div id="all_heading" class="row position_class"
+                     style="margin: 20px;">
+                    <t t-set="all_images"
+                       t-value="request.env['portfolio.group'].sudo().search([])"/>
+                    <t t-set="count" t-value="0"/>
+                    <t t-set="check" t-value="line.name"/>
+                    <t t-if="line.name">
+                    </t>
+                    <t t-foreach="all_images" t-as="image">
+                        <t t-set="flag" t-value="true"/>
+                        <t t-foreach="image.image_group_ids" t-as="img">
+                            <t t-if="flag == true">
+                                <t t-if="image.group_type == 'modal'">
+                                    <div class="col-lg-6 p-0 col-md-6"
+                                         style="overflow: hidden;">
+                                        <div class=" margin_class float-left w-100">
+                                            <a t-attf-href="data:image/png;base64,{{img['portfolio_image']}}"
+                                               data-fancybox="gallery">
+                                                <img style="width:250px; object-fit:cover; height:250px;"
+                                                     t-attf-src="data:image/png;base64,{{img['portfolio_image']}}"
+                                                     class="img-responsive data_img modal-img"
+                                                     t-att-value="img['portfolio_image']"
+                                                     id="data_img"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </t>
+                                <t t-if="image.group_type == 'carousel'">
+                                    <div class="col-lg-6 p-0 col-md-6">
+                                        <div t-attf-id="o-carousel-product-{{count}}"
+                                             class="carousel slide position-sticky overflow-hidden"
+                                             data-bs-ride="carousel"
+                                             data-bs-interval="0"
+                                             t-att-data-name="product_carousel_block_name">
+                                            <div class="o_carousel_product_outer carousel-outer position-relative flex-grow-1">
+                                                <div class="carousel-inner h-100">
+                                                    <t t-set="image_classes"
+                                                       t-value="'d-flex align-items-center justify-content-center h-100'"/>
+                                                    <t t-set="flag"
+                                                       t-value="True"/>
+                                                    <t t-foreach="image.image_group_ids"
+                                                       t-as="img">
+                                                        <t t-if="flag == True">
+                                                            <div t-attf-class="carousel-item h-100#{' active'}">
+                                                                <img style="width:250px; object-fit:cover; height:250px;"
+                                                                     t-attf-src="data:image/png;base64,{{img['portfolio_image']}}"
+                                                                     class="img-responsive carousel-img"/>
+                                                            </div>
+                                                        </t>
+                                                        <t t-set="flag"
+                                                           t-value="False"/>
+                                                        <div t-attf-class="carousel-item h-100">
+                                                            <img style="width:250px; object-fit:cover; height:250px;"
+                                                                 t-attf-src="data:image/png;base64,{{img['portfolio_image']}}"
+                                                                 class="img-responsive carousel-img"/>
+                                                        </div>
+                                                    </t>
+                                                    <a class="carousel-control-prev"
+                                                       t-attf-href="#o-carousel-product-{{count}}"
+                                                       role="button"
+                                                       data-bs-slide="prev">
+                                                        <span class="fa fa-chevron-left fa-2x oe_unmovable"
+                                                              role="img"
+                                                              aria-label="Previous"
+                                                              title="Previous"/>
+                                                    </a>
+                                                    <a class="carousel-control-next"
+                                                       t-attf-href="#o-carousel-product-{{count}}"
+                                                       role="button"
+                                                       data-bs-slide="next">
+                                                        <span class="fa fa-chevron-right fa-2x oe_unmovable"
+                                                              role="img"
+                                                              aria-label="Next"
+                                                              title="Next"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                                <t t-set="flag" t-value="false"/>
+                            </t>
+                        </t>
+                        <t t-set="count" t-value="count+1"/>
+                    </t>
+                </div>
+            </section>
+        </t>
+    </template>
+    <!--    Portfolio layout-->
+    <record id="mars_portfolio" model="website.page">
+        <field name="name">Portfolio</field>
+        <field name="type">qweb</field>
+        <field name="key">theme_mars.mars_portfolio</field>
+        <field name="url">/portfolio</field>
+        <field name="is_published">True</field>
+        <field name="arch" type="xml">
+            <t name="About" t-name="theme_mars.mars_portfolio">
+                <t t-call="website.layout">
+                    <div id="wrap" class="o_mars_portfolio_page">
+                        <section class="banner_services banner_portfolio">
+                            <div class="wrapper">
+                                <div class="content title">
+                                    <h2>Portfolio Filter Styles</h2>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb ">
+                                            <li class="breadcrumb-item">
+                                                <a href="/">
+                                                    Home
+                                                    <i class="arrow right"/>
+                                                </a>
+                                            </li>
+                                            <li class="breadcrumb-item">
+                                                <a href="/portfolio">
+                                                    Portfolio
+                                                    <i class="arrow right"/>
+                                                </a>
+                                            </li>
+                                            <li class="breadcrumb-item active"
+                                                aria-current="page">Filter
+                                                Styles
+                                            </li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </section>
+                        <t t-call="theme_mars.mars_portfolio_outlines"/>
+                        <div class="oe_structure"/>
+                    </div>
+                </t>
+            </t>
+            <script>
+                $(document).ready(function(){
+                $(".filter-button").click(function(){ var value =
+                $(this).attr('data-filter'); if(value == "All") {
+                //$('.filter').removeClass('hidden');
+                $('.filter').show('1000');
+                } else {
+                $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+                $(".filter").not('.'+value).hide('3000');
+                $('.filter').filter('.'+value).show('3000'); } }); if
+                ($(".filter-button").removeClass("active")) {
+                $(this).removeClass("active"); } $(this).addClass("active");
+                });
+            </script>
+        </field>
+    </record>
+    <!--    Portfolio default layout-->
+    <template id="mars_portfolio_default"
+              inherit_id="theme_mars.mars_portfolio_outlines" name="Default">
+        <xpath expr="//div[hasclass('filter-portfolio')]" position="replace">
+            <div class="filters_transparent filter-portfolio">
+                <div class="filter_outline">
+                    <div class="cart_heading text-center mb-1">
+                        <h1>Outline</h1>
+                    </div>
+                    <ul class="">
+                        <div id="myBtnContainer"
+                             class="btn_container_responsive">
+                            <div class="custom_outline">
+                                <t t-if="len(heading) >= 2">
+                                    <li type="" class="">
+                                        <button class="btn btn-default filter-button"
+                                                id="all-heading">All
+                                        </button>
+                                    </li>
+                                </t>
+                                <t t-foreach="heading" t-as="heading">
+                                    <li type="" class="">
+                                        <button t-attf-data-value="{{heading.name}}"
+                                                t-attf-id="#{heading.name}"
+                                                t-attf-class="h_active btn btn-default filter-button #{heading.name}"
+                                                t-att-data-filter="heading.name">
+                                            <t t-out="heading.name"/>
+                                        </button>
+                                    </li>
+                                </t>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <!--    Portfolio lines layout for heading-->
+    <template id="mars_portfolio_lines"
+              inherit_id="theme_mars.mars_portfolio_outlines" name="Lines">
+        <xpath expr="//div[hasclass('filter-portfolio')]" position="replace">
+            <div class="filters_transparent filter-portfolio">
+                <div class="filter_line ">
+                    <div class="cart_heading text-center mb-1">
+                        <h1>Lines</h1>
+                    </div>
+                    <ul class="">
+                        <div id="myBtnContainer"
+                             class="btn_container_responsive">
+                            <div id="custom_line">
+                                <t t-if="len(heading) >= 2">
+                                    <li type="" class="">
+                                        <button class="btn btn-default filter-button"
+                                                id="all-heading">All
+                                        </button>
+                                    </li>
+                                </t>
+                                <t t-foreach="heading" t-as="heading">
+                                    <li type="" class="">
+                                        <button t-attf-data-value="{{heading.name}}"
+                                                t-attf-id="#{heading.name}"
+                                                t-attf-class="h_active btn btn-default filter-button #{heading.name}"
+                                                t-att-data-filter="heading.name">
+                                            <t t-out="heading.name"/>
+                                        </button>
+                                    </li>
+                                </t>
+                            </div>
+                        </div>
+                    </ul>
+                    <div id="custom_row" class="row"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    <!--    Portfolio classic header layout-->
+    <template id="mars_portfolio_classic"
+              inherit_id="theme_mars.mars_portfolio_outlines" name="Classic">
+        <xpath expr="//div[hasclass('filter-portfolio')]" position="replace">
+            <section class="portfolio_filter" id="portfolio_filter">
+                <div class="wrapper">
+                    <div class="container">
+                        <div class="filters_transparent filter-portfolio">
+                            <div class="filter_classic ">
+                                <div class="cart_heading text-center mb-1">
+                                    <h1>Classic</h1>
+                                </div>
+                                <ul class="">
+                                    <div id="myBtnContainer"
+                                         class="btn_container_responsive">
+                                        <div id="custom_classic">
+                                            <t t-if="len(heading) >= 2">
+                                                <li type="" class="">
+                                                    <button class="btn btn-default filter-button"
+                                                            id="all-heading">
+                                                        All
+                                                    </button>
+                                                </li>
+                                            </t>
+                                            <t t-foreach="heading"
+                                               t-as="heading">
+                                                <li type="" class="">
+                                                    <button t-attf-data-value="{{heading.name}}"
+                                                            t-attf-id="#{heading.name}"
+                                                            t-attf-class="h_active btn btn-default filter-button classic #{heading.name}"
+                                                            t-att-data-filter="heading.name">
+                                                        <t t-out="heading.name"/>
+                                                    </button>
+                                                </li>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+    <!--    portfolio dark-light header layout-->
+    <template id="mars_portfolio_dark_light"
+              inherit_id="theme_mars.mars_portfolio_outlines" name="Light">
+        <xpath expr="//div[hasclass('filter-portfolio')]"
+               position="replace">
+            <section class="portfolio_filter" id="portfolio_filter">
+                <div class="wrapper">
+                    <div class="container">
+                        <div class="filters_dark filters_transparent filter-portfolio">
+                            <div class="filter_light ">
+                                <div class="cart_heading text-center mb-1">
+                                    <h1>Light</h1>
+                                </div>
+                                <ul class="">
+                                    <div id="myBtnContainer"
+                                         class="btn_container_responsive">
+                                        <div id="custom_light">
+                                            <t t-if="len(heading) >= 2">
+                                                <li type="" class="">
+                                                    <button class="btn btn-default filter-button"
+                                                            id="all-heading">
+                                                        All
+                                                    </button>
+                                                </li>
+                                            </t>
+                                            <t t-foreach="heading"
+                                               t-as="heading">
+                                                <li type="" class="">
+                                                    <button t-attf-data-value="{{heading.name}}"
+                                                            t-attf-id="#{heading.name}"
+                                                            t-attf-class="h_active btn btn-default filter-button #{heading.name}"
+                                                            t-att-data-filter="heading.name">
+                                                        <t t-out="heading.name"/>
+                                                    </button>
+                                                </li>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+    <!--    portfolio dark header layout-->
+    <template id="mars_portfolio_dark_dark"
+              inherit_id="theme_mars.mars_portfolio_outlines" name="Dark">
+        <xpath expr="//div[hasclass('filter-portfolio')]" position="replace">
+            <section class="portfolio_filter" id="portfolio_filter">
+                <div class="wrapper">
+                    <div class="container">
+                        <div class="filters_dark filters_transparent filter-portfolio">
+                            <div class="filter_dark ">
+                                <div class="cart_heading text-center mb-1">
+                                    <h1>Dark</h1>
+                                </div>
+                                <ul class="">
+                                    <div id="myBtnContainer"
+                                         class="btn_container_responsive">
+                                        <div class="custom_dark">
+                                            <t t-if="len(heading) >= 2">
+                                                <li type="" class="">
+                                                    <button class="btn btn-default filter-button"
+                                                            id="all-heading">
+                                                        All
+                                                    </button>
+                                                </li>
+                                            </t>
+                                            <t t-foreach="heading"
+                                               t-as="heading">
+                                                <li type="" class="">
+                                                    <button t-attf-data-value="{{heading.name}}"
+                                                            t-attf-id="#{heading.name}"
+                                                            t-attf-class="h_active btn btn-default filter-button #{heading.name}"
+                                                            t-att-data-filter="heading.name">
+                                                        <t t-out="heading.name"/>
+                                                    </button>
+                                                </li>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+    <!--    portfolio dark classic header layout-->
+    <template id="mars_portfolio_dark_classic"
+              inherit_id="theme_mars.mars_portfolio_outlines" name="Classic">
+        <xpath expr="//div[hasclass('filter-portfolio')]" position="replace">
+            <section class="portfolio_filter" id="portfolio_filter">
+                <div class="wrapper">
+                    <div class="container">
+                        <div class="filters_dark filters_transparent filter-portfolio">
+                            <div class="filter_classic ">
+                                <div class="cart_heading text-center mb-1">
+                                    <h1>Classic</h1>
+                                </div>
+                                <ul class="">
+                                    <div id="myBtnContainer"
+                                         class="btn_container_responsive">
+                                        <div class="custom_dark_classic">
+                                            <t t-if="len(heading) >= 2">
+                                                <li type="" class="">
+                                                    <button class="btn btn-default filter-button"
+                                                            id="all-heading">
+                                                        All
+                                                    </button>
+                                                </li>
+                                            </t>
+                                            <t t-foreach="heading"
+                                               t-as="heading">
+                                                <li type="" class="">
+                                                    <button t-attf-data-value="{{heading.name}}"
+                                                            t-attf-id="#{heading.name}"
+                                                            t-attf-class="h_active btn btn-default dark_classic filter-button #{heading.name}"
+                                                            t-att-data-filter="heading.name">
+                                                        <t t-out="heading.name"/>
+                                                    </button>
+                                                </li>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+    <!--    portfolio dark creative header layout-->
+    <template id="mars_portfolio_dark_creative"
+              inherit_id="theme_mars.mars_portfolio_outlines" name="Creative">
+        <xpath expr="//div[hasclass('filter-portfolio')]" position="replace">
+            <section class="portfolio_filter" id="portfolio_filter">
+                <div class="wrapper">
+                    <div class="container">
+                        <div class="filters_dark filters_transparent filter-portfolio">
+                            <div class="filter_creative ">
+                                <div class="cart_heading text-center mb-1">
+                                    <h1>Creative</h1>
+                                </div>
+                                <ul class="">
+                                    <div id="myBtnContainer"
+                                         class="btn_container_responsive">
+                                        <div class="custom_creative">
+                                            <t t-if="len(heading) >= 2">
+                                                <li type="" class="">
+                                                    <button class="btn btn-default dark_classic filter-button"
+                                                            id="all-heading">
+                                                        All
+                                                    </button>
+                                                </li>
+                                            </t>
+                                            <t t-foreach="heading"
+                                               t-as="heading">
+                                                <li type="" class="">
+                                                    <button t-attf-data-value="{{heading.name}}"
+                                                            t-attf-id="#{heading.name}"
+                                                            t-attf-class="h_active btn btn-default dark_classic filter-button #{heading.name}"
+                                                            t-att-data-filter="heading.name">
+                                                        <t t-out="heading.name"/>
+                                                    </button>
+                                                </li>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+    <template id="mars_portfolio_dark_default"
+              inherit_id="theme_mars.mars_portfolio_outlines" name="Default">
+        <xpath expr="//div[hasclass('filter-portfolio')]" position="replace">
+            <section class="portfolio_filter" id="portfolio_filter">
+                <div class="wrapper">
+                    <div class="container">
+                        <div class="filters_dark filters_transparent filter-portfolio">
+                            <div class="filter_default ">
+                                <div class="cart_heading text-center mb-1">
+                                    <h1>Default</h1>
+                                </div>
+                                <ul class="">
+                                    <div id="myBtnContainer"
+                                         class="btn_container_responsive">
+                                        <div class="custom_default">
+                                            <t t-if="len(heading) >= 2">
+                                                <li type="" class="">
+                                                    <button class="btn btn-default filter-button"
+                                                            id="all-heading">
+                                                        All
+                                                    </button>
+                                                </li>
+                                            </t>
+                                            <t t-foreach="heading"
+                                               t-as="heading">
+                                                <li type="" class="">
+                                                    <button t-attf-data-value="{{heading.name}}"
+                                                            t-attf-id="#{heading.name}"
+                                                            t-attf-class="h_active btn btn-default filter-button #{heading.name}"
+                                                            t-att-data-filter="heading.name">
+                                                        <t t-out="heading.name"/>
+                                                    </button>
+                                                </li>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+</odoo>

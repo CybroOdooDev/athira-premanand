@@ -11,8 +11,7 @@
     <template id="diva_index2_features" name="Index2 Featured Product">
         <section class="featured_2">
         </section>
-        <!-- Featured-2 section endsd here -->
-
+        <!-- Featured-2 section ends here -->
     </template>
     <template id="index2_shipping_product" inherit_id="website.snippets"
               name="Index2_Shipping_Products">
@@ -37,6 +36,5 @@
                 </div>
             </div>
         </section>
-        <!-- Shipping product ends starts here -->
     </template>
 </odoo>

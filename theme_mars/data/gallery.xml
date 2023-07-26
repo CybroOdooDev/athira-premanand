@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Demo data loaded for the gallery page/-->
+    <data noupdate="1">
+        <record id="gallery-category1" model="gallery.category">
+            <field name="category">People</field>
+        </record>
+        <record id="gallery-category2" model="gallery.category">
+            <field name="category">Computers</field>
+        </record>
+        <record id="gallery-category3" model="gallery.category">
+            <field name="category">Images</field>
+        </record>
+    </data>
+    <data noupdate="1">
+        <record id="gallery-image1" model="mars.gallery">
+            <field name="image_gallery" type="base64"
+                   file="theme_mars/static/src/Images/gallery/g (1).jpg"/>
+            <field name="image_category_id" ref="gallery-category3"/>
+        </record>
+        <record id="gallery-image2" model="mars.gallery">
+            <field name="image_gallery" type="base64"
+                   file="theme_mars/static/src/Images/gallery/g (2).jpg"/>
+            <field name="image_category_id" ref="gallery-category3"/>
+        </record>
+        <record id="gallery-image3" model="mars.gallery">
+            <field name="image_gallery" type="base64"
+                   file="theme_mars/static/src/Images/gallery/g (3).jpg"/>
+            <field name="image_category_id" ref="gallery-category1"/>
+        </record>
+        <record id="gallery-image4" model="mars.gallery">
+            <field name="image_gallery" type="base64"
+                   file="theme_mars/static/src/Images/gallery/g (4).jpg"/>
+            <field name="image_category_id" ref="gallery-category3"/>
+        </record>
+        <record id="gallery-image5" model="mars.gallery">
+            <field name="image_gallery" type="base64"
+                   file="theme_mars/static/src/Images/gallery/g (5).jpg"/>
+            <field name="image_category_id" ref="gallery-category3"/>
+        </record>
+        <record id="gallery-image6" model="mars.gallery">
+            <field name="image_gallery" type="base64"
+                   file="theme_mars/static/src/Images/gallery/g (6).jpg"/>
+            <field name="image_category_id" ref="gallery-category1"/>
+        </record>
+        <record id="gallery-image7" model="mars.gallery">
+            <field name="image_gallery" type="base64"
+                   file="theme_mars/static/src/Images/gallery/g (7).jpg"/>
+            <field name="image_category_id" ref="gallery-category2"/>
+        </record>
+        <record id="gallery-image8" model="mars.gallery">
+            <field name="image_gallery" type="base64"
+                   file="theme_mars/static/src/Images/gallery/g (8).jpg"/>
+            <field name="image_category_id" ref="gallery-category1"/>
+        </record>
+        <record id="gallery-image9" model="mars.gallery">
+            <field name="image_gallery" type="base64"
+                   file="theme_mars/static/src/Images/gallery/g (9).jpg"/>
+            <field name="image_category_id" ref="gallery-category1"/>
+        </record>
+        <record id="gallery-image10" model="mars.gallery">
+            <field name="image_gallery" type="base64"
+                   file="theme_mars/static/src/Images/gallery/g (10).jpg"/>
+            <field name="image_category_id" ref="gallery-category2"/>
+        </record>
+        <record id="gallery-image11" model="mars.gallery">
+            <field name="image_gallery" type="base64"
+                   file="theme_mars/static/src/Images/gallery/g (11).jpg"/>
+            <field name="image_category_id" ref="gallery-category2"/>
+        </record>
+    </data>
+</odoo>

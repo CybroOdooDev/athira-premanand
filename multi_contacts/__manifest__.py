@@ -3,7 +3,7 @@
 #
 #    Cybrosys Technologies Pvt. Ltd.
 #
-#    Copyright (C) 2022-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
+#    Copyright (C) 2023-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
 #    Author: Cybrosys Technologies (<https://www.cybrosys.com>)
 #
 #    You can modify it under the terms of the GNU LESSER
@@ -19,33 +19,30 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-
 {
     'name': 'Multi Contacts',
     'version': '16.0.1.0.0',
-    'summary': """Store Several Email Addresses, multiple Phone Numbers and Usernames for Partners.""",
-    'description': """Store Several Email Addresses, multiple Phone Numbers and Usernames for Partners.""",
+    'category': 'Sales',
+    'summary': """This module helps to extend the functionality of contacts""",
+    'description': """Store Several Email Addresses,
+     multiple Phone Numbers and Usernames for Partners.""",
     'author': 'Cybrosys Techno Solutions',
     'company': 'Cybrosys Techno Solutions',
-    'website': "https://www.cybrosys.com",
-    'category': 'website',
     'maintainer': 'Cybrosys Techno Solutions',
+    'website': "https://www.cybrosys.com",
     'depends': ['base', 'contacts'],
     'data': [
             'security/ir.model.access.csv',
-            'views/multi_contacts.xml',
-            'wizard/wizard.xml',
+            'views/res_partner_views.xml',
+            'wizard/export_contact_views.xml',
     ],
     'assets': {
         'web.assets_backend': [
                               'multi_contacts/static/src/js/contacts.js'
         ],
     },
-
     'images': ['static/description/banner.png'],
     'license': 'LGPL-3',
-    'price': 29,
-    'currency': 'EUR',
     'installable': True,
     'auto_install': False,
     'application': False,

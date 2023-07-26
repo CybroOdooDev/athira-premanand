@@ -19,6 +19,5 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-
-from . import configuration
-from . import rating
+from . import product_template
+from . import product_featured

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    2 column gallery-->
+    <template id="gallery_column2" inherit_id="theme_mars.mars_gallery_section"
+              name="2 column" customize_show="True">
+        <xpath expr="//div[hasclass('im_gallery')]" position="replace">
+            <div class="container oe_structure im_gallery">
+                <div class="image-container-2">
+                    <div class="row">
+                        <t t-foreach="result" t-as="image">
+                            <div class="image-item-2 ">
+                                <a t-attf-href="data:image/png;base64,{{image.image_gallery}}"
+                                   data-fancybox="gallery">
+                                    <img t-attf-src="data:image/png;base64,{{image.image_gallery}}"
+                                    />
+                                </a>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <div class="oe-structure"/>
+        </xpath>
+    </template>
+    <!--    3 column gallery-->
+    <template id="gallery_column3" inherit_id="theme_mars.mars_gallery_section"
+              name="3 column" customize_show="True">
+        <xpath expr="//div[hasclass('im_gallery')]" position="replace">
+            <div class="container oe_structure im_gallery">
+                <div class="image-container">
+                    <div class="row">
+                        <t t-foreach="result" t-as="image">
+                            <div class="gallery_images image-item ">
+                                <a t-attf-href="data:image/png;base64,{{image.image_gallery}}"
+                                   data-fancybox="gallery">
+                                    <img t-attf-src="data:image/png;base64,{{image.image_gallery}}"
+                                    />
+                                </a>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <div class="oe-structure"/>
+        </xpath>
+    </template>
+    <!--    4 column gallery-->
+    <template id="gallery_column4" inherit_id="theme_mars.mars_gallery_section"
+              name="4 column" customize_show="True">
+        <xpath expr="//div[hasclass('im_gallery')]" position="replace">
+            <div class="container oe_structure im_gallery">
+                <div class="image-container-4">
+                    <div class="row">
+                        <t t-foreach="result" t-as="image">
+                            <div class="gallery_images image-item-4 image_sidebar ">
+                                <a t-attf-href="data:image/png;base64,{{image.image_gallery}}"
+                                   data-fancybox="gallery">
+                                    <img t-attf-src="data:image/png;base64,{{image.image_gallery}}"
+                                    />
+                                </a>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <div class="oe-structure"/>
+        </xpath>
+    </template>
+    <!--    5 column gallery-->
+    <template id="gallery_column5" inherit_id="theme_mars.mars_gallery_section"
+              name="5 column" customize_show="True">
+        <xpath expr="//div[hasclass('im_gallery')]" position="replace">
+            <div class="container oe_structure im_gallery">
+                <div class="image-container-5">
+                    <div class="row">
+                        <t t-foreach="result" t-as="image">
+                            <div class="gallery_images image-item-5 ">
+                                <a t-attf-href="data:image/png;base64,{{image.image_gallery}}"
+                                   data-fancybox="gallery">
+                                    <img t-attf-src="data:image/png;base64,{{image.image_gallery}}"
+                                    />
+                                </a>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <div class="oe-structure"/>
+        </xpath>
+    </template>
+    <!--    6 column gallery-->
+    <template id="gallery_column6" inherit_id="theme_mars.mars_gallery_section"
+              name="6 column" customize_show="True">
+        <xpath expr="//div[hasclass('im_gallery')]" position="replace">
+            <div class="container oe_structure im_gallery">
+                <div class="image-container-6">
+                    <div class="row">
+                        <t t-foreach="result" t-as="image">
+                            <div class="gallery_images image-item-6 ">
+                                <a t-attf-href="data:image/png;base64,{{image.image_gallery}}"
+                                   data-fancybox="gallery">
+                                    <img t-attf-src="data:image/png;base64,{{image.image_gallery}}"
+                                    />
+                                </a>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <div class="oe-structure"/>
+        </xpath>
+    </template>
+</odoo>

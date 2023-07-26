@@ -9,13 +9,8 @@
         </xpath>
     </template>
     <template id="diva_popular_product" name="Index PopularProduct ">
+<!--        Popular products section-->
         <section class="populor">
-            <!-- <div id="hex">
-                <input type="color" id="color" value="#49bc58" onchange="getColor()" />
-            </div>
-            <div id="switcher">
-                <input type="color" id="grayButton" value="#49bc58" onchange="getColos()" />
-            </div> -->
             <div class="wrapper">
                 <div class="half_bg color_bg" id="theme1">
                 </div>
@@ -44,7 +39,7 @@
                                             </span>
                                         </div>
                                         <a href="#" class="btn btn-populor">
-                                            <i class="bi bi-arrow-right-short"></i>
+                                            <i class="bi bi-arrow-right-short"/>
                                         </a>
                                     </div>
                                 </div>
@@ -72,7 +67,7 @@
                                             </span>
                                         </div>
                                         <a href="#" class="btn btn-populor">
-                                            <i class="bi bi-arrow-right-short"></i>
+                                            <i class="bi bi-arrow-right-short"/>
                                         </a>
                                     </div>
                                 </div>
@@ -98,7 +93,7 @@
                                             </span>
                                         </div>
                                         <a href="#" class="btn btn-populor">
-                                            <i class="bi bi-arrow-right-short"></i>
+                                            <i class="bi bi-arrow-right-short"/>
                                         </a>
                                     </div>
                                 </div>
@@ -124,19 +119,15 @@
                                             </span>
                                         </div>
                                         <a href="#" class="btn btn-populor">
-                                            <i class="bi bi-arrow-right-short"></i>
+                                            <i class="bi bi-arrow-right-short"/>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="slider-counter">
-              </div> -->
                 </div>
             </div>
-
         </section>
-
     </template>
 </odoo>

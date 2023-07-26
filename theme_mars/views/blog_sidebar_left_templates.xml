@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Blog left sidebar template -->
+    <template id="blog_left_sidebars" name="Blog Left Sidebar"
+              inherit_id="theme_mars.dynamic_blog">
+        <xpath expr="//div[hasclass('responsive_sidebar')]"
+               position="attributes">
+            <attribute name="class">col-lg-3 col-md-3 col-12 responsive_sidebar
+                left
+            </attribute>
+        </xpath>
+    </template>
+    <!--    disabled sidebar-->
+    <template id="disable_blog_sidebar" name="Blog Left Sidebar"
+              inherit_id="theme_mars.dynamic_blog">
+        <xpath expr="//div[hasclass('responsive_sidebar')]"
+               position="attributes">
+            <attribute name="class">col-lg-3 col-md-3 col-12 responsive_sidebar
+                disable_sidebar
+            </attribute>
+        </xpath>
+    </template>
+</odoo>

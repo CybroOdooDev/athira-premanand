@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Gallery load more page layout-->
+    <template id="theme_gallery_loadmore"
+              inherit_id="theme_mars.mars_gallery_section" name="Gallery">
+        <xpath expr="//div[hasclass('im_gallery')]" position="replace">
+            <div class="container oe_structure im_gallery container_load_more product_grid_load_more">
+                <div class="image-container-4">
+                    <div class="row">
+                        <t t-foreach="result" t-as="image">
+                            <div class="gallery_images load_more_images image-item-4 "
+                                 style="display: none;">
+                                <img t-attf-src="data:image/png;base64,{{image.image_gallery}}"/>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+                <div class="load_wrapp wrapp_loader w-100 d-flex ">
+                    <a href="#" class="btn btn-load"
+                       id="loadGallery">
+                        <i class="bi bi-arrow-repeat"/>
+                        LOAD MORE PRODUCTS
+                    </a>
+                    <div class="loaded_image">
+                    </div>
+                    <br/>
+                </div>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"/>
+        </xpath>
+    </template>
+</odoo>

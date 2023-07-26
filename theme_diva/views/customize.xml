@@ -31,7 +31,6 @@
                        data-customize-website-variable="'header_five'"
                        data-img="/theme_diva/static/src/images/header_template_default.svg"/>
         </xpath>
-
         <xpath expr="//we-select[@data-variable='footer-template']"
                position="inside">
             <!-- Header Styles-->

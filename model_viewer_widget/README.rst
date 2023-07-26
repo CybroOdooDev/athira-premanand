@@ -1,26 +1,31 @@
 .. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
-Multi Contacts
+Model Viewer Widget
 ================
-This module helps you to store Several Email Addresses, multiple Phone Numbers and Usernames for Partners.
+This module helps to render interactive 3D models..
 
 Configuration
 =============
-* No additional configurations needed
+* It only support 3D images with .glb extension
+
 Company
 -------
 * `Cybrosys Techno Solutions <https://cybrosys.com/>`__
 
 Credits
 -------
-* Developers:   Athira Premanand @cybrosys,
-                version 16: Athira Premanand @cybrosys
+* Developers: version 16: Athira Premanand @cybrosys
 
 Contacts
 --------
 * Mail Contact : odoo@cybrosys.com
 * Website : https://cybrosys.com
+
+License
+-------
+General Public License, Version 3 (LGPL v3).
+(https://www.odoo.com/documentation/user/13.0/legal/licenses/licenses.html)
 
 Bug Tracker
 -----------

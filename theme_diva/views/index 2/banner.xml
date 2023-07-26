@@ -4,7 +4,8 @@
               name="Index2_Banner">
         <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]"
                position="inside">
-            <t t-snippet="theme_diva.diva_index2_banner" t-thumbnail="/theme_diva/static/src/images/snippets/index-2/banner.jpg"/>
+            <t t-snippet="theme_diva.diva_index2_banner"
+               t-thumbnail="/theme_diva/static/src/images/snippets/index-2/banner.jpg"/>
         </xpath>
     </template>
     <template id="diva_index2_banner" name="Index 2 Banner">
@@ -22,13 +23,14 @@
                         The Future of <br/>Cosmetic
                     </h3>
                     <p class="banner_p">
-                        Take your pick of the best and newest<br/> Korean makeup brands and <br/>skin care products.
+                        Take your pick of the best and newest<br/>
+                        Korean makeup brands and <br/>skin care products.
                     </p>
-
                 </div>
                 <section class="testimonials">
                     <div class="inner-testimonials">
-                        <div class="owl-carousel custome_slide" id="slide-testimonal">
+                        <div class="owl-carousel custome_slide"
+                             id="slide-testimonal">
                             <div class="item">
                                 <div class="main-reviewimage">
                                     <img src="/theme_diva/static/src/images/banner-slider/s1 (1).jpg" alt=""/>

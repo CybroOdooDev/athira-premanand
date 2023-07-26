@@ -1,6 +1,7 @@
 <odoo>
-    <record id="product_featured_list_form" model="ir.ui.view">
-        <field name="name">Product Featured List Form View</field>
+    <record id="product_featured_view_form" model="ir.ui.view">
+<!--        Featured products form view-->
+        <field name="name">product.featured.view.form</field>
         <field name="model">product.featured</field>
         <field name="arch" type="xml">
             <form>
@@ -22,13 +23,14 @@
                         </group>
                     </group>
                     <notebook>
-                        <page name="featured_list" string="Featured Products">
-                            <field name="featured_list">
+                        <page name="featured_list_ids"
+                              string="Featured Products">
+                            <field name="featured_list_ids">
                                 <tree editable="bottom">
-                                    <field name="product"/>
+                                    <field name="product_id"/>
                                 </tree>
                                 <form>
-                                    <field name="product"/>
+                                    <field name="product_id"/>
                                 </form>
                             </field>
                         </page>
@@ -42,8 +44,9 @@
             </form>
         </field>
     </record>
-    <record id="product_featured_list_tree" model="ir.ui.view">
-        <field name="name">Product Featured List Tree View</field>
+    <record id="product_featured_view_tree" model="ir.ui.view">
+        <!--        Featured products tree view-->
+        <field name="name">product.featured.view.tree</field>
         <field name="model">product.featured</field>
         <field name="arch" type="xml">
             <tree>
@@ -53,16 +56,14 @@
             </tree>
         </field>
     </record>
-
-    <record id="featured_products_action" model="ir.actions.act_window">
+    <record id="product_featured_action" model="ir.actions.act_window">
         <field name="name">Featured Products</field>
         <field name="res_model">product.featured</field>
         <field name="view_mode">tree,form</field>
     </record>
-
     <menuitem
             id="featured_products_menu"
             name="Featured Products"
             parent="website_sale.menu_catalog"
-            action="featured_products_action"/>
+            action="product_featured_action"/>
 </odoo>

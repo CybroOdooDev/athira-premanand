@@ -3,12 +3,18 @@
     <template id="diva_product_view" name="Diva Product View"
               inherit_id="website_sale.product">
         <xpath expr="//a[@id='add_to_cart']" position="replace">
-            <a role="button" id="add_to_cart" style="margin-right:-30px;" class="btn btn-add btn-primary btn-lg mt16 js_check_product a-submit d-block d-sm-inline-block" href="#"><i class="bi bi-cart2"/> Add to Cart</a>
+<!--            Replaced add to cart with new one-->
+            <a role="button" id="add_to_cart" style="margin-right:-30px;"
+               class="btn btn-add btn-primary btn-lg mt16 js_check_product
+               a-submit d-block d-sm-inline-block" href="#">
+                <i class="bi bi-cart2"/> Add to Cart</a>
         </xpath>
         <xpath expr="//h1[@t-field='product.name']" position="replace">
-            <h1 itemprop="name" t-field="product.name" style="margin-right:155px;">Product Name</h1>
+            <h1 itemprop="name" t-field="product.name"
+                style="margin-right:155px;">Product Name</h1>
         </xpath>
         <xpath expr="//h1[@t-field='product.name']" position="after">
+<!--            Review and rating section-->
             <div class="rate row" style="padding-bottom:20px;">
                 <div class="o_shop_discussion_rating">
                     <t t-set="val_decimal"
@@ -91,7 +97,8 @@
                                 <div class="wrapp">
                                     <p t-field="product.description_sale"
                                        class="abt"
-                                       placeholder="A short description that will also appear on documents."/>
+                                       placeholder="A short description that
+                                        will also appear on documents."/>
                                 </div>
                             </div>
                             <div class="tab-pane fade"
@@ -121,12 +128,13 @@
     <template id="product_rating" inherit_id="website_sale.product_comment">
         <xpath expr="//div[@t-field='product.website_description']"
                position="replace">
-
+<!--            Replaced the website description-->
         </xpath>
     </template>
     <template id="diva_product_price" inherit_id="website_sale.product_price">
         <xpath expr="//div[@itemprop='offers']"
                position="replace">
+<!--            Setting up the product price-->
             <div itemprop="offers" itemscope="itemscope"
                  itemtype="http://schema.org/Offer" class="product_price mt16">
                 <h4 class="oe_price_h4 css_editable_mode_hidden">
@@ -138,7 +146,6 @@
                     <b class="oe_price" style="white-space: nowrap; margin-right:250px;"
                        t-esc="combination_info['price']"
                        t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-
                     <span itemprop="price" style="display:none;"
                           t-esc="combination_info['price']"/>
                     <span itemprop="priceCurrency" style="display:none;"

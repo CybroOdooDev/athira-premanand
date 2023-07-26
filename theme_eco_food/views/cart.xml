@@ -104,7 +104,6 @@
                                                                title="Remove from cart"
                                                                class='js_delete_product no-decoration'>
                                                                 <small>
-                                                                    <!--                                                                    <i class='fa fa-trash-o'></i>-->
                                                                     <input class="cart_line_id"
                                                                            type="hidden"
                                                                            t-att-value="line.id"/>

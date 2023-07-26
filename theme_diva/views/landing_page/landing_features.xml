@@ -3,10 +3,12 @@
     <template id="features" inherit_id="website.snippets" name="Features">
         <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]"
                position="inside">
-            <t t-snippet="theme_diva.diva_features" t-thumbnail="/theme_diva/static/src/images/snippets/landing/features.jpg"/>
+            <t t-snippet="theme_diva.diva_features"
+               t-thumbnail="/theme_diva/static/src/images/snippets/landing/features.jpg"/>
         </xpath>
     </template>
     <template id="diva_features" name="Landing Features">
+<!--        Landing features section-->
         <section class="landing_features bg_delay">
             <div class="container-fluid p-0">
                 <div class="wrapper">

@@ -4,10 +4,12 @@
               name="Index_Demo">
         <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]"
                position="inside">
-            <t t-snippet="theme_diva.diva_index_demo" t-thumbnail="/theme_diva/static/src/images/snippets/index-1/index_demo.jpg"/>
+            <t t-snippet="theme_diva.diva_index_demo"
+               t-thumbnail="/theme_diva/static/src/images/snippets/index-1/index_demo.jpg"/>
         </xpath>
     </template>
     <template id="diva_index_demo" name="Index Demo">
+<!--        Snippet-->
         <section class="demo">
             <div class="wrapper">
                 <div class="container">

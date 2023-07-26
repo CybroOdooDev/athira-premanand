@@ -7,7 +7,8 @@
                 <section class="banner2">
                     <!-- Section nav starts here -->
                     <div class="navigation">
-                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-sm-start">
+                        <nav class="navbar navbar-expand-lg
+                         navbar-dark bg-dark justify-content-sm-start">
                             <div class="container">
 
                                 <button class="navbar-toggler x" type="button"
@@ -20,8 +21,10 @@
                                     <span class="icon-bar"/>
                                     <span class="icon-bar"/>
                                 </button>
-                                <div class="collapse navbar-collapse bg-dark p-3 p-lg-0 mt-0 mt-lg-0 d-flex flex-column
-                    flex-lg-row flex-xl-row justify-content-lg-end mobileMenu"
+                                <div class="collapse navbar-collapse bg-dark
+                                 p-3 p-lg-0 mt-0 mt-lg-0 d-flex flex-column
+                                 flex-lg-row flex-xl-row justify-content-lg-end
+                                 mobileMenu"
                                      id="navbarSupportedContent">
                                     <ul class="navbar-nav align-self-stretch">
                                         <h5 class=" nav_sub_head d-block d-lg-none"
@@ -38,8 +41,8 @@
                                             </li>
                                         </t>
                                     </ul>
-                                    <form class="form-inline my-2 my-lg-0 align-self-stretch">
-
+                                    <form class="form-inline my-2 my-lg-0
+                                    align-self-stretch">
                                         <ul>
                                             <li>
                                                 <span>
@@ -165,7 +168,6 @@
                                                    t-value="'mr-auto'"/>
                                             </t>
                                         </a>
-
                                     </div>
                                     <div class="col-lg-6 col-12">
                                         <form>
@@ -289,7 +291,8 @@
                     <!-- Section nav starts here -->
                     <section class="navigation"
                              style="background-color: #50449c6e;">
-                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-sm-start"
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark
+                                justify-content-sm-start"
                              style="border:none;">
                             <div class="container">
 
@@ -303,8 +306,10 @@
                                     <span class="icon-bar"/>
                                     <span class="icon-bar"/>
                                 </button>
-                                <div class="collapse navbar-collapse bg-dark p-3 p-lg-0 mt-0 mt-lg-0 d-flex flex-column
-                    flex-lg-row flex-xl-row justify-content-lg-end mobileMenu"
+                                <div class="collapse navbar-collapse bg-dark p-3
+                                p-lg-0 mt-0 mt-lg-0 d-flex flex-column
+                                    flex-lg-row flex-xl-row
+                                    justify-content-lg-end mobileMenu"
                                      id="navbarSupportedContent">
                                     <ul class="navbar-nav align-self-stretch">
                                         <h5 class=" nav_sub_head d-block d-lg-none"
@@ -322,7 +327,6 @@
                                         </t>
                                     </ul>
                                     <form class="form-inline my-2 my-lg-0 align-self-stretch">
-
                                         <ul>
                                             <li>
                                                 <span>
@@ -652,7 +656,6 @@
                             <t t-set="_link_class" t-value="'mr-auto'"/>
                         </t>
                     </a>
-
                     <button class="navbar-toggler" type="button"
                             data-toggle="collapse"
                             data-target="#main_nav"
@@ -676,7 +679,6 @@
                             </t>
                         </ul>
                         <!-- Dropdown -->
-
                         <!-- Links -->
                         <t t-call="portal.placeholder_user_sign_in">
                             <t t-set="_item_class"
@@ -712,7 +714,8 @@
                         <div class="col-6">
                             <a class="navbar-brand">
                                 <t t-call="website.placeholder_header_brand">
-                                    <t t-set="_link_class" t-value="'mr-auto'"/>
+                                    <t t-set="_link_class"
+                                       t-value="'mr-auto'"/>
                                 </t>
                             </a>
                         </div>
@@ -733,7 +736,6 @@
                         </div>
                         <!-- <div class="clearfix"></div> -->
                     </div>
-
                 </div>
             </div>
             <!-- Top header -->
@@ -791,7 +793,6 @@
                             <button type="submit">
                                 <span class="fa fa-search"/>
                             </button>
-
                         </form>
                         <div class="wrapper d-flex ">
                             <t t-set="website_sale_order"
@@ -831,7 +832,6 @@
                                            data-bs-target="#collapseOne"
                                            aria-expanded="true"
                                            aria-controls="collapseOne">
-
                                         </a>
                                     </h2>
                                     <div id="collapseOne"
@@ -861,21 +861,23 @@
                                             </div>
                                         </t>
                                     </div>
-
                                     <div class="col-lg-4 col-md-4 col-12">
                                         <div class="footer_content">
                                             <ul class="list-group">
                                                 <li class="list-group-item">
-                                                    <a href="">Customer Care</a>
+                                                    <a href="">Customer Care
+                                                    </a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <a href="">Store Locator</a>
+                                                    <a href="">Store Locator
+                                                    </a>
                                                 </li>
                                                 <li class="list-group-item">
                                                     <a href="">Gift Cards</a>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <a href="">Product Index</a>
+                                                    <a href="">Product Index
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -1057,7 +1059,8 @@
                         <div class="container">
                             <a class="navbar-brand footer_duration">
                                 <t t-call="website.placeholder_header_brand">
-                                    <t t-set="_link_class" t-value="'mr-auto'"/>
+                                    <t t-set="_link_class"
+                                       t-value="'mr-auto'"/>
                                 </t>
                             </a>
                             <div class="row">
@@ -1082,7 +1085,8 @@
                                             <t t-call="website.company_description"/>
                                         </div>
                                         <div class="copy footer_duration">
-                                            Copyright © 2021 All rights reserved
+                                            Copyright © 2021 All rights
+                                            reserved
                                             |
                                             This template is made with  <span
                                                 class="far fa-heart">
@@ -1216,5 +1220,4 @@
             <!-- Footer  -->
         </xpath>
     </template>
-
 </odoo>

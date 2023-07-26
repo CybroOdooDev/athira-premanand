@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Mars gallery backend view-->
+    <record model="ir.ui.view" id="mars_gallery_form_view">
+        <field name="name">mars.gallery.view.form</field>
+        <field name="model">mars.gallery</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="image_gallery" string="Image"
+                                   widget="image"/>
+                            <field name="image_category_id" string="Category"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_mars_gallery">
+        <field name="name">Mars Gallery</field>
+        <field name="res_model">mars.gallery</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="mars_gallery_menu_action" name="Gallery"
+              parent="website.menu_website_global_configuration"
+              action="action_mars_gallery"
+              sequence="16"/>
+</odoo>

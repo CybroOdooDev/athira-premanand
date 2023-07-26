@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    shop sidebar layout-->
+    <template id="sticky_product_categories"
+              inherit_id="website_sale.products" name="Sticky Sidebar">
+        <xpath expr="//aside[@id='products_grid_before']"
+               position="replace">
+                <div t-if="opt_wsale_categories"
+                     class="products_categories mb-3 left_category">
+                    <t t-if="request.website.viewref('website_sale.products_categories').active">
+                        <div class="col-lg-3 col-12">
+                            <div class="sidebarsticky_shop">
+                                <div class="wrapper_s">
+                                    <div class="sidebar_category">
+                                        <h4>CATEGORIES</h4>
+                                        <ul class="shop_accessories">
+                                            <t t-foreach="categories"
+                                               t-as="c">
+                                                <t t-call="theme_mars.mars_categories_recursive"/>
+                                            </t>
+                                        </ul>
+                                    </div>
+                                    <div id="wsale_products_attributes_collapse"
+                                         class="position-relative">
+                                        <form t-if="attributes"
+                                              class="js_attributes position-relative mb-2"
+                                              method="get">
+                                            <input t-if="category"
+                                                   type="hidden"
+                                                   name="category"
+                                                   t-att-value="category.id"/>
+                                            <input type="hidden"
+                                                   name="search"
+                                                   t-att-value="search"/>
+                                            <input type="hidden"
+                                                   name="order"
+                                                   t-att-value="order"/>
+                                            <a t-if="attrib_values"
+                                               t-att-href="keep('/shop'+ ('/category/'+slug(category)) if category else None, attrib=0)"
+                                               t-attf-class="btn btn-{{navClass}} d-flex py-1 mb-2">
+                                                <small class="mx-auto">
+                                                    <b>Clear Filters</b>
+                                                </small>
+                                                <i class="oi oi-close"/>
+                                            </a>
+                                            <div class="sidebar_category">
+                                                <t t-foreach="attributes"
+                                                   t-as="a">
+                                                    <div class="accordion-item nav-item mb-1"
+                                                         t-if="a.value_ids and len(a.value_ids) &gt; 1">
+                                                        <h6 class="mb-3">
+                                                            <b class="o_products_attributes_title d-none d-lg-block"
+                                                               t-field="a.name"/>
+                                                        </h6>
+                                                        <ul class="s_tags">
+                                                            <div t-attf-id="o_products_attributes_{{a.id}}"
+                                                                 class="">
+                                                                <t t-if="a.display_type == 'select'">
+                                                                    <select class="form-select css_attribute_select mb-2"
+                                                                            name="attrib"
+                                                                            style="width: 600%;">
+                                                                        <option value=""
+                                                                                selected="true">
+                                                                            -
+                                                                        </option>
+                                                                        <t t-foreach="a.value_ids"
+                                                                           t-as="v">
+                                                                            <option t-att-value="'%s-%s' % (a.id,v.id)"
+                                                                                    t-esc="v.name"
+                                                                                    t-att-selected="v.id in attrib_set"/>
+                                                                        </t>
+                                                                    </select>
+                                                                </t>
+                                                                <t t-if="a.display_type == 'radio' or a.display_type == 'pills'">
+                                                                    <div class="flex-column mb-3">
+                                                                        <t t-foreach="a.value_ids"
+                                                                           t-as="v">
+                                                                            <div class="form-check mb-1">
+                                                                                <input type="checkbox"
+                                                                                       name="attrib"
+                                                                                       class="form-check-input"
+                                                                                       t-att-id="'%s-%s' % (a.id,v.id)"
+                                                                                       t-att-value="'%s-%s' % (a.id,v.id)"
+                                                                                       t-att-checked="'checked' if v.id in attrib_set else None"/>
+                                                                                <label class="form-check-label fw-normal"
+                                                                                       t-att-for="'%s-%s' % (a.id,v.id)"
+                                                                                       t-field="v.name"/>
+                                                                            </div>
+                                                                        </t>
+                                                                    </div>
+                                                                </t>
+                                                            </div>
+                                                        </ul>
+                                                    </div>
+                                                </t>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+        </xpath>
+    </template>
+<!--        Sticky sidebar-->
+    <template id="products_categories_right"
+              inherit_id="website_sale.products" name="Sticky Sidebar">
+        <xpath expr="//div[@id='products_grid']" position="after">
+            <aside class="d-none d-lg-block col-3 px-3 clearfix s_sidebar">
+                <div class="col-lg-3 col-12">
+                    <div class="sidebarsticky_shop">
+                        <div class="wrapper_s">
+                            <div class="sidebar_category">
+                                <h4>CATEGORIES</h4>
+                                <ul class="shop_accessories">
+                                    <t t-foreach="categories" t-as="c">
+                                        <t t-call="theme_mars.mars_categories_recursive"/>
+                                    </t>
+                                </ul>
+                            </div>
+                            <div id="wsale_products_attributes_collapse"
+                                 class="position-relative">
+                                <form t-if="attributes"
+                                      class="js_attributes position-relative mb-2"
+                                      method="get">
+                                    <input t-if="category" type="hidden"
+                                           name="category"
+                                           t-att-value="category.id"/>
+                                    <input type="hidden" name="search"
+                                           t-att-value="search"/>
+                                    <input type="hidden" name="order"
+                                           t-att-value="order"/>
+                                    <a t-if="attrib_values"
+                                       t-att-href="keep('/shop'+ ('/category/'+slug(category)) if category else None, attrib=0)"
+                                       t-attf-class="btn btn-{{navClass}} d-flex py-1 mb-2">
+                                        <small class="mx-auto">
+                                            <b>Clear Filters</b>
+                                        </small>
+                                        <i class="oi oi-close"/>
+                                    </a>
+                                    <div class="sidebar_category">
+                                        <t t-foreach="attributes" t-as="a">
+                                            <div class="accordion-item nav-item mb-1"
+                                                 t-if="a.value_ids and len(a.value_ids) &gt; 1">
+                                                <h6 class="mb-3">
+                                                    <b class="o_products_attributes_title d-none d-lg-block"
+                                                       t-field="a.name"/>
+                                                </h6>
+                                                <ul class="s_tags">
+                                                    <div t-attf-id="o_products_attributes_{{a.id}}"
+                                                         class="">
+                                                        <t t-if="a.display_type == 'select'">
+                                                            <select class="form-select css_attribute_select mb-2"
+                                                                    name="attrib"
+                                                                    style="width: 600%;">
+                                                                <option value=""
+                                                                        selected="true">
+                                                                    -
+                                                                </option>
+                                                                <t t-foreach="a.value_ids"
+                                                                   t-as="v">
+                                                                    <option t-att-value="'%s-%s' % (a.id,v.id)"
+                                                                            t-esc="v.name"
+                                                                            t-att-selected="v.id in attrib_set"/>
+                                                                </t>
+                                                            </select>
+                                                        </t>
+                                                        <t t-if="a.display_type == 'radio' or a.display_type == 'pills'">
+                                                            <div class="flex-column mb-3">
+                                                                <t t-foreach="a.value_ids"
+                                                                   t-as="v">
+                                                                    <div class="form-check mb-1">
+                                                                        <input type="checkbox"
+                                                                               name="attrib"
+                                                                               class="form-check-input"
+                                                                               t-att-id="'%s-%s' % (a.id,v.id)"
+                                                                               t-att-value="'%s-%s' % (a.id,v.id)"
+                                                                               t-att-checked="'checked' if v.id in attrib_set else None"/>
+                                                                        <label class="form-check-label fw-normal"
+                                                                               t-att-for="'%s-%s' % (a.id,v.id)"
+                                                                               t-field="v.name"/>
+                                                                    </div>
+                                                                </t>
+                                                            </div>
+                                                        </t>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </xpath>
+    </template>
+    <template id="mars_categories_recursive" name="Mars Category list"
+              inherit_id="website_sale.categories_recursive">
+<!--        Category recursive layout-->
+        <xpath expr="//li[hasclass('nav-item')]" position="replace">
+            <li class="nav-item">
+                <a t-att-href="keep('/shop/category/' + slug(c), category=0)"
+                   t-attf-class="nav-link #{'active' if c.id == category.id else ''}">
+                    <span t-field="c.name"/>
+                </a>
+            </li>
+        </xpath>
+    </template>
+    <template id="remove_attribute"
+              inherit_id="website_sale.products_attributes">
+<!--        Removed the attribute collapse-->
+        <xpath expr="//div[@id='wsale_products_attributes_collapse']"
+               position="replace"/>
+    </template>
+    <template id="remove_attribute_snippet_left"
+              inherit_id="website.snippet_options">
+<!--        Removed the attribute-->
+        <xpath expr="//we-button[@data-name='attributes_opt']"
+               position="replace"/>
+    </template>
+</odoo>

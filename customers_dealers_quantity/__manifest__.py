@@ -19,22 +19,24 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-
 {
-    'name': 'Customers Dealers Quantity',
+    'name': "Customer's Dealers Quantity",
     'version': '16.0.1.0.0',
-    'summary': """Calculates average landed costs of products.""",
-    'description': """Calculates average landed costs of products.""",
+    'category': 'Sales',
+    'summary': """The dealer will get a special price if he orders the minimum
+                amount of products""",
+    'description': """When the dealer ordered a specific product
+                      quantity and if it's above the company's pre-defined
+                      criteria then the company can allow some special price to
+                      the dealer.""",
     'author': 'Cybrosys Techno Solutions',
     'company': 'Cybrosys Techno Solutions',
-    'website': "https://www.cybrosys.com",
     'maintainer': 'Cybrosys Techno Solutions',
-    'depends': ['base', 'product', 'contacts', 'sale'],
+    'website': "https://www.cybrosys.com",
+    'depends': ['base', 'sale_management', 'stock'],
     'data': [
-              'views/price_and_quantity.xml',
-              'views/dealers.xml',
-              # 'views/sale_order_line.xml',
-
+            'views/product_template_views.xml',
+            'views/res_partner_views.xml',
     ],
     'images': ['static/description/banner.png'],
     'license': 'LGPL-3',

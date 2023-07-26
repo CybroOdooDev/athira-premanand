@@ -85,15 +85,9 @@ odoo.define('theme_eco_food.quantity', function(require){
                 setAnimation($elemsToanim, 'in');
             })
         });
-        // function counter() {
-        //   var buttons = $('.owl-dots button');
-        //   buttons.each(function (index, item) {
-        //     $(item).find('span').text(index + 1);
-        //   });
-        // }
+
 ////    <!-- slider with thumb -->
         $(document).ready(function () {
-            console.log("8u8uou9");
             var bigimage = $("#big");
             var thumbs = $("#thumbs");
             //var totalslides = 10;

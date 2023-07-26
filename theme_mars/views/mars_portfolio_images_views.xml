@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--    Mars portfolio images view-->
+    <record id="portfolio_images_view_form" model="ir.ui.view">
+        <field name="name">portfolio.images.view.form</field>
+        <field name="model">portfolio.images</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="portfolio_image" string="Image"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="portfolio_images_view_tree" model="ir.ui.view">
+        <field name="name">portfolio.images.view.tree</field>
+        <field name="model">portfolio.images</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="portfolio_image" string="Image"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="portfolio_images_action">
+        <field name="name">Portfolio Images</field>
+        <field name="res_model">portfolio.images</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_portfolio_images" name="Images"
+              parent="website.menu_website_global_configuration"
+              action="portfolio_images_action"
+              sequence="16"/>
+</odoo>

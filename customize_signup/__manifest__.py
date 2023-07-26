@@ -3,7 +3,7 @@
 #
 #    Cybrosys Technologies Pvt. Ltd.
 #
-#    Copyright (C) 2022-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
+#    Copyright (C) 2023-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
 #    Author: Cybrosys Technologies (<https://www.cybrosys.com>)
 #
 #    You can modify it under the terms of the GNU LESSER
@@ -19,26 +19,28 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-
 {
     'name': 'Customize Signup',
     'version': '16.0.1.0.0',
-    'summary': """This odoo app is helpfull if you need to customise the signup page with extra information.""",
-    'description': """This odoo app is helpfull if you need to customise the signup page with extra information..""",
+    'summary': """This odoo app is helpful if you need to customize the signup
+     page.""",
+    'description': """This app helps to add extra information to the signup 
+     page, hence it will be more convenient.""",
     'author': 'Cybrosys Techno Solutions',
     'company': 'Cybrosys Techno Solutions',
     'website': "https://www.cybrosys.com",
+    'category': 'Website/Website',
     'maintainer': 'Cybrosys Techno Solutions',
-    'depends': ['base'],
+    'depends': ['base', 'web', 'auth_signup'],
     'data': [
-        'views/signup.xml',
+        'views/signup_templates.xml',
     ],
     'assets': {
         'web.assets_frontend': [
+            'customize_signup/static/src/css/signup.css',
             'customize_signup/static/src/js/signup.js',
         ],
     },
-
     'images': ['static/description/banner.png'],
     'license': 'LGPL-3',
     'installable': True,

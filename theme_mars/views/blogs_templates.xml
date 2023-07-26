@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Mars blog view-->
+    <template id="mars_blogs" name="Mars Blogs">
+        <section class="blog_mars oe_structure">
+            <div class="container">
+                <div class="wrapper">
+                    <div class="sub_heading">
+                        <h1>Our blog
+                        </h1>
+                        <p>
+                            The most happiest time of the day!. Morbi sagittis,
+                            sem quis lacinia faucibus, orci ipsum
+                            gravida
+                            tortor, vel interdum mi sapien ut justo. Nulla
+                            varius consequat magna, id molestie ipsum
+                            volutpat quis. A true story, that never been told!.
+                            Fusce id mi diam, non ornare orci.
+                            Pellentesque ipsum erat, facilisis ut venenatis eu,
+                            sodales vel dolor.
+                        </p>
+                    </div>
+                    <div class="blog_content">
+                        <div class="card-deck">
+                            <div class="card">
+                                <t t-foreach="blogs_recent" t-as="recent">
+                                    <a href="#" class="top_link">lifestyle</a>
+                                    <div class="img_wrapper">
+                                        <t t-call="website.record_cover">
+                                            <t t-set="_record"
+                                               t-value="recent"/>
+                                            <t t-set="snippet_autofocus"
+                                               t-value="True"/>
+                                            <t t-set="use_filters"
+                                               t-value="True"/>
+                                            <t t-set="display_opt_name">Blog
+                                                Post
+                                                Cover
+                                            </t>
+                                        </t>
+                                    </div>
+                                    <div class="card-body">
+                                        <a t-attf-href="/blog/#{slug(recent.blog_id)}/#{slug(recent)}"
+                                           t-field="recent.name"
+                                           t-attf-class="d-block text-reset text-decoration-none o_blog_post_title my-0 #{'h3' if opt_blog_list_view else ('h5' if opt_blog_readable else 'h6')}">
+                                            Untitled Post
+                                        </a>
+                                        <i t-field="recent.teaser"/>
+                                        <div class="card-footer bg-transparent">
+                                            <a href="#" class="read_more">Read
+                                                more
+                                                <span class="chevron right"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+</odoo>

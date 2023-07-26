@@ -1,7 +1,6 @@
 //lazyload
 
 // how to use
-//$('.imageLazyLoad').ImgLazyLoad({mobile: "", qhd:"", offset:"", time:""});
 $.fn.ImgLazyLoad = function(options) {
     var settings = $.extend({
         // These are the defaults settings.
@@ -45,18 +44,15 @@ $.fn.ImgLazyLoad = function(options) {
                     image = imgMedium;
                     //if is mobile
                     if(windowSize < settings.mobile){
-                       //console.log('mobile view');
                        if (imgSmall != null){
                             image = imgSmall;
                       }
                     }
                     //if is desktop
                     if(windowSize <= settings.qhd && windowSize >= settings.qhd){
-                       //console.log('normal view');
                     }
                     //if is QHD
                     if(windowSize > settings.qhd){
-                       //console.log('qhd view');
                        if (imgBig != null){
                             image = imgBig;
                       }

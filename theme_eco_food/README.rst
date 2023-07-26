@@ -17,8 +17,8 @@ Company
 
 Credits
 -------
-* Developer:
-Athira Premanand @ cybrosys
+* Developer: 	Cybrosys Techno Solutions odoo@cybrosys.com
+                Version 16: Athira Premanand @cybrosys
 
 Contacts
 --------

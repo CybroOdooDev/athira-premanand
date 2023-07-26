@@ -71,8 +71,5 @@
                 </div>
             </div>
         </xpath>
-<!--        <xpath expr="//div[hasclass('container')]" position="attributes">-->
-<!--            <attribute name="class">container-fluid oe_website_sale py-2</attribute>-->
-<!--        </xpath>-->
     </template>
 </odoo>

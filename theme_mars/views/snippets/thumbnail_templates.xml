@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Mars thumbnail-->
+    <template id="mars_thumbnail" name="Mars Thumbnail">
+        <section class="thumbnails">
+            <div class="container">
+                <div class="wrapper">
+                    <div class="main_heading text-center">
+                        <h1>WELCOME TO THE WORLD OF mars</h1>
+                        <p>Create amam ipsum dolor sit amet, Beautiful nature,
+                            and rare feathers!.
+                        </p>
+                    </div>
+                    <div class="img_wrapper">
+                        <img src="/theme_mars/static/src/Images/thumbnail/thumb.jpg"
+                             alt=""/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+    <!--    Snippet options-->
+    <template id="mars_snippets_index" inherit_id="web_editor.snippets">
+        <xpath expr="//div[@id='o_scroll']/t[@id='default_snippets']"
+               position="after">
+            <div id="snippet_animate" class="o_panel">
+                <div class="o_panel_header">Index</div>
+                <div class="o_panel_body">
+                    <t t-snippet="theme_mars.mars_thumbnail" t-thumbnail="/theme_mars/static/src/Images/snippets/mars-thumbnail.jpg "/>
+                    <t t-snippet="theme_mars.mars_about" t-thumbnail="/theme_mars/static/src/Images/snippets/services-block.jpg"/>
+                    <t t-snippet="theme_mars.mars_services" t-thumbnail="/theme_mars/static/src/Images/snippets/services-block.jpg"/>
+                    <t t-snippet="theme_mars.mars_team" t-thumbnail="/theme_mars/static/src/Images/snippets/team.jpg"/>
+                    <t t-snippet="theme_mars.mars_banner" t-thumbnail="/theme_mars/static/src/Images/snippets/banner-block.jpg"/>
+                </div>
+                <!--    Editor options for mars About snippets -->
+                <div class="o_panel_header">About Us</div>
+                <div class="o_panel_body">
+                    <t t-snippet="theme_mars.pie_chart" t-thumbnail="/theme_mars/static/src/Images/snippets/pie-chart.jpg"/>
+                    <t t-snippet="theme_mars.bur_now" t-thumbnail="/theme_mars/static/src/Images/snippets/buy.jpg"/>
+                    <t t-snippet="theme_mars.work_section" t-thumbnail="/theme_mars/static/src/Images/snippets/work.jpg"/>
+                    <t t-snippet="theme_mars.company_skill" t-thumbnail="/theme_mars/static/src/Images/snippets/skills.jpg"/>
+                    <t t-snippet="theme_mars.banner" t-thumbnail="/theme_mars/static/src/Images/snippets/banner-block.jpg"/>
+                    <t t-snippet="theme_mars.about_section" t-thumbnail="/theme_mars/static/src/Images/snippets/banner-block.jpg"/>
+                    <t t-snippet="theme_mars.mars_client" t-thumbnail="/theme_mars/static/src/Images/snippets/team.jpg"/>
+                    <t t-snippet="theme_mars.partners" t-thumbnail="/theme_mars/static/src/Images/snippets/banner-block.jpg"/>
+                    <t t-snippet="theme_mars.quates" t-thumbnail="/theme_mars/static/src/Images/snippets/quotes.jpg"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

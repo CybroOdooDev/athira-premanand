@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--    Mars portfolio group form view and tree view-->
+    <record model="ir.ui.view" id="portfolio_group_view_form">
+        <field name="name">portfolio.group.view.form</field>
+        <field name="model">portfolio.group</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="image_group_ids" string="Group"/>
+                            <field name="group_type" string="Display Type"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="portfolio_group_view_tree">
+        <field name="name">portfolio.group.view.tree</field>
+        <field name="model">portfolio.group</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="image_group_ids" string="Group"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="portfolio_group_action">
+        <field name="name">Portfolio Group</field>
+        <field name="res_model">portfolio.group</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="menu_portfolio_group" name="Group"
+              parent="website.menu_website_global_configuration"
+              action="portfolio_group_action"
+              sequence="18"/>
+</odoo>

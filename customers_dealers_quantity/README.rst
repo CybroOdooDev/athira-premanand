@@ -1,25 +1,33 @@
 .. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
-Customers Dealers Quantity
+Customer's Dealers Quantity
 ================
-This module helps you to add customer rating and comments through website.
+When the dealer ordered a specific product quantity and if it's above the
+company's pre-defined criteria then the company can allow some special price to
+the dealer.
 
 Configuration
 =============
 * No additional configurations needed
+
 Company
 -------
 * `Cybrosys Techno Solutions <https://cybrosys.com/>`__
 
 Credits
 -------
-* Developers:  version 16: Athira Premanand @cybrosys
+* Developer:  version 16: Athira Premanand @cybrosys
 
 Contacts
 --------
 * Mail Contact : odoo@cybrosys.com
 * Website : https://cybrosys.com
+
+License
+-------
+General Public License, Version 3 (LGPL v3).
+(https://www.odoo.com/documentation/user/16.0/legal/licenses/licenses.html)
 
 Bug Tracker
 -----------

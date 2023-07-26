@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Layout for different gallery category-->
+    <template id="category_gallery" name="Gallery">
+        <t t-call="website.layout">
+            <div id="wrap" class="o_mars_gallery_page">
+                <section class="oe_structure banner_services banner_gallery">
+                    <div class="wrapper">
+                        <div class="content">
+                            <h2>
+                                Gallery
+                            </h2>
+                            <h6>
+                                Work is easy when you have all tools around you!
+                            </h6>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb ">
+                                    <li class="breadcrumb-item">
+                                        <a href="#">Home
+                                            <i class="arrow right"/>
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="/gallery">Gallery
+                                            <i class="arrow right"/>
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active"
+                                        aria-current="page">Categories
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </section>
+                <section id="section_gallery_category"
+                         class="section_gallery_class oe_structure card-deck-gallery">
+                    <div class="container">
+                        <div class="image-container-4">
+                            <div class="row">
+                                <div class="row infinite_scroll">
+                                    <t t-foreach="result" t-as="image">
+                                        <div class="gallery_images image-item-4 ">
+                                            <img t-attf-src="data:image/png;base64,{{image.image_gallery}}"/>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

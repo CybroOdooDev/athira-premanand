@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Data loaded for the portfolio page-->
+    <data noupdate="1">
+        <record id="portfolio-image1" model="portfolio.images">
+            <field name="portfolio_image" type="base64"
+                   file="theme_mars/static/src/Images/portfolio/business-concept-with-team-close-up.jpg"/>
+        </record>
+        <record id="portfolio-image2" model="portfolio.images">
+            <field name="portfolio_image" type="base64"
+                   file="theme_mars/static/src/Images/portfolio/field-with-field-flowers-mountains-background.jpg"/>
+        </record>
+        <record id="portfolio-image3" model="portfolio.images">
+            <field name="portfolio_image" type="base64"
+                   file="theme_mars/static/src/Images/portfolio/field-with-field-flowers-mountains-background.jpg"/>
+        </record>
+        <record id="portfolio-image4" model="portfolio.images">
+            <field name="portfolio_image" type="base64"
+                   file="theme_mars/static/src/Images/portfolio/futuristic-smart-city-with-5g-global-network-technology.jpg"/>
+        </record>
+        <record id="portfolio-image5" model="portfolio.images">
+            <field name="portfolio_image" type="base64"
+                   file="theme_mars/static/src/Images/portfolio/gate-dim-clouds-empty-room-3d-rendering-raster-illustration.jpg"/>
+        </record>
+        <record id="portfolio-image6" model="portfolio.images">
+            <field name="portfolio_image" type="base64"
+                   file="theme_mars/static/src/Images/portfolio/html-css-collage-concept-with-person (1).jpg"/>
+        </record>
+        <record id="portfolio-image7" model="portfolio.images">
+            <field name="portfolio_image" type="base64"
+                   file="theme_mars/static/src/Images/portfolio/majestic-mountains-with-snow-water-scene-generative-ai.jpg"/>
+        </record>
+        <record id="portfolio-image8" model="portfolio.images">
+            <field name="portfolio_image" type="base64"
+                   file="theme_mars/static/src/Images/portfolio/majestic-unicorn-wonderland.jpg"/>
+        </record>
+        <record id="portfolio-image9" model="portfolio.images">
+            <field name="portfolio_image" type="base64"
+                   file="theme_mars/static/src/Images/portfolio/mountain-lake-with-blue-sky-mountains-background.jpg"/>
+        </record>
+        <record id="portfolio-image10" model="portfolio.images">
+            <field name="portfolio_image" type="base64"
+                   file="theme_mars/static/src/Images/portfolio/spooky-tree-against-big-moon.jpg"/>
+        </record>
+        <record id="portfolio-group1" model="portfolio.group">
+            <field name="image_group_ids"
+                   eval="[(6, 0, [ref('portfolio-image2'), ref('portfolio-image3')])]"/>
+            <field name="group_type">modal</field>
+        </record>
+        <record id="portfolio-group2" model="portfolio.group">
+            <field name="image_group_ids"
+                   eval="[(6, 0, [ref('portfolio-image1'), ref('portfolio-image4'), ref('portfolio-image5')])]"/>
+            <field name="group_type">carousel</field>
+        </record>
+        <record id="portfolio-group3" model="portfolio.group">
+            <field name="image_group_ids"
+                   eval="[(6, 0, [ref('portfolio-image7'), ref('portfolio-image8'), ref('portfolio-image9')])]"/>
+            <field name="group_type">carousel</field>
+        </record>
+        <record id="portfolio-group4" model="portfolio.group">
+            <field name="image_group_ids"
+                   eval="[(6, 0, [ref('portfolio-image6'), ref('portfolio-image1'), ref('portfolio-image5')])]"/>
+            <field name="group_type">modal</field>
+        </record>
+        <record id="portfolio1" model="mars.portfolio">
+            <field name="name">Fantasy</field>
+            <field name="portfolio_ids"
+                   eval="[(6, 0, [ref('portfolio-group2'), ref('portfolio-group4')])]"/>
+        </record>
+        <record id="portfolio2" model="mars.portfolio">
+            <field name="name">Nature</field>
+            <field name="portfolio_ids"
+                   eval="[(6, 0, [ref('portfolio-group4')])]"/>
+        </record>
+        <record id="portfolio3" model="mars.portfolio">
+            <field name="name">IT</field>
+            <field name="portfolio_ids"
+                   eval="[(6, 0, [ref('portfolio-group1')])]"/>
+        </record>
+    </data>
+</odoo>

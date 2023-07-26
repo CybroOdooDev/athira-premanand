@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--layout for the blog comments-->
 <templates id="template" xml:space="preserve">
         <t t-inherit="portal.chatter_messages" t-inherit-mode="extension">
-          <xpath expr="//div[hasclass('o_portal_chatter_messages')]" position="replace">
-              <div class="o_portal_chatter_messages">
+            <xpath expr="//div[hasclass('o_portal_chatter_messages')]"
+                   position="replace">
+                <div class="o_portal_chatter_messages">
                     <t t-foreach="widget.get('messages') || []" t-as="message">
-                        <div class="d-flex o_portal_chatter_message" t-att-id="'message-' + message.id">
-                            <img class="o_portal_chatter_avatar" t-att-src="message.author_avatar_url" alt="avatar"/>
+                        <div class="d-flex o_portal_chatter_message"
+                             t-att-id="'message-' + message.id">
+                            <img class="o_portal_chatter_avatar"
+                                 t-att-src="message.author_avatar_url"
+                                 alt="avatar"/>
                             <div class="flex-grow-1">
-                                <t t-call="portal.chatter_internal_toggle" t-if="widget.options['is_user_employee']"/>
-
+                                <t t-call="portal.chatter_internal_toggle"
+                                   t-if="widget.options['is_user_employee']"/>
                                 <div class="o_portal_chatter_message_title">
                                     <h5 class='mb-1'><t t-esc="message.author_id[1]"/></h5>
                                     <p class="o_portal_chatter_puslished_date"><t t-esc="message.published_date_str"/></p>
                                 </div>
                                 <t t-out="message.body"/>
-
                                 <div class="o_portal_chatter_attachments">
                                     <t t-call="portal.Chatter.Attachments">
-                                        <t t-set="attachments" t-value="message.attachment_ids"/>
+                                        <t t-set="attachments"
+                                           t-value="message.attachment_ids"/>
                                     </t>
                                 </div>
                             </div>
@@ -26,44 +31,44 @@
               </div>
           </xpath>
      </t>
-
-
     <t t-inherit="portal.Composer" t-inherit-mode="extension">
-      <xpath expr="//div[hasclass('o_portal_chatter_composer')]" position="replace">
-        <div class="o_portal_chatter_composer" t-if="widget.options['allow_composer']">
-            <t t-set="discussion_url" t-value="window.encodeURI(window.location.href.split('#')[0] + '#discussion')"/>
-            <t t-if="!widget.options['display_composer']">
-                <h4>Leave a comment</h4>
-                <p>You must be <a t-attf-href="/web/login?redirect=#{discussion_url}">logged in</a> to post a comment.</p>
+        <xpath expr="//div[hasclass('o_portal_chatter_composer')]"
+               position="replace">
+            <div class="o_portal_chatter_composer"
+                 t-if="widget.options['allow_composer']">
+                <t t-set="discussion_url"
+                   t-value="window.encodeURI(window.location.href.split('#')[0] + '#discussion')"/>
+                <t t-if="!widget.options['display_composer']">
+                    <h4>Leave a comment</h4>
+                    <p>You must be <a
+                            t-attf-href="/web/login?redirect=#{discussion_url}">logged in</a> to
+                        post a comment.</p>
             </t>
-            <t t-if="widget.options['display_composer']">
-                <div class="alert alert-danger mb8 d-none o_portal_chatter_composer_error" role="alert">
+                <t t-if="widget.options['display_composer']">
+                <div class="alert alert-danger mb8 d-none o_portal_chatter_composer_error"
+                     role="alert">
                     Oops! Something went wrong. Try to reload the page and log in.
                 </div>
-                <div class="d-flex">
-<!--                    <img alt="Avatar" class="o_portal_chatter_avatar o_object_fit_cover align-self-start"-->
-                    <!--                         t-attf-src="/web/image/res.partner/#{widget.options['partner_id']}/avatar_128"-->
-                    <!--                         t-if="!widget.options['is_user_public'] or !widget.options['token']"/>-->
+                    <div class="d-flex">
                     <div class="flex-grow-1">
                         <span style="font-size: 12px; color: var(--p-color); font-weight: 400;">Your Comment</span>
                         <div class="o_portal_chatter_composer_input">
                             <div class="o_portal_chatter_composer_body mb32">
-                                <textarea rows="4" name="message" class="form-control"
+                                <textarea rows="4" name="message"
+                                          class="form-control"
                                           placeholder="Comment"/>
                                 <div class="o_portal_chatter_attachments mt-3"/>
                                 <div class="mt8">
                                     <button t-attf-data-action="/mail/chatter_post"
                                             class="o_portal_chatter_composer_btn btn btn-primary"
                                             type="submit">Submit Comment</button>
-                                    <!--                                    <button class="o_portal_chatter_attachment_btn btn btn-secondary" type="button"-->
-                                    <!--                                            title="Add attachment">-->
-                                    <!--                                        <i class="fa fa-paperclip"/>-->
-                                    <!--                                    </button>-->
                                 </div>
                             </div>
                         </div>
                         <div class="d-none">
-                            <input type="file" class="o_portal_chatter_file_input" multiple="multiple"/>
+                            <input type="file"
+                                   class="o_portal_chatter_file_input"
+                                   multiple="multiple"/>
                         </div>
                     </div>
                 </div>

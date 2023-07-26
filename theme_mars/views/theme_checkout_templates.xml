@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    checkout confirmation layout-->
+    <template id="mars_checkout_confirmation_page"
+              inherit_id="website_sale.confirmation"
+              name="Mars_Shop_Checkout_Confirm">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <section class="banner_title">
+                <div class="container">
+                    <div class="wrapper">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb ">
+                                <li class="breadcrumb-item">
+                                    <a href="#">
+                                        Home
+                                        <i class="arrow right"/>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="#">
+                                        Shop
+                                        <i class="arrow right"/>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active"
+                                    aria-current="page">Order Completed
+                                </li>
+                            </ol>
+                        </nav>
+                        <h2>Order Completed</h2>
+                        <p>
+                            Congratulations! Your order
+                            <span t-field="order.name"
+                                  style="font-size:13px;"/>
+                            is confirmed!
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+        <xpath expr="//div[hasclass('oe_website_sale')]" position="replace">
+            <section class="checkout_complete">
+                <div class="wrapper">
+                    <div class="container">
+                        <div class="complete text-center">
+                            <h1>Congratulations! Your order is completed!
+                            </h1>
+                            <p>
+                                Your order is
+                                <strong t-field="order.name"
+                                        style="font-size:13px;"/>
+                                . You can
+                                <a href="#">view your order</a>
+                                on your account page, when you are logged
+                                in.
+                            </p>
+                            <h3 class="text-left mt-3">
+                                <strong>Payment Information:</strong>
+                            </h3>
+                            <t t-set="payment_tx_id"
+                               t-value="order.get_portal_last_transaction()"/>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <t t-esc="payment_tx_id.provider_id.sudo().name"/>
+                                        </td>
+                                        <td class="text-end" width="100">
+                                            <strong>Total:</strong>
+                                        </td>
+                                        <td class="text-end" width="100">
+                                            <strong t-field="payment_tx_id.amount"
+                                                    t-options="{'widget': 'monetary', 'display_currency': order.pricelist_id.currency_id}"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="card mt-3"
+                                 style="margin-bottom:50px;">
+                                <div class="card-body">
+                                    <t t-set="same_shipping"
+                                       t-value="bool(order.partner_shipping_id==order.partner_id or only_services)"/>
+                                    <span>
+                                        <b>
+                                            Billing
+                                            <t t-if="same_shipping and not only_services">
+                                                &amp; Shipping
+                                            </t>
+                                            :
+                                        </b>
+                                        <span t-esc="order.partner_id"
+                                              t-options="dict(widget='contact', fields=['address'], no_marker=True, separator=', ')"
+                                              class="address-inline"/>
+                                    </span>
+                                    <span t-if="not same_shipping and not only_services"
+                                          groups="sale.group_delivery_invoice_address">
+                                        <b>Shipping:</b>
+                                        <span t-esc="order.partner_shipping_id"
+                                              t-options="dict(widget='contact', fields=['address'], no_marker=True, separator=', ')"
+                                              class="address-inline"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <a href="/web/login" class="btn btn-primary ">Go to
+                                login
+                                page
+                            </a>
+                            <a href="/shop" class="btn btn-primary ">Return to
+                                Shop
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+</odoo>

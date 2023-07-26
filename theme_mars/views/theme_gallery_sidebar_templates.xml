@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Gallery sidebar layout-->
+    <template id="gallery_sidebar_left"
+              inherit_id="theme_mars.mars_gallery_section"
+              name="Gallery Sidebar Left">
+        <xpath expr="//div[hasclass('im_gallery')]"
+               position="inside">
+            <div class="sidebar_image_class">
+                <aside id="image_grid_before"
+                       class="d-lg-block position-sticky col-3 px-3 clearfix p_cat">
+                    <t t-set="gallery_category"
+                       t-value="request.env['gallery.category'].sudo().search([])"/>
+                    <div class="gallery_categories">
+                        <h4>CATEGORIES</h4>
+                        <div class="sidebar_tab">
+                            <ul class="s_tags d-flex">
+                                <li class="nav-item">
+                                    <t t-foreach="gallery_category"
+                                       t-as="category">
+                                        <li class="tag_items">
+                                            <a t-attf-href="/gallery/category/#{ category.category }">
+                                                <span t-field="category.category"/>
+                                            </a>
+                                        </li>
+                                        <hr/>
+                                    </t>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </xpath>
+    </template>
+</odoo>

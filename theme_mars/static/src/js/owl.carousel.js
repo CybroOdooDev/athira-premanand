@@ -11,7 +11,6 @@
  * @todo stagePadding calculate wrong active classes
  */
 ;(function($, window, document, undefined) {
-
 	/**
 	 * Creates a carousel.
 	 * @class The Owl Carousel.
@@ -20,110 +19,92 @@
 	 * @param {Object} [options] - The options
 	 */
 	function Owl(element, options) {
-
 		/**
 		 * Current settings for the carousel.
 		 * @public
 		 */
 		this.settings = null;
-
 		/**
 		 * Current options set by the caller including defaults.
 		 * @public
 		 */
 		this.options = $.extend({}, Owl.Defaults, options);
-
 		/**
 		 * Plugin element.
 		 * @public
 		 */
 		this.$element = $(element);
-
 		/**
 		 * Proxied event handlers.
 		 * @protected
 		 */
 		this._handlers = {};
-
 		/**
 		 * References to the running plugins of this carousel.
 		 * @protected
 		 */
 		this._plugins = {};
-
 		/**
 		 * Currently suppressed events to prevent them from being retriggered.
 		 * @protected
 		 */
 		this._supress = {};
-
 		/**
 		 * Absolute current position.
 		 * @protected
 		 */
 		this._current = null;
-
 		/**
 		 * Animation speed in milliseconds.
 		 * @protected
 		 */
 		this._speed = null;
-
 		/**
 		 * Coordinates of all items in pixel.
 		 * @todo The name of this member is missleading.
 		 * @protected
 		 */
 		this._coordinates = [];
-
 		/**
 		 * Current breakpoint.
 		 * @todo Real media queries would be nice.
 		 * @protected
 		 */
 		this._breakpoint = null;
-
 		/**
 		 * Current width of the plugin element.
 		 */
 		this._width = null;
-
 		/**
 		 * All real items.
 		 * @protected
 		 */
 		this._items = [];
-
 		/**
 		 * All cloned items.
 		 * @protected
 		 */
 		this._clones = [];
-
 		/**
 		 * Merge values of all items.
 		 * @todo Maybe this could be part of a plugin.
 		 * @protected
 		 */
 		this._mergers = [];
-
 		/**
 		 * Widths of all items.
 		 */
 		this._widths = [];
-
 		/**
 		 * Invalidated parts within the update process.
 		 * @protected
 		 */
 		this._invalidated = {};
-
 		/**
 		 * Ordered list of workers for the update process.
 		 * @protected
 		 */
 		this._pipe = [];
-
 		/**
 		 * Current state information for the drag operation.
 		 * @todo #261
@@ -139,7 +120,6 @@
 			},
 			direction: null
 		};
-
 		/**
 		 * Current state information and their tags.
 		 * @type {Object}
@@ -153,27 +133,22 @@
 				'dragging': [ 'interacting' ]
 			}
 		};
-
 		$.each([ 'onResize', 'onThrottledResize' ], $.proxy(function(i, handler) {
 			this._handlers[handler] = $.proxy(this[handler], this);
 		}, this));
-
 		$.each(Owl.Plugins, $.proxy(function(key, plugin) {
 			this._plugins[key.charAt(0).toLowerCase() + key.slice(1)]
 				= new plugin(this);
 		}, this));
-
 		$.each(Owl.Workers, $.proxy(function(priority, worker) {
 			this._pipe.push({
 				'filter': worker.filter,
 				'run': $.proxy(worker.run, this)
 			});
 		}, this));
-
 		this.setup();
 		this.initialize();
 	}
-
 	/**
 	 * Default options for the carousel.
 	 * @public
@@ -184,39 +159,29 @@
 		center: false,
 		rewind: false,
 		checkVisibility: true,
-
 		mouseDrag: true,
 		touchDrag: true,
 		pullDrag: true,
 		freeDrag: false,
-
 		margin: 0,
 		stagePadding: 0,
-
 		merge: false,
 		mergeFit: true,
 		autoWidth: false,
-
 		startPosition: 0,
 		rtl: false,
-
 		smartSpeed: 250,
 		fluidSpeed: false,
 		dragEndSpeed: false,
-
 		responsive: {},
 		responsiveRefreshRate: 200,
 		responsiveBaseElement: window,
-
 		fallbackEasing: 'swing',
 		slideTransition: '',
-
 		info: false,
-
 		nestedItemSelector: false,
 		itemElement: 'div',
 		stageElement: 'div',
-
 		refreshClass: 'owl-refresh',
 		loadedClass: 'owl-loaded',
 		loadingClass: 'owl-loading',
@@ -228,7 +193,6 @@
 		stageOuterClass: 'owl-stage-outer',
 		grabClass: 'owl-grab'
 	};
-
 	/**
 	 * Enumeration for width.
 	 * @public
@@ -240,7 +204,6 @@
 		Inner: 'inner',
 		Outer: 'outer'
 	};
-
 	/**
 	 * Enumeration for types.
 	 * @public
@@ -251,13 +214,11 @@
 		Event: 'event',
 		State: 'state'
 	};
-
 	/**
 	 * Contains all registered plugins.
 	 * @public
 	 */
 	Owl.Plugins = {};
-
 	/**
 	 * List of workers involved in the update process.
 	 */
@@ -287,9 +248,7 @@
 					'margin-left': rtl ? margin : '',
 					'margin-right': rtl ? '' : margin
 				};
-
 			!grid && this.$stage.children().css(css);
-
 			cache.css = css;
 		}
 	}, {
@@ -300,21 +259,16 @@
 				iterator = this._items.length,
 				grid = !this.settings.autoWidth,
 				widths = [];
-
 			cache.items = {
 				merge: false,
 				width: width
 			};
-
 			while (iterator--) {
 				merge = this._mergers[iterator];
 				merge = this.settings.mergeFit && Math.min(merge, this.settings.items) || merge;
-
 				cache.items.merge = merge > 1 || cache.items.merge;
-
 				widths[iterator] = !grid ? this._items[iterator].width() : width * merge;
 			}
-
 			this._widths = widths;
 		}
 	}, {
@@ -329,9 +283,7 @@
 				repeat = settings.loop && items.length ? settings.rewind ? view : Math.max(view, size) : 0,
 				append = '',
 				prepend = '';
-
 			repeat /= 2;
-
 			while (repeat > 0) {
 				// Switch to only using appended clones
 				clones.push(this.normalize(clones.length / 2, true));
@@ -340,9 +292,7 @@
 				prepend = items[clones[clones.length - 1]][0].outerHTML + prepend;
 				repeat -= 1;
 			}
-
 			this._clones = clones;
-
 			$(append).addClass('cloned').appendTo(this.$stage);
 			$(prepend).addClass('cloned').prependTo(this.$stage);
 		}
@@ -355,13 +305,11 @@
 				previous = 0,
 				current = 0,
 				coordinates = [];
-
 			while (++iterator < size) {
 				previous = coordinates[iterator - 1] || 0;
 				current = this._widths[this.relative(iterator)] + this.settings.margin;
 				coordinates.push(previous + current * rtl);
-			}
-
+		}
 			this._coordinates = coordinates;
 		}
 	}, {
@@ -374,7 +322,6 @@
 					'padding-left': padding || '',
 					'padding-right': padding || ''
 				};
-
 			this.$stage.css(css);
 		}
 	}, {
@@ -383,7 +330,6 @@
 			var iterator = this._coordinates.length,
 				grid = !this.settings.autoWidth,
 				items = this.$stage.children();
-
 			if (grid && cache.items.merge) {
 				while (iterator--) {
 					cache.css.width = this._widths[this.relative(iterator)];
@@ -419,75 +365,59 @@
 				begin = this.coordinates(this.current()) + padding,
 				end = begin + this.width() * rtl,
 				inner, outer, matches = [], i, n;
-
 			for (i = 0, n = this._coordinates.length; i < n; i++) {
 				inner = this._coordinates[i - 1] || 0;
 				outer = Math.abs(this._coordinates[i]) + padding * rtl;
-
 				if ((this.op(inner, '<=', begin) && (this.op(inner, '>', end)))
 					|| (this.op(outer, '<', begin) && this.op(outer, '>', end))) {
 					matches.push(i);
 				}
 			}
-
 			this.$stage.children('.active').removeClass('active');
 			this.$stage.children(':eq(' + matches.join('), :eq(') + ')').addClass('active');
-
 			this.$stage.children('.center').removeClass('center');
 			if (this.settings.center) {
 				this.$stage.children().eq(this.current()).addClass('center');
 			}
 		}
 	} ];
-
 	/**
 	 * Create the stage DOM element
 	 */
 	Owl.prototype.initializeStage = function() {
 		this.$stage = this.$element.find('.' + this.settings.stageClass);
-
 		// if the stage is already in the DOM, grab it and skip stage initialization
 		if (this.$stage.length) {
 			return;
 		}
-
 		this.$element.addClass(this.options.loadingClass);
-
 		// create stage
 		this.$stage = $('<' + this.settings.stageElement + '>', {
 			"class": this.settings.stageClass
 		}).wrap( $( '<div/>', {
 			"class": this.settings.stageOuterClass
 		}));
-
 		// append stage
 		this.$element.append(this.$stage.parent());
 	};
-
 	/**
 	 * Create item DOM elements
 	 */
 	Owl.prototype.initializeItems = function() {
 		var $items = this.$element.find('.owl-item');
-
 		// if the items are already in the DOM, grab them and skip item initialization
 		if ($items.length) {
 			this._items = $items.get().map(function(item) {
 				return $(item);
 			});
-
 			this._mergers = this._items.map(function() {
 				return 1;
 			});
-
 			this.refresh();
-
 			return;
 		}
-
 		// append content
 		this.replace(this.$element.children().not(this.$stage.parent()));
-
 		// check visibility
 		if (this.isVisible()) {
 			// update view
@@ -496,12 +426,10 @@
 			// invalidate width
 			this.invalidate('width');
 		}
-
 		this.$element
 			.removeClass(this.options.loadingClass)
 			.addClass(this.options.loadedClass);
 	};
-
 	/**
 	 * Initializes the carousel.
 	 * @protected
@@ -509,30 +437,23 @@
 	Owl.prototype.initialize = function() {
 		this.enter('initializing');
 		this.trigger('initialize');
-
 		this.$element.toggleClass(this.settings.rtlClass, this.settings.rtl);
-
 		if (this.settings.autoWidth && !this.is('pre-loading')) {
 			var imgs, nestedSelector, width;
 			imgs = this.$element.find('img');
 			nestedSelector = this.settings.nestedItemSelector ? '.' + this.settings.nestedItemSelector : undefined;
 			width = this.$element.children(nestedSelector).width();
-
 			if (imgs.length && width <= 0) {
 				this.preloadAutoWidthImages(imgs);
 			}
 		}
-
 		this.initializeStage();
 		this.initializeItems();
-
 		// register event handlers
 		this.registerEventHandlers();
-
 		this.leave('initializing');
 		this.trigger('initialized');
 	};
-
 	/**
 	 * @returns {Boolean} visibility of $element
 	 *                    if you know the carousel will always be visible you can set `checkVisibility` to `false` to
@@ -543,7 +464,6 @@
 			? this.$element.is(':visible')
 			: true;
 	};
-
 	/**
 	 * Setups the current settings.
 	 * @todo Remove responsive classes. Why should adaptive designs be brought into IE8?
@@ -555,7 +475,6 @@
 			overwrites = this.options.responsive,
 			match = -1,
 			settings = null;
-
 		if (!overwrites) {
 			settings = $.extend({}, this.options);
 		} else {
@@ -564,13 +483,11 @@
 					match = Number(breakpoint);
 				}
 			});
-
 			settings = $.extend({}, this.options, overwrites[match]);
 			if (typeof settings.stagePadding === 'function') {
 				settings.stagePadding = settings.stagePadding();
 			}
 			delete settings.responsive;
-
 			// responsive class
 			if (settings.responsiveClass) {
 				this.$element.attr('class',
@@ -578,14 +495,12 @@
 				);
 			}
 		}
-
 		this.trigger('change', { property: { name: 'settings', value: settings } });
 		this._breakpoint = match;
 		this.settings = settings;
 		this.invalidate('settings');
 		this.trigger('changed', { property: { name: 'settings', value: this.settings } });
 	};
-
 	/**
 	 * Updates option logic if necessery.
 	 * @protected
@@ -596,7 +511,6 @@
 			this.settings.merge = false;
 		}
 	};
-
 	/**
 	 * Prepares an item before add.
 	 * @todo Rename event parameter `content` to `item`.
@@ -605,17 +519,13 @@
 	 */
 	Owl.prototype.prepare = function(item) {
 		var event = this.trigger('prepare', { content: item });
-
 		if (!event.data) {
 			event.data = $('<' + this.settings.itemElement + '/>')
 				.addClass(this.options.itemClass).append(item)
 		}
-
 		this.trigger('prepared', { content: event.data });
-
 		return event.data;
 	};
-
 	/**
 	 * Updates the view.
 	 * @public
@@ -625,19 +535,15 @@
 			n = this._pipe.length,
 			filter = $.proxy(function(p) { return this[p] }, this._invalidated),
 			cache = {};
-
 		while (i < n) {
 			if (this._invalidated.all || $.grep(this._pipe[i].filter, filter).length > 0) {
 				this._pipe[i].run(cache);
 			}
 			i++;
 		}
-
 		this._invalidated = {};
-
 		!this.is('valid') && this.enter('valid');
 	};
-
 	/**
 	 * Gets the width of the view.
 	 * @public
@@ -654,7 +560,6 @@
 				return this._width - this.settings.stagePadding * 2 + this.settings.margin;
 		}
 	};
-
 	/**
 	 * Refreshes the carousel primarily for adaptive purposes.
 	 * @public
@@ -662,21 +567,14 @@
 	Owl.prototype.refresh = function() {
 		this.enter('refreshing');
 		this.trigger('refresh');
-
 		this.setup();
-
 		this.optionsLogic();
-
 		this.$element.addClass(this.options.refreshClass);
-
 		this.update();
-
 		this.$element.removeClass(this.options.refreshClass);
-
 		this.leave('refreshing');
 		this.trigger('refreshed');
 	};
-
 	/**
 	 * Checks window `resize` event.
 	 * @protected
@@ -685,7 +583,6 @@
 		window.clearTimeout(this.resizeTimer);
 		this.resizeTimer = window.setTimeout(this._handlers.onResize, this.settings.responsiveRefreshRate);
 	};
-
 	/**
 	 * Checks window `resize` event.
 	 * @protected
@@ -694,30 +591,22 @@
 		if (!this._items.length) {
 			return false;
 		}
-
 		if (this._width === this.$element.width()) {
 			return false;
 		}
-
 		if (!this.isVisible()) {
 			return false;
 		}
-
 		this.enter('resizing');
-
 		if (this.trigger('resize').isDefaultPrevented()) {
 			this.leave('resizing');
 			return false;
 		}
-
 		this.invalidate('width');
-
 		this.refresh();
-
 		this.leave('resizing');
 		this.trigger('resized');
 	};
-
 	/**
 	 * Registers event handlers.
 	 * @todo Check `msPointerEnabled`
@@ -728,23 +617,19 @@
 		if ($.support.transition) {
 			this.$stage.on($.support.transition.end + '.owl.core', $.proxy(this.onTransitionEnd, this));
 		}
-
 		if (this.settings.responsive !== false) {
 			this.on(window, 'resize', this._handlers.onThrottledResize);
 		}
-
 		if (this.settings.mouseDrag) {
 			this.$element.addClass(this.options.dragClass);
 			this.$stage.on('mousedown.owl.core', $.proxy(this.onDragStart, this));
 			this.$stage.on('dragstart.owl.core selectstart.owl.core', function() { return false });
 		}
-
 		if (this.settings.touchDrag){
 			this.$stage.on('touchstart.owl.core', $.proxy(this.onDragStart, this));
 			this.$stage.on('touchcancel.owl.core', $.proxy(this.onDragEnd, this));
 		}
 	};
-
 	/**
 	 * Handles `touchstart` and `mousedown` events.
 	 * @todo Horizontal swipe threshold as option
@@ -754,11 +639,9 @@
 	 */
 	Owl.prototype.onDragStart = function(event) {
 		var stage = null;
-
 		if (event.which === 3) {
 			return;
 		}
-
 		if ($.support.transform) {
 			stage = this.$stage.css('transform').replace(/.*\(|\)| /g, '').split(',');
 			stage = {
@@ -774,40 +657,29 @@
 				y: stage.top
 			};
 		}
-
 		if (this.is('animating')) {
 			$.support.transform ? this.animate(stage.x) : this.$stage.stop()
 			this.invalidate('position');
 		}
-
 		this.$element.toggleClass(this.options.grabClass, event.type === 'mousedown');
-
 		this.speed(0);
-
 		this._drag.time = new Date().getTime();
 		this._drag.target = $(event.target);
 		this._drag.stage.start = stage;
 		this._drag.stage.current = stage;
 		this._drag.pointer = this.pointer(event);
-
 		$(document).on('mouseup.owl.core touchend.owl.core', $.proxy(this.onDragEnd, this));
-
 		$(document).one('mousemove.owl.core touchmove.owl.core', $.proxy(function(event) {
 			var delta = this.difference(this._drag.pointer, this.pointer(event));
-
 			$(document).on('mousemove.owl.core touchmove.owl.core', $.proxy(this.onDragMove, this));
-
 			if (Math.abs(delta.x) < Math.abs(delta.y) && this.is('valid')) {
 				return;
 			}
-
 			event.preventDefault();
-
 			this.enter('dragging');
 			this.trigger('drag');
 		}, this));
 	};
-
 	/**
 	 * Handles the `touchmove` and `mousemove` events.
 	 * @todo #261
@@ -820,13 +692,10 @@
 			pull = null,
 			delta = this.difference(this._drag.pointer, this.pointer(event)),
 			stage = this.difference(this._drag.stage.start, delta);
-
 		if (!this.is('dragging')) {
 			return;
 		}
-
 		event.preventDefault();
-
 		if (this.settings.loop) {
 			minimum = this.coordinates(this.minimum());
 			maximum = this.coordinates(this.maximum() + 1) - minimum;
@@ -837,12 +706,9 @@
 			pull = this.settings.pullDrag ? -1 * delta.x / 5 : 0;
 			stage.x = Math.max(Math.min(stage.x, minimum + pull), maximum + pull);
 		}
-
 		this._drag.stage.current = stage;
-
 		this.animate(stage.x);
 	};
-
 	/**
 	 * Handles the `touchend` and `mouseup` events.
 	 * @todo #261
@@ -854,32 +720,24 @@
 		var delta = this.difference(this._drag.pointer, this.pointer(event)),
 			stage = this._drag.stage.current,
 			direction = delta.x > 0 ^ this.settings.rtl ? 'left' : 'right';
-
 		$(document).off('.owl.core');
-
 		this.$element.removeClass(this.options.grabClass);
-
 		if (delta.x !== 0 && this.is('dragging') || !this.is('valid')) {
 			this.speed(this.settings.dragEndSpeed || this.settings.smartSpeed);
 			this.current(this.closest(stage.x, delta.x !== 0 ? direction : this._drag.direction));
 			this.invalidate('position');
 			this.update();
-
 			this._drag.direction = direction;
-
 			if (Math.abs(delta.x) > 3 || new Date().getTime() - this._drag.time > 300) {
 				this._drag.target.one('click.owl.core', function() { return false; });
 			}
 		}
-
 		if (!this.is('dragging')) {
 			return;
 		}
-
 		this.leave('dragging');
 		this.trigger('dragged');
 	};
-
 	/**
 	 * Gets absolute position of the closest item for a coordinate.
 	 * @todo Setting `freeDrag` makes `closest` not reusable. See #165.
@@ -893,7 +751,6 @@
 			pull = 30,
 			width = this.width(),
 			coordinates = this.coordinates();
-
 		if (!this.settings.freeDrag) {
 			// check closest item
 			$.each(coordinates, $.proxy(function(index, value) {
@@ -920,10 +777,8 @@
 				position = coordinate = this.maximum();
 			}
 		}
-
 		return position;
 	};
-
 	/**
 	 * Animates the stage.
 	 * @todo #270
@@ -932,14 +787,11 @@
 	 */
 	Owl.prototype.animate = function(coordinate) {
 		var animate = this.speed() > 0;
-
 		this.is('animating') && this.onTransitionEnd();
-
 		if (animate) {
 			this.enter('animating');
 			this.trigger('translate');
 		}
-
 		if ($.support.transform3d && $.support.transition) {
 			this.$stage.css({
 				transform: 'translate3d(' + coordinate + 'px,0px,0px)',
@@ -957,7 +809,6 @@
 			});
 		}
 	};
-
 	/**
 	 * Checks whether the carousel is in a specific state or not.
 	 * @param {String} state - The state to check.
@@ -966,7 +817,6 @@
 	Owl.prototype.is = function(state) {
 		return this._states.current[state] && this._states.current[state] > 0;
 	};
-
 	/**
 	 * Sets the absolute position of the current item.
 	 * @public
@@ -977,13 +827,10 @@
 		if (position === undefined) {
 			return this._current;
 		}
-
 		if (this._items.length === 0) {
 			return undefined;
 		}
-
 		position = this.normalize(position);
-
 		if (this._current !== position) {
 			var event = this.trigger('change', { property: { name: 'position', value: position } });
 

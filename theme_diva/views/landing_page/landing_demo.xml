@@ -3,17 +3,17 @@
     <template id="demo" inherit_id="website.snippets" name="Demo">
         <xpath expr="//div[@id='snippet_structure']/div[hasclass('o_panel_body')]"
                position="inside">
-            <t t-snippet="theme_diva.diva_demo" t-thumbnail="/theme_diva/static/src/images/snippets/landing/demo.jpg"/>
+            <t t-snippet="theme_diva.diva_demo"
+               t-thumbnail="/theme_diva/static/src/images/snippets/landing/demo.jpg"/>
         </xpath>
     </template>
     <template id="diva_demo" name="Landing Demo">
+<!--        Landing demo section-->
         <section class="landing_demo tagline">
             <div class="container">
                 <div class="row">
                     <div class="wrapper">
                         <div class="banner_content punchline">
-                            <!-- <div class="ss" data-aos="reveal-bottom">
-                </div> -->
                             <h3 class="banner_heading">20
                                 new shades that are
                                 <br/>

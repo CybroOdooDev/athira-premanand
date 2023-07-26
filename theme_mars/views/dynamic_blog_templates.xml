@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Mars dynamic blog layout-->
+    <template id="dynamic_blog" inherit_id="website_blog.blog_post_complete"
+              name="Latest Blog">
+        <xpath expr="//section[@id='o_wblog_post_top']" position="replace">
+            <section class="banner_title">
+                <div class="container">
+                    <div class="wrapper">
+                        <div class="container text-center position-relative h-100 d-flex flex-column flex-grow-1 justify-content-around">
+                            <div t-attf-class="o_wblog_post_title #{opt_blog_post_select_to_tweet and 'js_tweet'} #{opt_blog_post_select_to_comment and 'js_comment'}">
+                                <h1 t-field="blog_post.name"
+                                    id="o_wblog_post_name"
+                                    class="o_editable_no_shadow"
+                                    data-oe-expression="blog_post.name"
+                                    t-att-data-blog-id="blog_post.id"
+                                    placeholder="Blog Post Title"/>
+                                <div t-field="blog_post.subtitle"
+                                     id="o_wblog_post_subtitle"
+                                     class="o_editable_no_shadow"
+                                     placeholder="Subtitle"/>
+                            </div>
+                        </div>
+                        <nav aria-label="breadcrumb"
+                             t-attf-class="flex-nowrap py-0 px-0 css_editable_mode_hidden #{additionnal_classes or ''}">
+                            <ol style="display: flex; justify-content: center;">
+                                <li t-if="len(blogs) &gt; 1"
+                                    class="breadcrumb-item">
+                                    <a href="/blog">All Blogs</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a t-attf-href="#{blog_url(tag=None, date_begin=None, date_end=None)}"
+                                       t-esc="blog.name"/>
+                                </li>
+                                <li class="breadcrumb-item text-truncate active">
+                                    <span t-esc="blog_post.name"/>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+        <xpath expr="//section[@id='o_wblog_post_main']" position="replace">
+        </xpath>
+        <xpath expr="//section[hasclass('banner_title')]" position="after">
+<!--            Mars sidebar layout-->
+            <div class="container_blog" style="display:flex;">
+                <section class="blog_sidebar">
+                    <div class="wrapper">
+                        <div class="container">
+                            <div class="row">
+                                <t t-foreach="posts_recent" t-as="data">
+                                </t>
+                                    <div class="col-lg-3 col-md-3 col-12 responsive_sidebar">
+                                        <div class="sidebar">
+                                            <div class="wrapper">
+                                                <div class="sidebar_tab">
+                                                    <h4>Tabs with posts</h4>
+                                                    <ul class="nav nav-tabs"
+                                                        id="myTab"
+                                                        role="tablist">
+                                                        <li class="nav-item"
+                                                            role="presentation">
+                                                            <button class="nav-link active"
+                                                                    id="home-tab"
+                                                                    data-bs-toggle="tab"
+                                                                    data-bs-target="#home"
+                                                                    type="button"
+                                                                    role="tab"
+                                                                    aria-controls="home"
+                                                                    aria-selected="true">
+                                                                Popular
+                                                            </button>
+                                                        </li>
+                                                        <li class="nav-item"
+                                                            role="presentation">
+                                                            <button class="nav-link"
+                                                                    id="profile-tab"
+                                                                    data-bs-toggle="tab"
+                                                                    data-bs-target="#profile"
+                                                                    type="button"
+                                                                    role="tab"
+                                                                    aria-controls="profile"
+                                                                    aria-selected="false">
+                                                                Featured
+                                                            </button>
+                                                        </li>
+                                                        <li class="nav-item"
+                                                            role="presentation">
+                                                            <button class="nav-link"
+                                                                    id="contact-tab"
+                                                                    data-bs-toggle="tab"
+                                                                    data-bs-target="#contact"
+                                                                    type="button"
+                                                                    role="tab"
+                                                                    aria-controls="contact"
+                                                                    aria-selected="false">
+                                                                Recent
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content"
+                                                         id="myTabContent">
+                                                        <div class="tab-pane fade show active"
+                                                             id="home"
+                                                             role="tabpanel"
+                                                             aria-labelledby="home-tab">
+                                                            <div class="blog_details"
+                                                                 style="width:200px !important">
+                                                                <t t-foreach="posts_popular.popular_ids"
+                                                                   t-as="data">
+                                                                    <div class="wrapper_s">
+                                                                        <div class="blog_image">
+                                                                            <div class="container">
+                                                                                <div class="img_wrapper blog_dynamic_image"
+                                                                                     style="height: 50px; width: 25px; overflow: hidden;">
+                                                                                    <t t-call="website.record_cover">
+                                                                                        <t t-set="_record"
+                                                                                           t-value="data"/>
+                                                                                        <t t-set="snippet_autofocus"
+                                                                                           t-value="True"/>
+                                                                                        <t t-set="use_filters"
+                                                                                           t-value="True"/>
+                                                                                        <t t-set="use_size"
+                                                                                           t-value="cover_mid"/>
+                                                                                        <t t-set="display_opt_name">
+                                                                                            Blog
+                                                                                            Post
+                                                                                            Cover
+                                                                                        </t>
+                                                                                        <t t-set="additionnal_classes"
+                                                                                           t-value="'cover_mid'"/>
+                                                                                    </t>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="blog_link">
+                                                                            <a t-attf-href="/blog/#{slug(data.blog_id)}/#{slug(data)}"
+                                                                               t-field="data.name"
+                                                                               t-attf-class="d-block text-reset text-decoration-none o_blog_post_title my-0 #{'h3' if opt_blog_list_view else ('h5' if opt_blog_readable else 'h6')}">
+                                                                                Untitled
+                                                                                Post
+                                                                            </a>
+                                                                            <ul class="right">
+                                                                                <li>
+                                                                                    <i class="bi bi-clock"/>
+                                                                                    6m
+                                                                                    ago
+                                                                                </li>
+                                                                                <li>
+                                                                                    <t t-foreach="data.tag_ids"
+                                                                                       t-as="one_tag">
+                                                                                        <i class="bi bi-tag-fill"
+                                                                                           t-field="one_tag.name"/>
+                                                                                    </t>
+                                                                                </li>
+                                                                            </ul>
+                                                                            <br/>
+                                                                        </div>
+                                                                    </div>
+                                                                </t>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade"
+                                                             id="profile"
+                                                             role="tabpanel"
+                                                             aria-labelledby="profile-tab">
+                                                            <div class="blog_details"
+                                                                 style="width:200px !important">
+                                                                <t t-foreach="posts_featured.featured_blog_ids"
+                                                                   t-as="data">
+                                                                    <div class="wrapper_s">
+                                                                        <div class="blog_image">
+                                                                            <div class="container">
+                                                                                <div class="img_wrapper blog_dynamic_image"
+                                                                                     style="height: 50px; width: 25px; overflow: hidden;">
+                                                                                    <t t-call="website.record_cover">
+                                                                                        <t t-set="_record"
+                                                                                           t-value="data"/>
+                                                                                        <t t-set="snippet_autofocus"
+                                                                                           t-value="True"/>
+                                                                                        <t t-set="use_filters"
+                                                                                           t-value="True"/>
+                                                                                        <t t-set="use_size"
+                                                                                           t-value="cover_mid"/>
+                                                                                        <t t-set="display_opt_name">
+                                                                                            Blog
+                                                                                            Post
+                                                                                            Cover
+                                                                                        </t>
+                                                                                        <t t-set="additionnal_classes"
+                                                                                           t-value="'cover_mid'"/>
+                                                                                    </t>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="blog_link">
+                                                                            <a t-attf-href="/blog/#{slug(data.blog_id)}/#{slug(data)}"
+                                                                               t-field="data.name"
+                                                                               t-attf-class="d-block text-reset text-decoration-none o_blog_post_title my-0 #{'h3' if opt_blog_list_view else ('h5' if opt_blog_readable else 'h6')}">
+                                                                                Untitled
+                                                                                Post
+                                                                            </a>
+                                                                            <ul class="right">
+                                                                                <li>
+                                                                                    <i t-field="data.post_date"
+                                                                                       class="text-muted bi bi-clock"
+                                                                                       t-options="{'format': 'long', 'date_only': 'true'}"/>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <t t-foreach="data.tag_ids"
+                                                                                       t-as="one_tag">
+                                                                                        <i class="bi bi-tag-fill"
+                                                                                           t-field="one_tag.name"/>
+                                                                                    </t>
+                                                                                </li>
+                                                                            </ul>
+                                                                            <br/>
+                                                                        </div>
+                                                                    </div>
+                                                                </t>
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade"
+                                                             id="contact"
+                                                             role="tabpanel"
+                                                             aria-labelledby="contact-tab">
+                                                            <div class="blog_details"
+                                                                 style=" width:200px !important">
+                                                                <t t-foreach="posts_recent"
+                                                                   t-as="data">
+                                                                    <div class="wrapper_s">
+                                                                        <div class="blog_image">
+                                                                            <div class="container">
+                                                                                <div class="img_wrapper blog_dynamic_image"
+                                                                                     style="height: 50px; width: 25px; overflow: hidden;">
+                                                                                    <t t-call="website.record_cover">
+                                                                                        <t t-set="_record"
+                                                                                           t-value="data"/>
+                                                                                        <t t-set="snippet_autofocus"
+                                                                                           t-value="True"/>
+                                                                                        <t t-set="use_filters"
+                                                                                           t-value="True"/>
+                                                                                        <t t-set="use_size"
+                                                                                           t-value="cover_mid"/>
+                                                                                        <t t-set="display_opt_name">
+                                                                                            Blog
+                                                                                            Post
+                                                                                            Cover
+                                                                                        </t>
+                                                                                        <t t-set="additionnal_classes"
+                                                                                           t-value="'cover_mid'"/>
+                                                                                    </t>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="blog_link">
+                                                                            <a t-attf-href="/blog/#{slug(data.blog_id)}/#{slug(data)}"
+                                                                               t-field="data.name"
+                                                                               t-attf-class="d-block text-reset text-decoration-none o_blog_post_title my-0 #{'h3' if opt_blog_list_view else ('h5' if opt_blog_readable else 'h6')}">
+                                                                                Untitled
+                                                                                Post
+                                                                            </a>
+                                                                            <ul class="right">
+                                                                                <li>
+                                                                                    <i t-field="data.post_date"
+                                                                                       class="text-muted bi bi-clock"
+                                                                                       t-options="{'format': 'long', 'date_only': 'true'}"/>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <t t-foreach="data.tag_ids"
+                                                                                       t-as="one_tag">
+                                                                                        <i class="bi bi-tag-fill"
+                                                                                           t-field="one_tag.name"/>
+                                                                                    </t>
+                                                                                </li>
+                                                                            </ul>
+                                                                            <br/>
+                                                                        </div>
+                                                                    </div>
+                                                                </t>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sidebar">
+                                                    <div class="wrapper"
+                                                         style=" float: left; width: 100%; margin-top: 90px;">
+                                                        <div class="sidebar_tab tags">
+                                                            <h4>TAGS</h4>
+                                                            <ul class="s_tags d-flex">
+                                                                <t t-foreach="tags"
+                                                                   t-as="tags">
+                                                                    <li style="    border: 1px solid var(--border-color);  padding: 1px 12px 6px 12px;
+                                                                    margin-right: 10px; margin-bottom: 10px; border-radius: 93px;
+                                                                    background-color: transparent;">
+                                                                        <a t-attf-href="/blog/tag/#{ tags.id }">
+                                                                            <span t-field="tags.name"/>
+                                                                        </a>
+                                                                    </li>
+                                                                </t>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-lg-9 blog_content_col col-md-9 col-12">
+                                    <div class="blog_content">
+                                        <t t-set="_record" t-value="blog_post"/>
+                                        <t t-set="_bg"
+                                           t-value="_bg or _record._get_background(height=_resize_height, width=_resize_width)"/>
+                                        <t t-call="website.record_cover">
+                                            <t t-set="_record" t-value="data"/>
+                                            <t t-set="snippet_autofocus"
+                                               t-value="True"/>
+                                            <t t-set="use_filters"
+                                               t-value="True"/>
+                                            <t t-set="use_size"
+                                               t-value="cover_mid"/>
+                                            <t t-set="display_opt_name">Blog
+                                                Post
+                                                Cover
+                                            </t>
+                                            <t t-set="additionnal_classes"
+                                               t-value="'cover_mid'"/>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('blog_content')]" position="after">
+            <section id="o_wblog_post_main"
+                     t-attf-class="container pt-4 pb-5 #{'anim' in request.params and 'o_wblog_post_main_transition'}">
+                <!-- Sidebar-enabled Layout -->
+                <div t-if="opt_blog_post_sidebar"
+                     t-attf-class="mx-auto #{opt_blog_post_readable and 'o_wblog_read_with_sidebar'}">
+                    <div t-attf-class="d-flex flex-column flex-lg-row #{opt_blog_post_readable and 'justify-content-between'}">
+                        <div id="o_wblog_post_content"
+                             t-attf-class="#{opt_blog_post_readable and 'o_container_small mx-0 w-100 flex-shrink-0' or 'w-lg-75'}">
+                            <t t-call="website_blog.blog_post_content"/>
+                        </div>
+                        <div id="o_wblog_post_sidebar_col"
+                             t-attf-class="ps-lg-5 #{not opt_blog_post_readable and 'flex-grow-1 w-lg-25'}">
+                            <t t-call="website_blog.blog_post_sidebar"/>
+                        </div>
+                    </div>
+                </div>
+                <!-- No-Sidebar Layout -->
+                <div t-if="not opt_blog_post_sidebar"
+                     t-attf-class="#{opt_blog_post_readable and 'o_container_small'}">
+                    <div class="d-flex flex-column flex-lg-row">
+                        <div id="o_wblog_post_content"
+                             t-attf-class=" #{opt_blog_post_readable and 'o_container_small w-100 flex-shrink-0'}">
+                            <t t-call="website_blog.blog_post_content"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div t-attf-class="mx-auto #{readableClass}">
+                        <div id="o_wblog_post_comments"
+                             t-attf-class="pt-4 o_container_small">
+                            <div groups="base.group_public" class="small mb-4">
+                                <a t-attf-href="/web/login?redirect=/blog/{{slug(blog_post.blog_id)}}/{{slug(blog_post)}}#discussion"
+                                   class="btn btn-sm btn-primary">
+                                    <b>Sign in</b>
+                                </a>
+                                to leave a comment
+                            </div>
+                            <t t-call="portal.message_thread">
+                                <t t-set="object" t-value="blog_post"/>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+</odoo>

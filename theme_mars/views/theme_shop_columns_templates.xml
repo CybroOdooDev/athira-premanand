@@ -1,0 +1,969 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    4 column shop layout-->
+    <template id="shop_column_4" inherit_id="website_sale.products"
+              active="False" customize_show="True"
+              name="4 columns version">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <section class="banner_services banner_shop">
+                <div class="wrapper">
+                    <div class="content title">
+                        <h2>
+                            SHOP
+                        </h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb ">
+                                <li class="breadcrumb-item">
+                                    <a href="/">
+                                        Home
+                                        <i class="arrow right"/>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/shop">
+                                        SHOP
+
+                                    </a>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+        <xpath expr="//div[hasclass('products_header')]" position="replace">
+            <t t-set="list_price_asc_label">Price - Low to High</t>
+            <t t-set="list_price_desc_label">Price - High to Low</t>
+            <t t-set="newest_arrivals_desc_label">Newest arrivals</t>
+            <t t-set="name_asc_label">Name</t>
+            <t t-set="website_sale_sortable"
+               t-value="[ (list_price_asc_label, 'list_price asc'), (list_price_desc_label, 'list_price desc'), (newest_arrivals_desc_label, 'create_date desc'), (name_asc_label, 'name asc') ]"/>
+            <t t-set="website_sale_sortable_current"
+               t-value="[sort for sort in website_sale_sortable if sort[1]==request.params.get('order', '')]"/>
+            <section class="Shop">
+                <div class="container">
+                    <div class="wrapper">
+                        <div class="shop_top_bar">
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <div class="left">
+                                        <t t-call="website.website_search_box_input">
+                                            <t t-set="search_type"
+                                               t-valuef="all"/>
+                                            <t t-set="action"
+                                               t-valuef="/website/search"/>
+                                            <t t-set="limit" t-valuef="5"/>
+                                            <t t-set="display_image"
+                                               t-valuef="true"/>
+                                            <t t-set="display_description"
+                                               t-valuef="true"/>
+                                            <t t-set="display_extra_link"
+                                               t-valuef="true"/>
+                                            <t t-set="display_detail"
+                                               t-valuef="true"/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="right_1">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle"
+                                                    type="button"
+                                                    id="dropdownMenuButton1"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                SORT BY
+                                            </button>
+                                            <ul class="dropdown-menu"
+                                                aria-labelledby="dropdownMenuButton1">
+                                                <t t-foreach="website_sale_sortable"
+                                                   t-as="sortby">
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                           t-att-href="keep('/shop', order=sortby[1])">
+                                                            <span t-out="sortby[0]"/>
+                                                        </a>
+                                                    </li>
+                                                </t>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="right_1">
+                                        <div class="dropdown">
+                                            <t t-set="website_sale_pricelists"
+                                               t-value="website.get_pricelist_available(show_visible=True)"/>
+                                            <t t-set="curr_pl"
+                                               t-value="website.get_current_pricelist()"/>
+                                            <button class="btn btn-secondary dropdown-toggle"
+                                                    type="button"
+                                                    id="dropdownMenuButton1"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                <t t-esc="curr_pl and curr_pl.name or ' - '"/>
+                                            </button>
+                                            <ul class="dropdown-menu"
+                                                aria-labelledby="dropdownMenuButton1">
+                                                <t t-foreach="website_sale_pricelists"
+                                                   t-as="pl">
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                           t-att-href="'/shop/change_pricelist/%s' % pl.id">
+                                                            <span t-att-data-pl_id="pl.id"
+                                                                  t-esc="pl.name"/>
+                                                        </a>
+                                                    </li>
+                                                </t>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+        <xpath expr="//tr[@t-foreach='bins']" position="replace">
+            <t t-if="request.website.viewref('theme_mars.shop_column_4').active">
+                <section class="Shop">
+                    <div class="container">
+                        <div class="wrapper">
+                            <section class="sustainable_product">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <t t-foreach="bins"
+                                           t-as="tr_product">
+                                            <t t-foreach="tr_product"
+                                               t-as="td_product">
+                                                <t t-if="td_product">
+                                                    <t t-set="product"
+                                                       t-value="td_product['product']"/>
+                                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 mb-3">
+                                                        <div class="sustainable">
+                                                            <div class="sustainable_wrapper">
+                                                                <div class="img_top">
+                                                                    <t t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
+                                                                        <button type="button"
+                                                                                role="button"
+                                                                                class="btn heart btn-outline-primary bg-white o_add_wishlist"
+                                                                                t-att-disabled="in_wish or None"
+                                                                                title="Add to Wishlist"
+                                                                                t-att-data-product-template-id="product.id"
+                                                                                t-att-data-product-product-id="product_variant_id"
+                                                                                data-action="o_wishlist">
+                                                                            <span class="bi bi-suit-heart-fill"
+                                                                                  role="img"
+                                                                                  aria-label="Add to wishlist"/>
+                                                                        </button>
+                                                                    </t>
+                                                                </div>
+                                                                <div class="card-body p-1 oe_product_image mars_oe_product_image">
+                                                                    <t t-set="product_href"
+                                                                       t-value="keep(product.website_url, page=(pager['page']['num'] if pager['page']['num']>1 else None))"/>
+                                                                    <a class="product_href d-block h-100"
+                                                                       itemprop="url"
+                                                                       t-att-href="product_href">
+                                                                        <t t-set="image_holder"
+                                                                           t-value="product._get_image_holder()"/>
+                                                                        <span class="d-flex h-100 justify-content-center align-items-center class1">
+                                                                            <img t-attf-src="/web/image/product.template/{{image_holder.id }}/image_1920"
+                                                                                 class="img img-fluid mars_default_img"/>
+                                                                        </span>
+                                                                        <t t-if="image_holder.product_template_image_ids">
+                                                                            <t t-set="flag"
+                                                                               t-value="False"/>
+                                                                            <t t-foreach="image_holder.product_template_image_ids"
+                                                                               t-as="image">
+                                                                                <t t-if="flag == False">
+                                                                                    <span class="d-flex h-100 justify-content-center align-items-center class2 d-none">
+                                                                                        <img t-attf-src="/web/image/product.image/{{image.id}}/image_1024/{{image.embed_code}}"
+                                                                                             class="img img-fluid mars_alternate_img d-none"/>
+                                                                                    </span>
+                                                                                    <t t-set="flag"
+                                                                                       t-value="True"/>
+                                                                                </t>
+                                                                            </t>
+                                                                        </t>
+                                                                    </a>
+                                                                    <a class="button slideInUp"
+                                                                       t-att-href="product_href"
+                                                                       itemprop="url">
+                                                                        Quick
+                                                                        View
+                                                                    </a>
+                                                                </div>
+                                                                <div class="bottom_details">
+                                                                    <div class="gender">
+                                                                        <a>
+                                                                            <t t-foreach=" td_product.get('product').public_categ_ids"
+                                                                               t-as="categ">
+                                                                                <t t-esc="categ.name"/>
+                                                                            </t>
+                                                                        </a>
+                                                                    </div>
+                                                                    <p>
+                                                                        <span>
+                                                                            <a t-att-href="product_href"
+                                                                               itemprop="url">
+                                                                                <t t-esc="td_product.get('product').name"/>
+                                                                            </a>
+                                                                        </span>
+                                                                    </p>
+                                                                    <p>
+                                                                        <t t-set="combination_info"
+                                                                           t-value="product._get_combination_info(only_template=True, add_qty=add_qty or 1, pricelist=pricelist)"/>
+                                                                        <span t-if="combination_info['price']"
+                                                                              t-esc="combination_info['price']"
+                                                                              t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                                        <span itemprop="price"
+                                                                              style="display:none;"
+                                                                              t-esc="combination_info['price']"/>
+                                                                        <span itemprop="priceCurrency"
+                                                                              style="display:none;"
+                                                                              t-esc="website.currency_id.name"/>
+                                                                    </p>
+                                                                    <t t-if="product.rating_avg > 1.0">
+                                                                        <t t-call="portal_rating.rating_widget_stars_static">
+                                                                            <t t-set="rating_avg"
+                                                                               t-value="product.rating_avg"/>
+                                                                            <t t-set="trans_text_plural">
+                                                                                %s
+                                                                            </t>
+                                                                            <t t-set="trans_text_singular">
+                                                                                %s
+                                                                            </t>
+                                                                            <t t-set="rating_count"
+                                                                               t-value="(trans_text_plural if product.rating_count > 1 else trans_text_singular) % product.rating_count"/>
+                                                                        </t>
+                                                                    </t>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                                <td t-if="not td_product"
+                                                    class="oe-height-2"/>
+                                            </t>
+                                        </t>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </t>
+            <t t-else="">
+                <tr t-foreach="bins" t-as="tr_product">
+                    <t t-foreach="tr_product" t-as="td_product">
+                        <t t-if="td_product">
+                            <t t-set="product"
+                               t-value="td_product['product']"/>
+                            <!--  We use t-attf-class here to allow easier customization  -->
+                            <td t-att-colspan="td_product['x'] != 1 and td_product['x']"
+                                t-att-rowspan="td_product['y'] != 1 and td_product['y']"
+                                t-attf-class="oe_product"
+                                t-att-data-ribbon-id="td_product['ribbon'].id">
+                                <div t-attf-class="o_wsale_product_grid_wrapper o_wsale_product_grid_wrapper_#{td_product['x']}_#{td_product['y']}">
+                                    <t t-call="website_sale.products_item">
+                                        <t t-set="product_image_big"
+                                           t-value="td_product['x'] + td_product['y'] > 2"/>
+                                    </t>
+                                </div>
+                            </td>
+                        </t>
+                        <td t-else=""/>
+                    </t>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+    <!--    2 column layout -->
+    <template id="shop_column_2" name="Mars 2 Columns Version"
+              inherit_id="website_sale.products" active="False"
+              customize_show="True">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <section class="banner_services banner_shop">
+                <div class="wrapper">
+                    <div class="content title">
+                        <h2>
+                            SHOP
+                        </h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb ">
+                                <li class="breadcrumb-item">
+                                    <a href="/">
+                                        Home
+                                        <i class="arrow right"/>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/shop">
+                                        SHOP
+                                    </a>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+        <xpath expr="//div[hasclass('products_header')]" position="replace">
+            <t t-set="list_price_asc_label">Price - Low to High</t>
+            <t t-set="list_price_desc_label">Price - High to Low</t>
+            <t t-set="newest_arrivals_desc_label">Newest arrivals</t>
+            <t t-set="name_asc_label">Name</t>
+            <t t-set="website_sale_sortable"
+               t-value="[ (list_price_asc_label, 'list_price asc'), (list_price_desc_label, 'list_price desc'), (newest_arrivals_desc_label, 'create_date desc'), (name_asc_label, 'name asc') ]"/>
+            <t t-set="website_sale_sortable_current"
+               t-value="[sort for sort in website_sale_sortable if sort[1]==request.params.get('order', '')]"/>
+            <section class="Shop">
+                <div class="container">
+                    <div class="wrapper">
+                        <div class="shop_top_bar">
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <div class="left">
+                                        <t t-call="website.website_search_box_input">
+                                            <t t-set="search_type"
+                                               t-valuef="all"/>
+                                            <t t-set="action"
+                                               t-valuef="/website/search"/>
+                                            <t t-set="limit" t-valuef="5"/>
+                                            <t t-set="display_image"
+                                               t-valuef="true"/>
+                                            <t t-set="display_description"
+                                               t-valuef="true"/>
+                                            <t t-set="display_extra_link"
+                                               t-valuef="true"/>
+                                            <t t-set="display_detail"
+                                               t-valuef="true"/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="right_1">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle"
+                                                    type="button"
+                                                    id="dropdownMenuButton1"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                SORT BY
+                                            </button>
+                                            <ul class="dropdown-menu"
+                                                aria-labelledby="dropdownMenuButton1">
+                                                <t t-foreach="website_sale_sortable"
+                                                   t-as="sortby">
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                           t-att-href="keep('/shop', order=sortby[1])">
+                                                            <span t-out="sortby[0]"/>
+                                                        </a>
+                                                    </li>
+                                                </t>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="right_1">
+                                        <div class="dropdown">
+                                            <t t-set="website_sale_pricelists"
+                                               t-value="website.get_pricelist_available(show_visible=True)"/>
+                                            <t t-set="curr_pl"
+                                               t-value="website.get_current_pricelist()"/>
+                                            <button class="btn btn-secondary dropdown-toggle"
+                                                    type="button"
+                                                    id="dropdownMenuButton1"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                <t t-esc="curr_pl and curr_pl.name or ' - '"/>
+                                            </button>
+                                            <ul class="dropdown-menu"
+                                                aria-labelledby="dropdownMenuButton1">
+                                                <t t-foreach="website_sale_pricelists"
+                                                   t-as="pl">
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                           t-att-href="'/shop/change_pricelist/%s' % pl.id">
+                                                            <span t-att-data-pl_id="pl.id"
+                                                                  t-esc="pl.name"/>
+                                                        </a>
+                                                    </li>
+                                                </t>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+        <xpath expr="//tr[@t-foreach='bins']" position="replace">
+            <t t-if="request.website.viewref('theme_mars.shop_column_2').active">
+                <section class="Shop">
+                    <div class="container">
+                        <div class="wrapper">
+                            <section class="sustainable_product">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <t t-foreach="bins"
+                                           t-as="tr_product">
+                                            <t t-foreach="tr_product"
+                                               t-as="td_product">
+                                                <t t-if="td_product">
+                                                    <t t-set="product"
+                                                       t-value="td_product['product']"/>
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-3">
+                                                        <div class="sustainable">
+                                                            <div class="sustainable_wrapper">
+                                                                <div class="img_top">
+                                                                    <t t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
+                                                                        <t t-set="product_variant"
+                                                                           t-value="product._create_first_product_variant()"/>
+                                                                        <t t-set="in_wish"
+                                                                           t-value="product_variant and product_variant._is_in_wishlist()"/>
+                                                                        <t t-if="in_wish">
+                                                                            <span class="bi bi-heart-fill"
+                                                                                  style="color:#ff0000b3; margin-left:20px; border:1px solid #e1626291; padding-top:5px; width:30px; height:30px; border-radius:50%; text-align:center;"
+                                                                                  role="img"/>
+                                                                        </t>
+                                                                        <t t-else="">
+                                                                            <button type="button"
+                                                                                    role="button"
+                                                                                    class="btn heart btn-outline-primary bg-white o_add_wishlist"
+                                                                                    title="Add to Wishlist"
+                                                                                    t-att-data-product-template-id="product.id"
+                                                                                    t-att-data-product-product-id="product_variant.id"
+                                                                                    data-action="o_wishlist">
+                                                                                <span class="bi bi-heart"
+                                                                                      role="img"
+                                                                                      aria-label="Add to wishlist"/>
+                                                                            </button>
+                                                                        </t>
+                                                                    </t>
+                                                                </div>
+                                                                <div class="card-body p-1 oe_product_image mars_oe_product_image">
+                                                                    <t t-set="product_href"
+                                                                       t-value="keep(product.website_url, page=(pager['page']['num'] if pager['page']['num']>1 else None))"/>
+                                                                    <a class="product_href d-block h-100"
+                                                                       itemprop="url"
+                                                                       t-att-href="product_href">
+                                                                        <t t-set="image_holder"
+                                                                           t-value="product._get_image_holder()"/>
+                                                                        <span class="d-flex h-100 justify-content-center align-items-center">
+                                                                            <img t-attf-src="/web/image/product.template/{{image_holder.id }}/image_1920"
+                                                                                 class="img img-fluid mars_default_img"/>
+                                                                        </span>
+                                                                        <t t-if="image_holder.product_template_image_ids">
+                                                                            <t t-set="flag"
+                                                                               t-value="False"/>
+                                                                            <t t-foreach="image_holder.product_template_image_ids"
+                                                                               t-as="image">
+                                                                                <t t-if="flag == False">
+                                                                                    <span class="d-flex h-100 justify-content-center align-items-center">
+                                                                                        <img t-attf-src="/web/image/product.image/{{image.id}}/image_1024/{{image.embed_code}}"
+                                                                                             class="img img-fluid mars_alternate_img d-none"/>
+                                                                                    </span>
+                                                                                    <t t-set="flag"
+                                                                                       t-value="True"/>
+                                                                                </t>
+                                                                            </t>
+                                                                        </t>
+                                                                    </a>
+                                                                    <a class="button slideInUp"
+                                                                       t-att-href="product_href"
+                                                                       itemprop="url">
+                                                                        Quick
+                                                                        View
+                                                                    </a>
+                                                                </div>
+                                                                <div class="bottom_details">
+                                                                    <div class="gender">
+                                                                        <a>
+                                                                            <t t-foreach=" td_product.get('product').public_categ_ids"
+                                                                               t-as="categ">
+                                                                                <t t-esc="categ.name"/>
+                                                                            </t>
+                                                                        </a>
+                                                                    </div>
+                                                                    <p>
+                                                                        <span>
+                                                                            <a t-att-href="product_href"
+                                                                               itemprop="url">
+                                                                                <t t-esc="td_product.get('product').name"/>
+                                                                            </a>
+                                                                        </span>
+                                                                        <t t-set="combination_info"
+                                                                           t-value="product._get_combination_info(only_template=True, add_qty=add_qty or 1, pricelist=pricelist)"/>
+                                                                        <span t-if="combination_info['price']"
+                                                                              t-esc="combination_info['price']"
+                                                                              t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                                        <span itemprop="price"
+                                                                              style="display:none;"
+                                                                              t-esc="combination_info['price']"/>
+                                                                        <span itemprop="priceCurrency"
+                                                                              style="display:none;"
+                                                                              t-esc="website.currency_id.name"/>
+                                                                    </p>
+                                                                    <t t-if="product.rating_avg > 1.0">
+                                                                        <t t-call="portal_rating.rating_widget_stars_static">
+                                                                            <t t-set="rating_avg"
+                                                                               t-value="product.rating_avg"/>
+                                                                            <t t-set="trans_text_plural">
+                                                                                %s
+                                                                            </t>
+                                                                            <t t-set="trans_text_singular">
+                                                                                %s
+                                                                            </t>
+                                                                            <t t-set="rating_count"
+                                                                               t-value="(trans_text_plural if product.rating_count > 1 else trans_text_singular) % product.rating_count"/>
+                                                                        </t>
+                                                                    </t>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                                <td t-if="not td_product"
+                                                    class="oe-height-2"/>
+                                            </t>
+                                        </t>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="justify-content-center">
+                            <t t-call="theme_mars.mars_pager"/>
+                        </div>
+                    </div>
+                </section>
+            </t>
+        </xpath>
+    </template>
+    <!--3 column layout-->
+    <template id="shop_column_3" name="Mars 3 Columns Version"
+              inherit_id="website_sale.products" active="False"
+              customize_show="True">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <section class="banner_services banner_shop">
+                <div class="wrapper">
+                    <div class="content title">
+                        <h2>
+                            SHOP
+                        </h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb ">
+                                <li class="breadcrumb-item">
+                                    <a href="/">
+                                        Home
+                                        <i class="arrow right"/>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/shop">
+                                        SHOP
+                                    </a>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+        <xpath expr="//div[hasclass('products_header')]" position="replace">
+            <t t-set="list_price_asc_label">Price - Low to High</t>
+            <t t-set="list_price_desc_label">Price - High to Low</t>
+            <t t-set="newest_arrivals_desc_label">Newest arrivals</t>
+            <t t-set="name_asc_label">Name</t>
+            <t t-set="website_sale_sortable"
+               t-value="[ (list_price_asc_label, 'list_price asc'), (list_price_desc_label, 'list_price desc'), (newest_arrivals_desc_label, 'create_date desc'), (name_asc_label, 'name asc') ]"/>
+            <t t-set="website_sale_sortable_current"
+               t-value="[sort for sort in website_sale_sortable if sort[1]==request.params.get('order', '')]"/>
+            <section class="Shop">
+                <div class="container">
+                    <div class="wrapper">
+                        <div class="shop_top_bar">
+                            <div class="row">
+                                <div class="col-lg-6 col-12">
+                                    <div class="left">
+                                        <t t-call="website.website_search_box_input">
+                                            <t t-set="search_type"
+                                               t-valuef="all"/>
+                                            <t t-set="action"
+                                               t-valuef="/website/search"/>
+                                            <t t-set="limit" t-valuef="5"/>
+                                            <t t-set="display_image"
+                                               t-valuef="true"/>
+                                            <t t-set="display_description"
+                                               t-valuef="true"/>
+                                            <t t-set="display_extra_link"
+                                               t-valuef="true"/>
+                                            <t t-set="display_detail"
+                                               t-valuef="true"/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="right_1">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle"
+                                                    type="button"
+                                                    id="dropdownMenuButton1"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                SORT BY
+                                            </button>
+                                            <ul class="dropdown-menu"
+                                                aria-labelledby="dropdownMenuButton1">
+                                                <t t-foreach="website_sale_sortable"
+                                                   t-as="sortby">
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                           t-att-href="keep('/shop', order=sortby[1])">
+                                                            <span t-out="sortby[0]"/>
+                                                        </a>
+                                                    </li>
+                                                </t>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="right_1">
+                                        <div class="dropdown">
+                                            <t t-set="website_sale_pricelists"
+                                               t-value="website.get_pricelist_available(show_visible=True)"/>
+                                            <t t-set="curr_pl"
+                                               t-value="website.get_current_pricelist()"/>
+                                            <button class="btn btn-secondary dropdown-toggle"
+                                                    type="button"
+                                                    id="dropdownMenuButton1"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                <t t-esc="curr_pl and curr_pl.name or ' - '"/>
+                                            </button>
+                                            <ul class="dropdown-menu"
+                                                aria-labelledby="dropdownMenuButton1">
+                                                <t t-foreach="website_sale_pricelists"
+                                                   t-as="pl">
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                           t-att-href="'/shop/change_pricelist/%s' % pl.id">
+                                                            <span t-att-data-pl_id="pl.id"
+                                                                  t-esc="pl.name"/>
+                                                        </a>
+                                                    </li>
+                                                </t>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+        <!-- Products Grid -->
+        <xpath expr="//tr[@t-foreach='bins']" position="replace">
+            <t t-if="request.website.viewref('theme_mars.shop_column_3').active">
+                <section class="Shop">
+                    <div class="container">
+                        <div class="wrapper">
+                            <section class="sustainable_product">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <t t-foreach="bins"
+                                           t-as="tr_product">
+                                            <t t-foreach="tr_product"
+                                               t-as="td_product">
+                                                <t t-if="td_product">
+                                                    <t t-set="product"
+                                                       t-value="td_product['product']"/>
+                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-3">
+                                                        <div class="sustainable">
+                                                            <div class="sustainable_wrapper">
+                                                                <div class="img_top">
+                                                                    <t t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
+                                                                        <t t-set="product_variant"
+                                                                           t-value="product._create_first_product_variant()"/>
+                                                                        <t t-set="in_wish"
+                                                                           t-value="product_variant and product_variant._is_in_wishlist()"/>
+                                                                        <t t-if="in_wish">
+                                                                            <span class="bi bi-heart-fill"
+                                                                                  style="color:#ff0000b3; margin-left:20px; border:1px solid #e1626291; padding-top:5px; width:30px; height:30px; border-radius:50%; text-align:center;"
+                                                                                  role="img"/>
+                                                                        </t>
+                                                                        <t t-else="">
+                                                                            <button type="button"
+                                                                                    role="button"
+                                                                                    class="btn heart btn-outline-primary bg-white o_add_wishlist"
+                                                                                    title="Add to Wishlist"
+                                                                                    t-att-data-product-template-id="product.id"
+                                                                                    t-att-data-product-product-id="product_variant.id"
+                                                                                    data-action="o_wishlist">
+                                                                                <span class="bi bi-heart"
+                                                                                      role="img"
+                                                                                      aria-label="Add to wishlist"/>
+                                                                            </button>
+                                                                        </t>
+                                                                    </t>
+                                                                </div>
+                                                                <div class="card-body p-1 oe_product_image mars_oe_product_image">
+                                                                    <t t-set="product_href"
+                                                                       t-value="keep(product.website_url, page=(pager['page']['num'] if pager['page']['num']>1 else None))"/>
+                                                                    <a class="product_href d-block h-100"
+                                                                       itemprop="url"
+                                                                       t-att-href="product_href">
+                                                                        <t t-set="image_holder"
+                                                                           t-value="product._get_image_holder()"/>
+                                                                        <span class="d-flex h-100 justify-content-center align-items-center">
+                                                                            <img t-attf-src="/web/image/product.template/{{image_holder.id }}/image_1920"
+                                                                                 class="img img-fluid mars_default_img"/>
+                                                                        </span>
+                                                                        <t t-if="image_holder.product_template_image_ids">
+                                                                            <t t-set="flag"
+                                                                               t-value="False"/>
+                                                                            <t t-foreach="image_holder.product_template_image_ids"
+                                                                               t-as="image">
+                                                                                <t t-if="flag == False">
+                                                                                    <span class="d-flex h-100 justify-content-center align-items-center">
+                                                                                        <img t-attf-src="/web/image/product.image/{{image.id}}/image_1024/{{image.embed_code}}"
+                                                                                             class="img img-fluid mars_alternate_img d-none"/>
+                                                                                    </span>
+                                                                                    <t t-set="flag"
+                                                                                       t-value="True"/>
+                                                                                </t>
+                                                                            </t>
+                                                                        </t>
+                                                                    </a>
+                                                                    <a class="button slideInUp"
+                                                                       t-att-href="product_href"
+                                                                       itemprop="url">
+                                                                        Quick
+                                                                        View
+                                                                    </a>
+                                                                </div>
+                                                                <div class="bottom_details">
+                                                                    <div class="gender">
+                                                                        <a>
+                                                                            <t t-foreach=" td_product.get('product').public_categ_ids"
+                                                                               t-as="categ">
+                                                                                <t t-esc="categ.name"/>
+                                                                            </t>
+                                                                        </a>
+                                                                    </div>
+                                                                    <p>
+                                                                        <span>
+                                                                            <a t-att-href="product_href"
+                                                                               itemprop="url"
+                                                                               style="font-weight:400;">
+                                                                                <t t-esc="td_product.get('product').name"/>
+                                                                            </a>
+                                                                        </span>
+                                                                    </p>
+                                                                    <p>
+                                                                        <t t-set="combination_info"
+                                                                           t-value="product._get_combination_info(only_template=True, add_qty=add_qty or 1, pricelist=pricelist)"/>
+                                                                        <span t-if="combination_info['price']"
+                                                                              t-esc="combination_info['price']"
+                                                                              t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                                        <span itemprop="price"
+                                                                              style="display:none;"
+                                                                              t-esc="combination_info['price']"/>
+                                                                        <span itemprop="priceCurrency"
+                                                                              style="display:none;"
+                                                                              t-esc="website.currency_id.name"/>
+                                                                    </p>
+                                                                    <t t-if="product.rating_avg > 1.0">
+                                                                        <t t-call="portal_rating.rating_widget_stars_static">
+
+                                                                            <t t-set="rating_avg"
+                                                                               t-value="product.rating_avg"/>
+                                                                            <t t-esc="rating"/>
+                                                                            <t t-set="trans_text_plural">
+                                                                                %s
+                                                                            </t>
+                                                                            <t t-set="trans_text_singular">
+                                                                                %s
+                                                                            </t>
+                                                                            <t t-set="rating_count"
+                                                                               t-value="(trans_text_plural if product.rating_count > 1 else trans_text_singular) % product.rating_count"/>
+                                                                        </t>
+                                                                    </t>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                                <td t-if="not td_product"
+                                                    class="oe-height-2"/>
+                                            </t>
+                                        </t>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="justify-content-center">
+                            <t t-call="theme_mars.mars_pager"/>
+                        </div>
+                    </div>
+                </section>
+            </t>
+        </xpath>
+    </template>
+    <!--    5 column layout-->
+    <template id="shop_column_5" inherit_id="website_sale.products"
+              active="False" customize_show="True" name="5 columns version">
+        <xpath expr="//div[@id='wrap']" position="before">
+            <section class="banner_services banner_shop">
+                <div class="wrapper">
+                    <div class="content title">
+                        <h2>
+                            SHOP
+                        </h2>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb ">
+                                <li class="breadcrumb-item">
+                                    <a href="/">
+                                        Home
+                                        <i class="arrow right"/>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/shop">
+                                        SHOP
+                                        <i class="arrow right"/>
+                                    </a>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+        <xpath expr="//tr[@t-foreach='bins']" position="replace">
+            <section class="Shop">
+                <div class="container">
+                    <div class="wrapper">
+                        <section class="sustainable_product">
+                            <div class="container-fluid">
+                                <div class="row product_grid">
+                                    <t t-foreach="bins" t-as="tr_product">
+                                        <t t-foreach="tr_product"
+                                           t-as="td_product">
+                                            <t t-if="td_product">
+                                                <t t-set="product"
+                                                   t-value="td_product['product']"/>
+                                                <div class="col mb-3">
+                                                    <div class="sustainable">
+                                                        <div class="sustainable_wrapper">
+                                                            <div class="img_top">
+                                                                <t t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
+                                                                    <button type="button"
+                                                                            role="button"
+                                                                            class="btn heart btn-outline-primary bg-white o_add_wishlist"
+                                                                            t-att-disabled="in_wish or None"
+                                                                            title="Add to Wishlist"
+                                                                            t-att-data-product-template-id="product.id"
+                                                                            t-att-data-product-product-id="product_variant_id"
+                                                                            data-action="o_wishlist">
+                                                                        <span class="bi bi-suit-heart-fill"
+                                                                              role="img"
+                                                                              aria-label="Add to wishlist"/>
+                                                                    </button>
+                                                                </t>
+                                                            </div>
+                                                            <div class="card-body p-1 oe_product_image mars_oe_product_image">
+                                                                <t t-set="product_href"
+                                                                   t-value="keep(product.website_url, page=(pager['page']['num'] if pager['page']['num']>1 else None))"/>
+                                                                <a class="product_href d-block h-100"
+                                                                   itemprop="url"
+                                                                   t-att-href="product_href">
+                                                                    <t t-set="image_holder"
+                                                                       t-value="product._get_image_holder()"/>
+                                                                    <span class="d-flex h-100 justify-content-center align-items-center">
+                                                                        <img t-attf-src="/web/image/product.template/{{image_holder.id }}/image_1920"
+                                                                             class="img img-fluid mars_default_img"/>
+                                                                    </span>
+                                                                    <t t-if="image_holder.product_template_image_ids">
+                                                                        <t t-set="flag"
+                                                                           t-value="False"/>
+                                                                        <t t-foreach="image_holder.product_template_image_ids"
+                                                                           t-as="image">
+                                                                            <t t-if="flag == False">
+                                                                                <span class="d-flex h-100 justify-content-center align-items-center">
+                                                                                    <img t-attf-src="/web/image/product.image/{{image.id}}/image_1024/{{image.embed_code}}"
+                                                                                         class="img img-fluid mars_alternate_img d-none"/>
+                                                                                </span>
+                                                                                <t t-set="flag"
+                                                                                   t-value="True"/>
+                                                                            </t>
+                                                                        </t>
+                                                                    </t>
+                                                                </a>
+                                                                <a class="button slideInUp"
+                                                                   t-att-href="product_href"
+                                                                   itemprop="url">
+                                                                    Quick
+                                                                    View
+                                                                </a>
+                                                            </div>
+                                                            <div class="bottom_details">
+                                                                <p>
+                                                                    <span>
+                                                                        <a href="#">
+                                                                            <span t-esc="td_product.get('product').name"/>
+                                                                        </a>
+                                                                    </span>
+                                                                </p>
+                                                                <p>
+                                                                    <t t-set="combination_info"
+                                                                       t-value="product._get_combination_info(only_template=True, add_qty=add_qty or 1, pricelist=pricelist)"/>
+                                                                    <span t-if="combination_info['price']"
+                                                                          t-esc="combination_info['price']"
+                                                                          t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                                    <span itemprop="price"
+                                                                          style="display:none;"
+                                                                          t-esc="combination_info['price']"/>
+                                                                    <span itemprop="priceCurrency"
+                                                                          style="display:none;"
+                                                                          t-esc="website.currency_id.name"/>
+                                                                </p>
+                                                                <t t-if="product.rating_avg > 1.0">
+                                                                    <t t-call="portal_rating.rating_widget_stars_static">
+                                                                        <t t-set="rating_avg"
+                                                                           t-value="product.rating_avg"/>
+                                                                        <t t-set="trans_text_plural">
+                                                                            %s
+                                                                        </t>
+                                                                        <t t-set="trans_text_singular">
+                                                                            %s
+                                                                        </t>
+                                                                        <t t-set="rating_count"
+                                                                           t-value="(trans_text_plural if product.rating_count > 1 else trans_text_singular) % product.rating_count"/>
+                                                                    </t>
+                                                                </t>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                            <td t-if="not td_product"
+                                                class="oe-height-2"/>
+                                        </t>
+                                    </t>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </xpath>
+    </template>
+</odoo>

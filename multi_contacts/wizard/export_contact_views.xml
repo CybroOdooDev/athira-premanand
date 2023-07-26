@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    Added a popup for exporting the contacts-->
+    <record id="export_contact_view_form" model="ir.ui.view">
+        <field name="name">export.contact.view.form</field>
+        <field name="model">export.contact</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <div>
+                    <field name="qr_code" widget='image' class="oe_avatar"/>
+                    <field name="xlsx_binary" filename="xlsx_binary_name"
+                           attrs="{'invisible': [('binary', '!=', True)]}"/>
+                    <field name="xlsx_binary_name" invisible="1"/>
+                    <field name="binary" invisible="1"/>
+                </div>
+                <footer>
+                    <button
+                            name="action_print_xlsx"
+                            string="Xlsx"
+                            type="object"
+                            class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="export_contact_action"
+            model="ir.actions.act_window">
+        <field name="name">Export Contacts</field>
+        <field name="res_model">export.contact</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="export_contact_view_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

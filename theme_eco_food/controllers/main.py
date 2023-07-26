@@ -38,7 +38,7 @@ from odoo.tools import lazy
 
 class WebsiteSale(main.WebsiteSale):
     def shop(self, page=0, category=None, search='', min_price=0.0, max_price=0.0, ppg=False, **post):
-        print('epidraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+        """This function helps to override the functionalites of a website shop"""
         add_qty = int(post.get('add_qty', 1))
         try:
             min_price = float(min_price)
@@ -127,12 +127,6 @@ class WebsiteSale(main.WebsiteSale):
             available_min_price, available_max_price = request.env.cr.fetchone()
 
             if min_price or max_price:
-                # The if/else condition in the min_price / max_price value assignment
-                # tackles the case where we switch to a list of products with different
-                # available min / max prices than the ones set in the previous page.
-                # In order to have logical results and not yield empty product lists, the
-                # price filter is set to their respective available prices when the specified
-                # min exceeds the max, and / or the specified max is lower than the available min.
                 if min_price:
                     min_price = min_price if min_price <= available_max_price else available_min_price
                     post['min_price'] = min_price
@@ -157,7 +151,6 @@ class WebsiteSale(main.WebsiteSale):
         pager = website.pager(url=url, total=product_count, page=page, step=ppg, scope=7, url_args=post)
         offset = pager['offset']
         product_count=request.env['product.template'].search_count([('pd','=',True)])
-        print('count', product_count)
         if product_count==0:
             products = search_product[offset:offset + ppg]
         else:
@@ -225,6 +218,8 @@ class WebsiteEcoFoodNewArrivals(http.Controller):
 
     @http.route('/eco_food_new_arrivals', auth="public", type='json', website=True)
     def eco_food_new_arrivals(self):
+        """this function used to create new arrivals products"""
+
         new_arrival = request.env['new.arrival'].sudo().search([])
         products = {
             'new_arrival': new_arrival.new_arrivals_ids
@@ -234,30 +229,22 @@ class WebsiteEcoFoodNewArrivals(http.Controller):
 
     @http.route('/add_to_cart/<int:id>', auth="public", type='http', website=True)
     def add_to_cart(self, id):
-        product = request.env['product.product'].search([('product_tmpl_id', '=', id)])[0]
-        so = request.website.sale_get_order()
-        flag = True
-        for rec in so.order_line:
-            if product.id == rec.product_id.id:
-                rec.product_uom_qty += 1
-                flag = False
-                break
+        """this function is used for adding to cart"""
 
-        if flag:
-            so.write(
-                {'order_line': [
-                    (0, 0, {
-                        'name': product.name,
-                        'product_id': product.id,
-                        'product_uom_qty': 1,
-                        'price_unit': product.list_price,
-                        'tax_id': False,
-                    })]}
-            )
+        product = request.env['product.product'].search([('product_tmpl_id', '=', id)])[0]
+        so = request.website.sale_get_order(force_create=True)
+        so._cart_update(
+            product_id=int(id),
+            add_qty=1,
+            set_qty=1
+        )
+       
         return request.redirect('/shop/cart')
 
     @http.route('/add_to_wishlist_new_arrival/<int:product_id>', auth="public", type='http', website=True)
     def add_to_wishlist(self, product_id, **kw):
+        """this function is used for adding to wishlist"""
+
         website = request.website
         pricelist = website.pricelist_id
         product = request.env['product.product'].browse(product_id)
@@ -289,6 +276,8 @@ class WebsiteEcoFoodNewArrivals(http.Controller):
 
     @http.route('/cart_quantity_minus', auth="public", type='json', website=True)
     def cart_quantity_minus(self, line_id):
+        """this function is used for cart quantity minus"""
+
         so = request.website.sale_get_order()
         for rec in so.order_line:
             if rec.id == line_id:
@@ -296,6 +285,8 @@ class WebsiteEcoFoodNewArrivals(http.Controller):
 
     @http.route('/cart_quantity_plus', auth="public", type='json', website=True)
     def cart_quantity_plus(self, line_id):
+        """this function is used for cart quantity plus"""
+
         so = request.website.sale_get_order()
         for rec in so.order_line:
             if rec.id == line_id:
@@ -303,6 +294,8 @@ class WebsiteEcoFoodNewArrivals(http.Controller):
 
     @http.route('/cart/del/my/product', auth="public", type='json', website=True)
     def delete_cart_products(self, line_id):
+        """this function is used for cart quantity delete product"""
+
         so = request.website.sale_get_order()
         id = int(line_id)
         for rec in so.order_line:
@@ -311,8 +304,9 @@ class WebsiteEcoFoodNewArrivals(http.Controller):
 
     @http.route('/get_best_seller', auth="public", type='json', website=True)
     def get_best_seller(self):
+        """this function is used for get bestseller product"""
+
         best_seller = request.env['dynamic.products'].sudo().search([])
-        print('controller called..', best_seller.product_tmpl_ids)
         values = {
             'best_seller': best_seller.product_tmpl_ids
         }
@@ -321,6 +315,7 @@ class WebsiteEcoFoodNewArrivals(http.Controller):
 
     @http.route('/get_featured_products', auth="public", type='json', website=True)
     def get_featured_products(self):
+        """this function is used for get featured products"""
         featured_product = request.env['featured.products'].sudo().search([], limit=8)
 
         product = [rec.read()[0] for rec in featured_product]
@@ -351,6 +346,7 @@ class WebsiteEcoFoodNewArrivals(http.Controller):
 
     @http.route('/get_recently_added_products', auth="public", type='json', website=True)
     def get_recently_added_products(self):
+        """this is the function that will return the most recently added products"""
         recently_added_prod = request.env['recently_added.products'].sudo().search([], order='id desc', limit=16)
 
         recent = [rec.read()[0] for rec in recently_added_prod]
@@ -367,5 +363,6 @@ class WebsiteEcoFoodNewArrivals(http.Controller):
             'slide1': slide1,
             'slide2': slide2
         }
+
         response = http.Response(template='theme_eco_food.eco_food_recently_added_products', qcontext=values)
         return response.render()

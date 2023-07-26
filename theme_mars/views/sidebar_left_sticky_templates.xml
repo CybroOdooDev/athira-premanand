@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Sticky left sidebar layout-->
+    <template id="sidebar_left_sticky" inherit_id="theme_mars.dynamic_blog"
+              name="Blog Left Sticky">
+        <xpath expr="//div[hasclass('responsive_sidebar')]" position="attributes">
+            <attribute name="class">col-lg-3 col-md-3 col-12 responsive_sidebar sticky_left</attribute>
+        </xpath>
+    </template>
+</odoo>

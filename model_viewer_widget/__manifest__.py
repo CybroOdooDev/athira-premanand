@@ -19,16 +19,16 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-
 {
     'name': 'Model Viewer Widget',
     'version': '16.0.1.0.0',
-    'summary': """This module helps you to add customer rating and comments through website.""",
-    'description': """This module manages customer rating and comments.""",
+    'summary': """It helps to render interactive 3D models.""",
+    'description': """It helps to render interactive 3D models. Zoom in and
+     zoom out feature is available and also can move in in any direction""",
     'author': 'Cybrosys Techno Solutions',
     'company': 'Cybrosys Techno Solutions',
     'website': "https://www.cybrosys.com",
-    'category': 'website',
+    'category': 'Sales, Extra Tools',
     'maintainer': 'Cybrosys Techno Solutions',
     'depends': ['base', 'product'],
     'data': [
@@ -39,7 +39,6 @@
             'https://unpkg.com/@egjs/view3d@2.10.1/dist/view3d.pkgd.min.js',
             'model_viewer_widget/static/src/js/widget.js',
             'model_viewer_widget/static/src/xml/widget.xml',
-
         ]
     },
     'images': ['static/description/banner.png'],

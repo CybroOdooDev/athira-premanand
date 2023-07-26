@@ -13,7 +13,6 @@ odoo.define('theme_diva.popular_product', function(require){
             var QWeb = core.qweb
             ajax.jsonRpc('/get_main_product', 'call', {})
             .then((data) => {
-                  console.log(QWeb)
                   this.$el.empty().append(QWeb.render('diva_index_main_product',{
                   main_products: data.main_products,
                   }))

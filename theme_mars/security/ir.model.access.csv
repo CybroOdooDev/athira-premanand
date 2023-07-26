@@ -1,0 +1,7 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_mars_portfolio,access_mars.portfolio,model_mars_portfolio,base.group_user,1,1,1,1
+access_portfolio_images,access_portfolio.images,model_portfolio_images,base.group_user,1,1,1,1
+access_portfolio_group,access_portfolio.group,model_portfolio_group,base.group_user,1,1,1,1
+access_mars_gallery,access_mars_gallery,model_mars_gallery,base.group_user,1,1,1,1
+access_gallery_category,access_gallery_category,model_gallery_category,base.group_user,1,1,1,1
+

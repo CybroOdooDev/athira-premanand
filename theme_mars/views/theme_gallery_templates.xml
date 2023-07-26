@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Gallery banner layout-->
+    <template id="page_gallery" name="Gallery">
+        <t t-call="website.layout">
+            <div id="wrap" class="o_mars_gallery_page1">
+                <section class="oe_structure banner_services banner_gallery">
+                    <div class="wrapper">
+                        <div class="content title">
+                            <h2>
+                                Gallery
+                            </h2>
+                            <h6>
+                                Work is easy when you have all tools around
+                                you!
+                            </h6>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb ">
+                                    <li class="breadcrumb-item">
+                                        <a href="/">Home
+                                            <i class="arrow right"/>
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="/gallery">Gallery
+                                            <i class="arrow right"/>
+                                        </a>
+                                    </li>
+                                    <li class="breadcrumb-item active"
+                                        aria-current="page">Categories
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </section>
+                <t t-call="theme_mars.mars_gallery_section"/>
+            </div>
+        </t>
+    </template>
+    <!--    Gallery view-->
+    <template id="mars_gallery_section" name="Image Gallery">
+        <section class="oe_structure">
+            <section id="section_gallery "
+                     class="section_gallery_class  card-deck-gallery">
+                <div class="container im_gallery">
+                    <div class="col-lg-9 col-12">
+                        <div class="image-container-4">
+                            <div class="row">
+                                <t t-foreach="result" t-as="image">
+                                    <div class="gallery_images image-item-4">
+                                        <a t-attf-href="data:image/png;base64,{{image.image_gallery}}"
+                                           data-fancybox="gallery">
+                                            <img t-attf-src="data:image/png;base64,{{image.image_gallery}}"
+                                            />
+                                        </a>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <div class="oe_structure"/>
+    </template>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    Wide gallery layout-->
+    <template id="theme_gallery_wide"
+              inherit_id="theme_mars.mars_gallery_section" name="Gallery">
+        <xpath expr="//div[hasclass('im_gallery')]" position="replace">
+            <div class="container im_gallery wide_gallery">
+                <div class="image-container-4">
+                    <div class="row">
+                        <t t-foreach="result" t-as="image">
+                            <div class="gallery_images image-item-4 ">
+                                <img t-attf-src="data:image/png;base64,{{image.image_gallery}}"/>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

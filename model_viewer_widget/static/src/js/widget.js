@@ -9,11 +9,15 @@ import time from 'web.time';
 var translation = require('web.translation');
 var _t = translation._t;
 var FieldImage = basic_fields.image1920;
-const { Component,useEffect, onMounted, useState} = owl;
+const { Component,useEffect,useRef, onMounted, useState} = owl;
 
+ /**
+  * Create canvas for adding 3D model
+  */
 export class Field3D extends ImageField {
    setup(){
     super.setup();
+    this.useRef = useRef("field_3d")
     this.elId = `#${this.props.name}_el`
     this.state = useState({
         isValid: true,
@@ -37,8 +41,10 @@ export class Field3D extends ImageField {
         });
     })
    }
+    /**
+  * At the time of removing file, a default 3D model will be displayed
+  */
    onFileRemove(){
-    console.log(this.view3D)
     super.onFileRemove();
     this.createCanvas()
     this.state.value = url('/model_viewer_widget/static/src/assets/3d.glb');
@@ -47,8 +53,8 @@ export class Field3D extends ImageField {
     }
    }
    createCanvas(){
-       var elem = document.querySelector(this.elId);
-       const prevCanvas = elem.querySelector('canvas');
+       var elem = this.useRef.el.querySelector(this.elId)
+       const prevCanvas = this.useRef.el.querySelector('canvas');
        if(prevCanvas)
            elem.removeChild(prevCanvas)
        const canvas = document.createElement('canvas');
@@ -60,5 +66,4 @@ export class Field3D extends ImageField {
 }
 Field3D.acceptedFileExtensions = "*"
 Field3D.template = "Field3DWidget"
-
 registry.category("fields").add("3D_widget", Field3D);

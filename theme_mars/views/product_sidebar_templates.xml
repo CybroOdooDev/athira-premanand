@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--    product sidebar layout-->
+    <template id="sidebar_product_left" inherit_id="website_sale.product"
+              name="Product Sidebar Left">
+        <xpath expr="//section[hasclass('single_product')]"
+               position="before">
+            <aside id="products_grid_before"
+                   class="d-none d-lg-block position-sticky col-3 px-3 clearfix p_cat"
+                   style="width: 25%; margin-top: 12px;">
+                <t t-set="mars_category"
+                   t-value="request.env['product.public.category'].sudo().search([])"/>
+                <h4>CATEGORIES</h4>
+                <ul class="shop_accessories">
+                    <li class="nav-item">
+                        <t t-foreach="mars_category" t-as="category">
+                            <li>
+                                <a t-attf-href="/shop/category/#{ category.id }">
+                                    <span t-field="category.name"/>
+                                </a>
+                            </li>
+                            <hr/>
+                        </t>
+                    </li>
+                </ul>
+            </aside>
+        </xpath>
+    </template>
+</odoo>

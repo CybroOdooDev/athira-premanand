@@ -4,14 +4,11 @@
 
                     items: 3,
                     loop: true,
-                    // margin: 30,
-                    // stagePadding: 30,
                     smartSpeed: 450,
                     autoplay: true,
                     autoPlaySpeed: 1000,
                     autoPlayTimeout: 1000,
                     autoplayHoverPause: true,
-                    // onInitialized: counter,
                     dots: true,
                     nav: true,
                     navText: ['<i class="bi bi-arrow-left-short"></i>    <span class="bi bi-arrow-left-circle"></span>', '<i class="bi bi-arrow-right-short"></i> <i class="bi bi-arrow-right-circle"></i>'],
@@ -43,7 +40,6 @@
                 $(this).find("img:nth-child(2)").stop().animate({ opacity: 0 }, 600);
             }
             });
-
             AOS.init({
             easing: 'ease-in-quad',
             });

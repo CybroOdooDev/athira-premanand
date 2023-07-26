@@ -1,3 +1,25 @@
+# -*- coding: utf-8 -*-
+#############################################################################
+#
+#    Cybrosys Technologies Pvt. Ltd.
+#
+#    Copyright (C) 2022-TODAY Cybrosys Technologies(<https://www.cybrosys.com>)
+#    Author: Cybrosys Technologies (<https://www.cybrosys.com>)
+#
+#    You can modify it under the terms of the GNU LESSER
+#    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU LESSER GENERAL PUBLIC LICENSE (LGPL v3) for more details.
+#
+#    You should have received a copy of the GNU LESSER GENERAL PUBLIC LICENSE
+#    (LGPL v3) along with this program.
+#    If not, see <http://www.gnu.org/licenses/>.
+#
+#############################################################################
+
 {
     'name': 'Theme EcoLife',
     'description': 'Theme EcoLife is an attractive and modern eCommerce Website theme',
@@ -59,8 +81,6 @@
             'theme_eco_food/static/src/css/style.css',
             'https://code.jquery.com/jquery-1.12.4.js',
             'https://code.jquery.com/ui/1.12.1/jquery-ui.js',
-            # 'theme_eco_food/static/src/js/bootstrap-dropdownhover.js',
-            # 'theme_eco_food/static/src/js/bootstrap-dropdownhover.min.js'
             'theme_eco_food/static/src/js/owl.carousel.js',
             'theme_eco_food/static/src/js/owl.carousel.min.js',
             'theme_eco_food/static/src/js/script.js',
@@ -71,9 +91,8 @@
             'theme_eco_food/static/src/js/recently_added.js',
             'https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js',
 
-            # 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'
         ],
     },
     'license': 'LGPL-3',
-    'installable':True,
+    'installable': True,
 }

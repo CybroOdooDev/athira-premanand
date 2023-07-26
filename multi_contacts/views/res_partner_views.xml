@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    Added a page for adding the partner details-->
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.view.form.inherit.multi.contacts</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='contact_addresses']" position="after">
+                <page string="Phones and usernames" name="phones">
+                    <field name="contact_ids"
+                           mode="tree">
+                        <tree string="Phones and username" editable="bottom">
+                            <field name="sequence" widget="handle" string='Sequence'/>
+                            <field name="type" string="Type"/>
+                            <field name="number" string="Number"/>
+                            <field name="email" string="Email"/>
+                            <field name="tags_ids" widget="many2many_tags" options="{'color_field': 'color'}" string="Tags"/>
+                            <field name="note" string="Note"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.actions.server" id="action_export_contacts_ir_actions_server">
+        <field name="name">Export Contacts</field>
+        <field name="model_id" ref="multi_contacts.model_res_partner"/>
+        <field name="binding_model_id" ref="multi_contacts.model_res_partner"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = records.export_contact_action()
+        </field>
+    </record>
+</odoo>

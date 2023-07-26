@@ -19,27 +19,29 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 #
 #############################################################################
-
 {
     'name': 'Theme Diva',
-    'description': 'Design Web Pages with Theme Diva',
-    'summary': 'Design Web Pages with Theme Diva',
-    'category': 'Theme/Corporate',
     'version': '16.0.1.0.0',
+    'category': 'Theme/Corporate',
+    'summary': 'Design Web Pages with Theme Diva.'
+               'The theme is very user-friendly and is suitable for your '
+               'website.',
+    'description': 'Theme Diva is an attractive and modern eCommerce Website '
+                   'theme',
     'author': 'Cybrosys Techno Solutions',
     'company': 'Cybrosys Techno Solutions',
     'maintainer': 'Cybrosys Techno Solutions',
     'website': "https://www.cybrosys.com",
-    'depends': ['website_sale', 'website_blog', 'website'],
+    'depends': ['website_sale', 'website_blog', 'website', 'hr'],
     'data': [
-        'views/featured_configuration.xml',
         'security/ir.model.access.csv',
-        'data/featured_product.xml',
+        'data/featured_product_data.xml',
+        'views/featured_configuration.xml',
         'views/views.xml',
         'views/customize.xml',
         'views/layout.xml',
         'views/myaccount.xml',
-        'views/shop1.xml',
+        'views/shop.xml',
         'views/product_view.xml',
         'views/cart_view.xml',
         'views/checkout.xml',
@@ -101,6 +103,6 @@
     ],
     'license': 'LGPL-3',
     'installable': True,
-    'application': True,
     'auto_install': False,
+    'application': False,
 }

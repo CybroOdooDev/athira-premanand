@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="template" xml:space="preserve">
+<!--    Featured Products-->
     <t t-name="diva_index2_features" name="Index2 Featured Product">
         <div class="wrapper">
                 <div class="heading">
